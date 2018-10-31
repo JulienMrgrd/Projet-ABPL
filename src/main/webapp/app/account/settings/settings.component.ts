@@ -15,9 +15,10 @@ export class SettingsComponent implements OnInit {
     constructor(private account: AccountService, private principal: Principal) {}
 
     ngOnInit() {
-        this.principal.identity().then(account => {
+        // FIXME disabled feature
+        /*this.principal.identity().then(account => {
             this.settingsAccount = this.copyAccount(account);
-        });
+        });*/
     }
 
     save() {

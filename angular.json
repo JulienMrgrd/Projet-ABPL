@@ -12,7 +12,7 @@
   },
   "defaultProject": "projet-abpl",
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "npm"
   },
   "schematics": {
     "@schematics/angular:component": {

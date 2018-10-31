@@ -65,6 +65,16 @@ Navbar
 .navbar-title {
     display: inline-block;
     vertical-align: middle;
+    padding-left: 1em;
+}
+
+/**
+=============================================================================
+Custom
+========================================================================== */
+.disabled {
+    pointer-events: none; /*This makes it not clickable*/
+    opacity: 0.6; /*This grays it out to look disabled*/
 }
 
 /* ==========================================================================
@@ -76,7 +86,7 @@ Logo styles
 
 .logo-img {
     height: 100%;
-    background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+    background: url('../../../content/images/logo-abpl.png') no-repeat center center;
     background-size: contain;
     width: 100%;
 }

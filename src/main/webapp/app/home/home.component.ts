@@ -16,10 +16,11 @@ export class HomeComponent implements OnInit {
     constructor(private principal: Principal, private loginModalService: LoginModalService, private eventManager: JhiEventManager) {}
 
     ngOnInit() {
-        this.principal.identity().then(account => {
+        // FIXME disabled feature
+        /*this.principal.identity().then(account => {
             this.account = account;
         });
-        this.registerAuthenticationSuccess();
+        this.registerAuthenticationSuccess();*/
     }
 
     registerAuthenticationSuccess() {

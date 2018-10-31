@@ -12,7 +12,7 @@ import locale from '@angular/common/locales/en';
         Title,
         {
             provide: LOCALE_ID,
-            useValue: 'en'
+            useValue: 'fr'
         },
         DatePipe
     ]
