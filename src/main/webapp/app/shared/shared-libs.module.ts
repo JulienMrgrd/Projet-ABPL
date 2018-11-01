@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgJhipsterModule } from 'ng-jhipster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -19,8 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         InfiniteScrollModule,
         CookieModule.forRoot(),
         FontAwesomeModule,
-        NgbPopoverModule,
-        BrowserAnimationsModule
+        NgbPopoverModule
     ],
     exports: [FormsModule, CommonModule, NgbModule, NgJhipsterModule, InfiniteScrollModule, FontAwesomeModule, NgbPopoverModule]
 })
