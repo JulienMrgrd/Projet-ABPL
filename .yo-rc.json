@@ -30,6 +30,8 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuAppName": "projet-abpl",
+    "herokuDeployType": "git"
   }
 }
