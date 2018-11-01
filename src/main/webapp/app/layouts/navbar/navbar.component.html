@@ -137,9 +137,9 @@
                             <span>Sign in</span>
                         </a>
                     </li>
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item disabled" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()"
-                           ngbPopover="'{{disabledPopoverText}}'" triggers="mouseenter:mouseleave">
+                    <li *ngSwitchCase="false"
+                        ngbPopover="'{{disabledPopoverText}}'" triggers="mouseenter:mouseleave">
+                        <a class="dropdown-item disabled" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'user-plus'" [fixedWidth]="true"></fa-icon>
                             <span>Register</span>
                         </a>
