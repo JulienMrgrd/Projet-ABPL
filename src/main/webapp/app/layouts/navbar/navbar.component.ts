@@ -38,11 +38,11 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        // FIXME disabled feature
-        /*this.profileService.getProfileInfo().then(profileInfo => {
+        // FIXME re-disabled feature
+        this.profileService.getProfileInfo().then(profileInfo => {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });*/
+        });
     }
 
     collapseNavbar() {
