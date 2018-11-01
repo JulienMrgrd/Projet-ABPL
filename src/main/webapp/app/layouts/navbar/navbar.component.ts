@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModalRef, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { VERSION } from 'app/app.constants';
 import { Principal, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
@@ -19,22 +18,31 @@ export class NavbarComponent implements OnInit {
     modalRef: NgbModalRef;
     version: string;
 
+    // FIXME disabled feature
+    disabledPopoverText = "Désactivé pour l'instant...";
+
     constructor(
         private loginService: LoginService,
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private config: NgbPopoverConfig
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
+
+        // customize default values of popovers used by this component tree
+        this.config.placement = 'left-bottom';
+        this.config.triggers = 'hover';
     }
 
     ngOnInit() {
-        this.profileService.getProfileInfo().then(profileInfo => {
+        // FIXME disabled feature
+        /*this.profileService.getProfileInfo().then(profileInfo => {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });
+        });*/
     }
 
     collapseNavbar() {
