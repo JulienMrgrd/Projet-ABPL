@@ -35,17 +35,14 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:projetabpl;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:postgresql://localhost:5432/ProjetABPL
         username: ProjetABPL
         password:
         hikari:
             auto-commit: false
-    h2:
-        console:
-            enabled: false
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
         show-sql: true
         properties:
             hibernate.id.new_generator_mappings: true
@@ -54,11 +51,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory
-    data:
-        elasticsearch:
-            properties:
-                path:
-                    home: target/elasticsearch
     liquibase:
         contexts: dev
     mail:
@@ -99,7 +91,7 @@ jhipster:
         authentication:
             jwt:
                 # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-                base64-secret: YTAxM2VhMTZkZDM1MWY2YmNlYWZhYWY3OWFjOTMwZGVkNWFmZDUwMDkxOTg5NTdhYTI2ZDM1Nzc3NjFmYmEyMTQ0YjJmN2IyMzY2OWU2MDBkN2YwNGVjYTdiYzIwM2E4Y2UxNmEyNTEwMDA0MGY0OTk1OTE4NjM5ZGY1OTAxNTg=
+                base64-secret: MTgwNGNlY2VmZDZlMDE0MGNlYTI1NDhhODMwMzgxNDJhMmRmNDhkM2VjZjQ2NDA2NjdjNGI2MWI1YWM1OWZjNDY3NmM1OGZhMGNlYjUyZmU5MzZjMzEzZmIyMWE5ODlkMzUxYTUwZWYyNzg3ZTM0NGZhYmJhNmY5ZjI3ZWYwMWU=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000

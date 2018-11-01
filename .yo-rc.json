@@ -14,14 +14,14 @@
     "enableHibernateCache": true,
     "websocket": false,
     "databaseType": "sql",
-    "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "mysql",
-    "searchEngine": "elasticsearch",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "YTAxM2VhMTZkZDM1MWY2YmNlYWZhYWY3OWFjOTMwZGVkNWFmZDUwMDkxOTg5NTdhYTI2ZDM1Nzc3NjFmYmEyMTQ0YjJmN2IyMzY2OWU2MDBkN2YwNGVjYTdiYzIwM2E4Y2UxNmEyNTEwMDA0MGY0OTk1OTE4NjM5ZGY1OTAxNTg=",
+    "jwtSecretKey": "MTgwNGNlY2VmZDZlMDE0MGNlYTI1NDhhODMwMzgxNDJhMmRmNDhkM2VjZjQ2NDA2NjdjNGI2MWI1YWM1OWZjNDY3NmM1OGZhMGNlYjUyZmU5MzZjMzEzZmIyMWE5ODlkMzUxYTUwZWYyNzg3ZTM0NGZhYmJhNmY5ZjI3ZWYwMWU=",
     "clientFramework": "angularX",
     "useSass": false,
     "clientPackageManager": "npm",
@@ -30,6 +30,8 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuAppName": "projet-abpl",
+    "herokuDeployType": "git"
   }
 }
