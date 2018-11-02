@@ -3,21 +3,33 @@ Main page styles
 ========================================================================== */
 
 .abpl {
-    display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url('../../content/images/abpl.png') no-repeat center top;
-    background-size: contain;
+  display: inline-block;
+  width: 347px;
+  height: 250px;
+  background: url('../../content/images/abpl.png') no-repeat center top;
+  background-size: contain;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (-moz-min-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1),
-    only screen and (min-resolution: 192dpi),
-    only screen and (min-resolution: 2dppx) {
-    .abpl {
-        background: url('../../content/images/abpl.png') no-repeat center top;
-        background-size: contain;
-    }
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .abpl {
+    background: url('../../content/images/abpl.png') no-repeat center top;
+    background-size: contain;
+  }
+}
+
+/* ==========================================================================
+Custom
+========================================================================== */
+.home-card {
+  padding: 10px;
+}
+
+.be-careful {
+  color: red;
+  font-weight: 500;
 }

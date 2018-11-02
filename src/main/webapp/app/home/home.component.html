@@ -1,45 +1,49 @@
-<div class="row">
-    <div class="col-md-3">
+<div class="card card-frame home-card">
+  <div class="card-block">
+
+    <div class="row">
+      <div class="col-12 text-center">
         <span class="abpl img-fluid rounded"></span>
+      </div>
     </div>
-    <div class="col-md-9">
-        <section class="section">
-            <div class="container-fluid">
-                <h1 class="display-5">Bienvenue,</h1>
-                <h2 class="display-10">futur certifié de laboratoire !</h2>
-            </div>
-        </section>
 
-        <br/> <!-- FIXME use margin -->
-        <br/>
+    <div class="row">
+      <div class="container-fluid">
+        <h1 class="display-5">Bienvenue,</h1>
+        <h2 class="display-10">futur certifié de laboratoire !</h2>
+      </div>
+    </div>
 
-        <section class="section">
-            <div class="container-fluid">
-                <div class="alert alert-info">
-                    <p class="lead">Ceci est, comme tu l'as sans doute deviné... ta page d'accueil.</p>
-                </div>
-            </div>
-        </section>
+    <br/> <!-- FIXME use margin --><br/>
 
-        <br/> <!-- FIXME use margin -->
-        <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
-        <!-- FIXME disabled for the moment -->
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>You don't have an account yet?</span>&nbsp;
-                <a class="alert-link" routerLink="register">Register a new account</a>
-            </div>
+    <div class="row">
+      <section class="section">
+        <div class="container-fluid">
+          <div class="alert alert-info">
+            <p class="lead">Ceci est, comme tu l'as sans doute deviné... ta page d'accueil.</p>
+          </div>
         </div>
-
+      </section>
     </div>
+
+    <br/> <!-- FIXME use margin --><br/><br/><br/><br/><br/><br/>
+
+    <div [ngSwitch]="isAuthenticated()">
+      <div class="alert alert-success" *ngSwitchCase="true">
+        <span id="home-logged-message" *ngIf="account">Vous êtes connecté comme l'utilisateur : "{{account.login}}". </span>
+      </div>
+
+      <div class="alert alert-warning" *ngSwitchCase="false">
+        <span>Si vous souhaitez vous </span>
+        <a class="alert-link" (click)="login()">connecter</a><span>, vous pouvez essayer le compte par défaut:
+        <br/>- Administrateur (login="admin" and mdp="admin"). <span class="be-careful">/!\ pas de bêtises avec lui...!</span>
+        <br/>- Utilisateur (login="user" and mdp="user").</span>
+      </div>
+      <!-- FIXME disabled for the moment -->
+      <!--<div class="alert alert-warning" *ngSwitchCase="false">
+        <span>You don't have an account yet?</span>&nbsp;
+        <a class="alert-link" routerLink="register">Register a new account</a>
+      </div>-->
+    </div>
+  </div>
 </div>
