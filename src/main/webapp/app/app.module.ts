@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ProjetAbplCoreModule } from 'app/core';
 import { ProjetAbplHomeModule } from 'app/home';
+import { ProjetAbplQuizModule } from 'app/quiz/quiz.module';
 import { ProjetAbplSharedModule } from 'app/shared';
 import * as moment from 'moment';
 import { JhiEventManager } from 'ng-jhipster';
@@ -18,52 +19,53 @@ import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.inter
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { ProjetAbplEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
+import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent } from './layouts';
 import './vendor.ts';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        ProjetAbplAppRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
-        ProjetAbplSharedModule,
-        ProjetAbplCoreModule,
-        ProjetAbplHomeModule,
-        ProjetAbplAccountModule,
-        // jhipster-needle-angular-add-module JHipster will add new module here
-        ProjetAbplEntityModule
-    ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-            deps: [LocalStorageService, SessionStorageService]
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthExpiredInterceptor,
-            multi: true,
-            deps: [Injector]
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorHandlerInterceptor,
-            multi: true,
-            deps: [JhiEventManager]
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: NotificationInterceptor,
-            multi: true,
-            deps: [Injector]
-        }
-    ],
-    bootstrap: [JhiMainComponent]
+  imports: [
+    BrowserModule,
+    ProjetAbplAppRoutingModule,
+    Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
+    ProjetAbplSharedModule,
+    ProjetAbplCoreModule,
+    ProjetAbplHomeModule,
+    ProjetAbplAccountModule,
+    // jhipster-needle-angular-add-module JHipster will add new module here
+    ProjetAbplEntityModule,
+    ProjetAbplQuizModule
+  ],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+      deps: [LocalStorageService, SessionStorageService]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthExpiredInterceptor,
+      multi: true,
+      deps: [Injector]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true,
+      deps: [JhiEventManager]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NotificationInterceptor,
+      multi: true,
+      deps: [Injector]
+    }
+  ],
+  bootstrap: [JhiMainComponent]
 })
 export class ProjetAbplAppModule {
-    constructor(private dpConfig: NgbDatepickerConfig) {
-        this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
-    }
+  constructor(private dpConfig: NgbDatepickerConfig) {
+    this.dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
+  }
 }

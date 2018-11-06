@@ -1,26 +1,26 @@
 .bs-docs-footer {
-    padding-top: 2em;
-    padding-bottom: 3em;
-    margin-top: 2em;
-    color: #99979c;
-    text-align: center;
-    background-color: #353d47;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  margin-top: 1em;
+  color: #bdbac0;
+  text-align: center;
+  background-color: #353d47;
+  border-radius: 0.25rem;
 }
+
 .bs-docs-footer-links {
-    padding-left: 0;
-    margin-bottom: 2em;
+  padding-left: 0;
+  margin-bottom: 2em;
 }
+
 .bs-docs-footer-links li {
-    display: inline-block;
+  display: inline-block;
 }
+
 .bs-docs-footer-links li + li {
-    margin-left: 15px;
+  margin-left: 15px;
 }
-@media (min-width: 768px) {
-    .bs-docs-footer {
-        text-align: left;
-    }
-}
+
 .bs-docs-footer a {
-    color: #c6c6c6;
+  color: #c6c6c6;
 }

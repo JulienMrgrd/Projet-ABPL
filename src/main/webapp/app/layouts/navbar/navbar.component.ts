@@ -6,68 +6,65 @@ import { Principal, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
 
 @Component({
-    selector: 'jhi-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['navbar.css']
+  selector: 'jhi-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['navbar.css']
 })
 export class NavbarComponent implements OnInit {
-    inProduction: boolean;
-    isNavbarCollapsed: boolean;
-    languages: any[];
-    swaggerEnabled: boolean;
-    modalRef: NgbModalRef;
-    version: string;
+  inProduction: boolean;
+  isNavbarCollapsed: boolean;
+  languages: any[];
+  swaggerEnabled: boolean;
+  modalRef: NgbModalRef;
+  version: string;
 
-    // FIXME disabled feature
-    disabledPopoverText = "Désactivé pour l'instant...";
+  constructor(
+    private loginService: LoginService,
+    private principal: Principal,
+    private loginModalService: LoginModalService,
+    private profileService: ProfileService,
+    private router: Router,
+    private config: NgbPopoverConfig
+  ) {
+    this.version = VERSION ? 'v' + VERSION : '';
+    this.isNavbarCollapsed = true;
 
-    constructor(
-        private loginService: LoginService,
-        private principal: Principal,
-        private loginModalService: LoginModalService,
-        private profileService: ProfileService,
-        private router: Router,
-        private config: NgbPopoverConfig
-    ) {
-        this.version = VERSION ? 'v' + VERSION : '';
-        this.isNavbarCollapsed = true;
+    // customize default values of popovers used by this component tree
+    this.config.placement = 'left-bottom';
+    this.config.triggers = 'hover';
+  }
 
-        // customize default values of popovers used by this component tree
-        this.config.placement = 'left-bottom';
-        this.config.triggers = 'hover';
-    }
+  ngOnInit() {
+    // FIXME re-disabled feature
+    this.profileService.getProfileInfo().then(profileInfo => {
+      this.inProduction = profileInfo.inProduction;
+      this.swaggerEnabled = profileInfo.swaggerEnabled;
+    });
+  }
 
-    ngOnInit() {
-        // FIXME disabled feature
-        /*this.profileService.getProfileInfo().then(profileInfo => {
-            this.inProduction = profileInfo.inProduction;
-            this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });*/
-    }
+  collapseNavbar() {
+    this.isNavbarCollapsed = true;
+  }
 
-    collapseNavbar() {
-        this.isNavbarCollapsed = true;
-    }
+  isAuthenticated() {
+    return this.principal.isAuthenticated();
+  }
 
-    isAuthenticated() {
-        return this.principal.isAuthenticated();
-    }
+  login() {
+    this.modalRef = this.loginModalService.open();
+  }
 
-    login() {
-        this.modalRef = this.loginModalService.open();
-    }
+  logout() {
+    this.collapseNavbar();
+    this.loginService.logout();
+    this.router.navigate(['']);
+  }
 
-    logout() {
-        this.collapseNavbar();
-        this.loginService.logout();
-        this.router.navigate(['']);
-    }
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
 
-    toggleNavbar() {
-        this.isNavbarCollapsed = !this.isNavbarCollapsed;
-    }
-
-    getImageUrl() {
-        return this.isAuthenticated() ? this.principal.getImageUrl() : null;
-    }
+  getImageUrl() {
+    return this.isAuthenticated() ? this.principal.getImageUrl() : null;
+  }
 }

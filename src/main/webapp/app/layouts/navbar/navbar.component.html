@@ -20,17 +20,16 @@
             </li>
 
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/quizz" (click)="collapseNavbar()">
+                <a class="nav-link" routerLink="/quiz" (click)="collapseNavbar()">
                     <span>
                         <fa-icon [icon]="'question'"></fa-icon>
-                        <span>Quizz</span>
+                        <span>Quiz</span>
                     </span>
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                ngbPopover="'{{disabledPopoverText}}'" triggers="mouseenter:mouseleave">
-                <a class="nav-link dropdown-toggle disabled" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon [icon]="'th-list'"></fa-icon>
                         <span>
@@ -42,9 +41,8 @@
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
-            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                ngbPopover="{{disabledPopoverText}}" triggers="mouseenter:mouseleave">
-                <a class="nav-link dropdown-toggle disabled" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
+            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>
                         <fa-icon [icon]="'user-plus'"></fa-icon>
                         <span>Administration</span>
@@ -102,9 +100,8 @@
                     </li>
                 </ul>
             </li>
-            <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                ngbPopover="{{disabledPopoverText}}" triggers="mouseenter:mouseleave">
-                <a class="nav-link dropdown-toggle disabled" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
+            <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
                     <fa-icon [icon]="'user'"></fa-icon>
                     <span>
@@ -140,8 +137,9 @@
                             <span>Sign in</span>
                         </a>
                     </li>
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
+                    <li *ngSwitchCase="false"
+                        ngbPopover="Désactivé pour l'instant..." triggers="mouseenter:mouseleave">
+                        <a class="dropdown-item disabled" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'user-plus'" [fixedWidth]="true"></fa-icon>
                             <span>Register</span>
                         </a>
