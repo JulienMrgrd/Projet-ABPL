@@ -11,15 +11,6 @@
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <span>
-                        <fa-icon [icon]="'home'"></fa-icon>
-                        <span>Accueil</span>
-                    </span>
-                </a>
-            </li>
-
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/quiz" (click)="collapseNavbar()">
                     <span>
                         <fa-icon [icon]="'question'"></fa-icon>
@@ -28,12 +19,13 @@
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer disabled" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                ngbPopover="Désactivé pour l'instant..." triggers="mouseenter:mouseleave">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon [icon]="'th-list'"></fa-icon>
                         <span>
-                            Entities
+                            Entités
                         </span>
                     </span>
                 </a>
@@ -105,7 +97,7 @@
                   <span *ngIf="!getImageUrl()">
                     <fa-icon [icon]="'user'"></fa-icon>
                     <span>
-                      Account
+                      Compte
                     </span>
                   </span>
                   <span *ngIf="getImageUrl()">
@@ -116,32 +108,32 @@
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'wrench'" [fixedWidth]="true"></fa-icon>
-                            <span>Settings</span>
+                            <span>Paramètres</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'clock'" [fixedWidth]="true"></fa-icon>
-                            <span>Password</span>
+                            <span>Mot de passe</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" (click)="logout()" id="logout">
                             <fa-icon [icon]="'sign-out-alt'" [fixedWidth]="true"></fa-icon>
-                            <span>Sign out</span>
+                            <span>Déconnexion</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="false">
                         <a class="dropdown-item" (click)="login()" id="login">
                             <fa-icon [icon]="'sign-in-alt'" [fixedWidth]="true"></fa-icon>
-                            <span>Sign in</span>
+                            <span>Connexion</span>
                         </a>
                     </li>
                     <li *ngSwitchCase="false"
                         ngbPopover="Désactivé pour l'instant..." triggers="mouseenter:mouseleave">
                         <a class="dropdown-item disabled" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon [icon]="'user-plus'" [fixedWidth]="true"></fa-icon>
-                            <span>Register</span>
+                            <span>Inscription</span>
                         </a>
                     </li>
                 </ul>

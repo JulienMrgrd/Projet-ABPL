@@ -7,20 +7,10 @@ Custom
   opacity: 0.6; /*This grays it out to look disabled*/
 }
 
-.quizz-card {
+.quiz-card {
   padding: 10px;
 }
 
-.btn {
-  border-radius: 0;
-}
-
-.option {
-  background-color: #cadaee;
-  font-size: 20px;
-  padding: 10px;
-  margin: 3px;
-}
 #quiz .options input[type='checkbox'] {
   height: 22px;
   width: 22px;
@@ -28,12 +18,6 @@ Custom
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.result-question {
-  background-color: #eee;
-  margin: 4px;
-  padding: 6px;
 }
 
 @media only screen and (max-width: 480px) {
