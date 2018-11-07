@@ -11,15 +11,6 @@ Custom
   padding: 10px;
 }
 
-#quiz .options input[type='checkbox'] {
-  height: 22px;
-  width: 22px;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
 @media only screen and (max-width: 480px) {
   h1,
   .h1 {
