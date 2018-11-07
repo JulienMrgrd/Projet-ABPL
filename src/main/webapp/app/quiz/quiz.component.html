@@ -17,10 +17,9 @@
 <div class="card card-frame quiz-card">
   <div class="card-block">
     <div id="quiz" *ngIf="quiz">
-      <h2 class="text-center font-weight-normal">{{quiz.name}}</h2>
-      <hr />
-
       <div *ngIf="mode == quizModeEnum.QUIZ">
+        <h2 class="text-center font-weight-normal">Quiz : {{quiz.name}}</h2>
+        <hr />
         <div *ngFor="let question of filteredQuestions">
 
           <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}.</div>
@@ -36,7 +35,8 @@
             <div class="col-6" *ngFor="let option of question.options; let index = index">
               <div class="form-check">
                 <label>
-                  <input type="checkbox" name="check-{{index}}"><span class="label-text">{{option.name}}</span>
+                  <input type="checkbox" name="check-{{index}}" [(ngModel)]="option.selected" (change)="onSelect(question, option)">
+                  <span class="label-text">{{option.name}}</span>
                 </label>
               </div>
             </div>
@@ -58,7 +58,10 @@
 
    <!-- ================================
        =============REVUE ============ -->
-      <div class="row text-center" *ngIf="mode == quizModeEnum.REVIEW">
+      <div *ngIf="mode == quizModeEnum.REVIEW">
+        <h2 class="text-center font-weight-normal">Revue du quiz : {{quiz.name}}</h2>
+        <hr />
+        <div class="row text-center">
         <div class="col-4" *ngFor="let question of quiz.questions; let index = index" [ngSwitch]="isAnswered(question)">
           <ngb-alert type="info" (click)="goTo(index)" [dismissible]="false" *ngSwitchCase="true">
             <strong>{{index + 1}}. Répondue</strong>
@@ -68,29 +71,35 @@
           </ngb-alert>
         </div>
       </div>
-
+      </div>
 
       <!-- ================================
           ============ RESULT =========== -->
       <div class="result" *ngIf="mode == quizModeEnum.RESULT">
-        <h2>Résultats du quiz</h2>
+        <h2 class="text-center font-weight-normal">Résultats du quiz : {{quiz.name}}</h2>
+        <hr />
         <div *ngFor="let question of quiz.questions; let index = index">
           <div class="result-question">
             <h5>{{index + 1}}. {{question.name}}</h5>
             <div class="row">
               <div class="col-6" *ngFor="let option of question.options">
-                <input id="check-result-{{option.id}}" type="checkbox" disabled="disabled" [(ngModel)]="option.selected"/> {{option.name}}
+                <div class="form-check disabled">
+                  <label>
+                    <input type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected"><span class="label-text">{{option.name}}</span>
+                  </label>
+                </div>
               </div>
             </div>
-            <div class="p-1 m-2 alert {{ isCorrect(question) ? 'alert-success': 'alert-danger'}}">Votre réponse est <strong>{{ isCorrect(question) ? 'correcte' : 'fausse' }}</strong>.</div>
+            <div class="p-1 m-2 alert {{ isCorrect(question) ? 'alert-success': 'alert-danger'}}"><strong>{{ isCorrect(question) ? 'Vrai' : 'Faux' }}.</strong></div>
           </div>
+          <hr *ngIf="index < quiz.questions.length - 1"/>
         </div>
       </div>
-      <hr />
+      <br/>
 
    <!-- ================================
        ============ BUTTONS =========== -->
-      <div *ngIf="mode != quizModeEnum.RESULT">
+      <div class="float-right" *ngIf="mode != quizModeEnum.RESULT">
         <button type="button" class="btn btn-default" *ngIf="mode != quizModeEnum.QUIZ" (click)="mode = quizModeEnum.QUIZ">Quiz</button>
         <button type="button" class="btn btn-info"  *ngIf="mode != quizModeEnum.REVIEW" (click)="mode = quizModeEnum.REVIEW">Revue</button>
         <button type="button" class="btn btn-primary" (click)="onSubmit()">Soumettre le quiz</button>
