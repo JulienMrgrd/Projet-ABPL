@@ -43,6 +43,26 @@ input[type='checkbox']:disabled + .label-text:before {
   color: #ccc;
 }
 
+input.checkbox-red[type='checkbox']:checked + .label-text:before {
+  color: #990000;
+}
+
+input.checkbox-yellow[type='checkbox']:checked + .label-text:before {
+  color: #face00;
+}
+
+input.checkbox-green[type='checkbox']:checked + .label-text:before {
+  color: #008000;
+}
+
+input.checkbox-blue[type='checkbox']:checked + .label-text:before {
+  color: #428bca;
+}
+
+input.checkbox-black[type='checkbox']:checked + .label-text:before {
+  color: #000000;
+}
+
 /*Radio box*/
 
 input[type='radio'] + .label-text:before {
@@ -75,6 +95,26 @@ input[type='radio']:disabled + .label-text:before {
   color: #ccc;
 }
 
+input.radio-red[type='radio']:checked + .label-text:before {
+  color: #990000;
+}
+
+input.radio-yellow[type='radio']:checked + .label-text:before {
+  color: #face00;
+}
+
+input.radio-green[type='radio']:checked + .label-text:before {
+  color: #008000;
+}
+
+input.radio-blue[type='radio']:checked + .label-text:before {
+  color: #428bca;
+}
+
+input.radio-black[type='radio']:checked + .label-text:before {
+  color: #000000;
+}
+
 /*Radio Toggle*/
 
 .toggle input[type='radio'] + .label-text:before {
@@ -105,6 +145,26 @@ input[type='radio']:disabled + .label-text:before {
 .toggle input[type='radio']:disabled + .label-text:before {
   content: '\f204';
   color: #ccc;
+}
+
+.toggle input.radio-red[type='radio']:checked + .label-text:before {
+  color: #990000;
+}
+
+.toggle input.radio-yellow[type='radio']:checked + .label-text:before {
+  color: #face00;
+}
+
+.toggle input.radio-green[type='radio']:checked + .label-text:before {
+  color: #008000;
+}
+
+.toggle input.radio-blue[type='radio']:checked + .label-text:before {
+  color: #428bca;
+}
+
+.toggle input.radio-black[type='radio']:checked + .label-text:before {
+  color: #000000;
 }
 
 @keyframes effect {

@@ -32,10 +32,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 2,
-        "descr": "Plusieurs réponses sont possibles"
-      }
+      "questionType": 2
     },
     {
       "id": 11,
@@ -60,10 +57,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 1,
-        "descr": ""
-      }
+      "questionType": 1
     },
     {
       "id": 12,
@@ -94,10 +88,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 1,
-        "descr": ""
-      }
+      "questionType": 1
     },
     {
       "id": 13,
@@ -134,10 +125,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 1,
-        "descr": ""
-      }
+      "questionType": 1
     }
   ],
   "config": {

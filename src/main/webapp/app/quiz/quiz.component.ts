@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Option } from 'app/quiz/shared/option/option';
-import { QuestionType } from 'app/quiz/shared/question-type/question-type';
-import { Question } from 'app/quiz/shared/question/question';
-import { Quiz } from 'app/quiz/shared/quiz/quiz';
-import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode';
+import { Option } from 'app/quiz/shared/option/option.model';
+import { QuestionType } from 'app/quiz/shared/question-type/question-type.enum';
+import { Question } from 'app/quiz/shared/question/question.model';
+import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
+import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
 import { NamedObject } from 'app/shared/models/named-object.model';
 import { TimeUtil } from 'app/shared/util/time-util';
@@ -40,9 +40,12 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   loadQuiz(quizId: string) {
-    this.quizService.get(quizId).then(quiz => {
+    this.quizService.get(quizId).then((quiz: Quiz) => {
       this.quiz = quiz;
       this.mode = QuizMode.QUIZ;
+
+      // default values
+      this.quiz.questions.forEach(question => question.options.forEach(opt => (opt.selected = false)));
 
       this.pager = this.initPager();
       this.pager.count = this.quiz.questions.length;
@@ -64,7 +67,10 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   private startTimer() {
-    if (this.timer != null) clearInterval(this.timer);
+    if (this.timer != null) {
+      clearInterval(this.timer);
+    }
+
     this.startTime = new Date();
     this.timer = setInterval(() => {
       // every second
@@ -82,12 +88,16 @@ export class QuizComponent implements OnInit, OnDestroy {
     return this.quiz.questions ? this.quiz.questions.slice(this.pager.index, this.pager.index + this.pager.size) : [];
   }
 
-  onSelect(question: Question, response: Option) {
-    /*if (question.questionType === QuestionType.SIMPLE_CHOICE) { TODO: unselect other
+  /**
+   * Unselect all others options (radio buttons) for this question, except the given one.
+   */
+  onSelect($event, question: Question, response: Option) {
+    if ($event.target.checked && this.isSimpleChoice(question)) {
       question.options.forEach(opt => {
-        opt.selected = (opt.id !== response.id);
+        opt.selected = opt.id === response.id;
       });
-    }*/
+    }
+
     /*if (this.quiz.config.autoMove) {
       this.goTo(this.pager.index + 1);
     }*/
@@ -108,6 +118,20 @@ export class QuizComponent implements OnInit, OnDestroy {
     return question.options.every(x => {
       return (x.selected && x.selected === x.isAnswer) || (!x.selected && !x.isAnswer);
     });
+  }
+
+  isSimpleChoice(question: Question): boolean {
+    return question && question.questionType === QuestionType.SIMPLE;
+  }
+
+  getAnswers(question: Question) {
+    return question.options
+      .map(opt => {
+        if (opt.isAnswer) {
+          return opt.name;
+        }
+      })
+      .filter(res => !!res);
   }
 
   onSubmit() {

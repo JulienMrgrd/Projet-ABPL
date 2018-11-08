@@ -31,14 +31,17 @@
           <h3 class="font-weight-normal">{{pager.index + 1}}.
             <span [innerHTML]="question.name"></span>
           </h3>
-          <div class="row"> <!--TODO: ngIf checkbox vs radio, questionType-->
+          <div class="row">
             <div class="col-6" *ngFor="let option of question.options; let index = index">
-              <div class="form-check">
-                <label>
-                  <input type="checkbox" name="check-{{index}}" [(ngModel)]="option.selected" (change)="onSelect(question, option)">
-                  <span class="label-text">{{option.name}}</span>
-                </label>
-              </div>
+              <label for="check-{{index}}" *ngIf="!isSimpleChoice(question)"> <!-- checkboxes -->
+                <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
+                <span class="label-text">{{option.name}}</span>
+              </label>
+
+              <label for="radio-{{index}}" *ngIf="isSimpleChoice(question)"> <!-- radio buttons -->
+                <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected" (change)="onSelect($event, question, option)">
+                <span class="label-text">{{option.name}}</span>
+              </label>
             </div>
           </div>
         </div>
@@ -82,15 +85,36 @@
           <div class="result-question">
             <h5>{{index + 1}}. {{question.name}}</h5>
             <div class="row">
-              <div class="col-6" *ngFor="let option of question.options">
-                <div class="form-check disabled">
+              <div class="col-6 disabled" *ngFor="let option of question.options">
+                <div class="form-check" *ngIf="!isSimpleChoice(question)"> <!-- checkboxes -->
                   <label>
-                    <input type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected"><span class="label-text">{{option.name}}</span>
+                    <input class="checkbox-{{ isCorrect(question) ? 'green': 'red'}}" type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
+                    <span class="label-text">{{option.name}}</span>
+                  </label>
+                </div>
+
+                <div class="form-check" *ngIf="isSimpleChoice(question)"> <!-- radio buttons -->
+                  <label>
+                    <input class="radio-{{ isCorrect(question) ? 'green': 'red'}}" type="radio" name="radio-{{index}}" [checked]="option.selected">
+                    <span class="label-text">{{option.name}}</span>
                   </label>
                 </div>
               </div>
             </div>
-            <div class="p-1 m-2 alert {{ isCorrect(question) ? 'alert-success': 'alert-danger'}}"><strong>{{ isCorrect(question) ? 'Vrai' : 'Faux' }}.</strong></div>
+            <div class="m-2 alert response {{ isCorrect(question) ? 'alert-success': 'alert-danger'}}">
+              <span *ngIf="!isCorrect(question); else right"><strong>Faux.</strong>
+                <span [ngPlural]="getAnswers(question).length">
+                  <ng-template ngPluralCase="=0">La bonne réponse était : <i>{{getAnswers(question)}}</i></ng-template>
+                  <ng-template ngPluralCase="=1">La bonne réponse était : <i>{{getAnswers(question)}}</i></ng-template>
+                  <ng-template ngPluralCase="other"><br>Les bonnes réponses étaient : <br>
+                    <ul class="response-list">
+                      <li *ngFor="let ans of getAnswers(question)"><i>{{ans}}</i></li>
+                    </ul>
+                  </ng-template>
+                </span>
+              </span>
+              <ng-template #right><strong>Vrai.</strong></ng-template>
+            </div>
           </div>
           <hr *ngIf="index < quiz.questions.length - 1"/>
         </div>
