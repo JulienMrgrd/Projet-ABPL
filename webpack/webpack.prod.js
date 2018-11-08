@@ -64,7 +64,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
                 cache: true,
                 terserOptions: {
                     ie8: false,
-                    // sourceMap: true, // Enable source maps. Please note that this will slow down the build
+                    sourceMap: true, // TODO: Enable source maps. Please note that this will slow down the build
                     compress: {
                         dead_code: true,
                         warnings: false,

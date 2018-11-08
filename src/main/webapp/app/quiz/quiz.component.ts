@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Option } from 'app/quiz/shared/option/option';
+import { QuestionType } from 'app/quiz/shared/question-type/question-type';
 import { Question } from 'app/quiz/shared/question/question';
 import { Quiz } from 'app/quiz/shared/quiz/quiz';
+import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
+import { NamedObject } from 'app/shared/models/named-object.model';
 import { TimeUtil } from 'app/shared/util/time-util';
 
 @Component({
@@ -11,16 +14,15 @@ import { TimeUtil } from 'app/shared/util/time-util';
   styleUrls: ['./quiz.css']
 })
 export class QuizComponent implements OnInit, OnDestroy {
-  quizes: any[];
   quiz: Quiz;
-  mode = 'quiz'; // TODO: enum
-  quizName: string;
+  quizId: string;
 
-  pager = {
-    index: 0,
-    size: 1,
-    count: 1
-  };
+  // template values
+  quizModeEnum = QuizMode;
+  quizes: NamedObject[];
+  mode = QuizMode.QUIZ;
+
+  pager = this.initPager();
   timer: any = null;
   startTime: Date;
   ellapsedTime = '00:00';
@@ -29,25 +31,40 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.quizes = this.quizService.getQuizesInfo();
-    this.quizName = this.quizes[0].id;
-    this.loadQuiz(this.quizName);
+    this.quizId = this.quizes[0].id;
+    this.loadQuiz(this.quizId);
   }
 
   ngOnDestroy() {
     clearInterval(this.timer);
   }
 
-  loadQuiz(quizName: string) {
-    this.quizService.get(quizName).then(quiz => {
+  loadQuiz(quizId: string) {
+    this.quizService.get(quizId).then(quiz => {
       this.quiz = quiz;
+      this.mode = QuizMode.QUIZ;
+
+      this.pager = this.initPager();
       this.pager.count = this.quiz.questions.length;
 
       this.startTimer();
     });
-    this.mode = 'quiz';
+  }
+
+  reloadQuiz() {
+    this.loadQuiz(this.quizId ? this.quizId : this.quizes[0].id);
+  }
+
+  private initPager() {
+    return {
+      index: 0,
+      size: 1,
+      count: 1
+    };
   }
 
   private startTimer() {
+    if (this.timer != null) clearInterval(this.timer);
     this.startTime = new Date();
     this.timer = setInterval(() => {
       // every second
@@ -61,21 +78,16 @@ export class QuizComponent implements OnInit, OnDestroy {
     // this.duration = this.parseTime(this.quiz.config.duration); TODO: timer
   }
 
-  tick() {}
-
   get filteredQuestions(): Question[] {
     return this.quiz.questions ? this.quiz.questions.slice(this.pager.index, this.pager.index + this.pager.size) : [];
   }
 
-  onSelect(question: Question, option: Option) {
-    if (question.questionTypeId === 1) {
-      question.options.forEach(x => {
-        if (x.id !== option.id) {
-          x.selected = false;
-        }
+  onSelect(question: Question, response: Option) {
+    /*if (question.questionType === QuestionType.SIMPLE_CHOICE) { TODO: unselect other
+      question.options.forEach(opt => {
+        opt.selected = (opt.id !== response.id);
       });
-    }
-
+    }*/
     /*if (this.quiz.config.autoMove) {
       this.goTo(this.pager.index + 1);
     }*/
@@ -84,26 +96,26 @@ export class QuizComponent implements OnInit, OnDestroy {
   goTo(index: number) {
     if (index >= 0 && index < this.pager.count) {
       this.pager.index = index;
-      this.mode = 'quiz';
+      this.mode = QuizMode.QUIZ;
     }
   }
 
-  isAnswered(question: Question): string {
-    // TODO: boolean
-    return question.options.find(x => x.selected) ? 'Répondue' : 'Non répondue';
+  isAnswered(question: Question): boolean {
+    return !!question.options.find(x => x.selected);
   }
 
-  isCorrect(question: Question): string {
-    // TODO: boolean
-    return question.options.every(x => x.selected === x.isAnswer) ? 'vraie' : 'fausse';
+  isCorrect(question: Question): boolean {
+    return question.options.every(x => {
+      return (x.selected && x.selected === x.isAnswer) || (!x.selected && !x.isAnswer);
+    });
   }
 
   onSubmit() {
     const answers = []; // TODO: type answers
-    this.quiz.questions.forEach(x => answers.push({ quizId: this.quiz.id, questionId: x.id, answered: x.answered }));
+    this.quiz.questions.forEach(x => answers.push({ quizId: this.quiz.id, questionId: x.id, answered: this.isAnswered(x) }));
 
     // TODO: Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
-    this.mode = 'result';
+    this.mode = QuizMode.RESULT;
   }
 }
