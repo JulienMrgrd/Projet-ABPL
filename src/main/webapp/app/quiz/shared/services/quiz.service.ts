@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Quiz } from 'app/quiz/shared/quiz/quiz';
+import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { NamedObject } from 'app/shared/models/named-object.model';
 
 @Injectable()

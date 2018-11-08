@@ -32,10 +32,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 2,
-        "descr": "Plusieurs réponses sont possibles"
-      }
+      "questionType": 2
     },
     {
       "id": 11,
@@ -60,10 +57,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 1,
-        "descr": ""
-      }
+      "questionType": 1
     },
     {
       "id": 12,
@@ -94,10 +88,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 1,
-        "descr": ""
-      }
+      "questionType": 1
     },
     {
       "id": 13,
@@ -134,10 +125,26 @@
           "isAnswer": false
         }
       ],
-      "questionType": {
-        "id": 1,
-        "name": ""
-      }
+      "questionType": 1
+    },
+    {
+      "id": 14,
+      "name": "Question QCM avec 2 réponses ?",
+      "options": [
+        {
+          "id": 1071,
+          "questionId": 14,
+          "name": "Réponse A",
+          "isAnswer": true
+        },
+        {
+          "id": 1072,
+          "questionId": 14,
+          "name": "Réponse B",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2
     }
   ],
   "config": {
