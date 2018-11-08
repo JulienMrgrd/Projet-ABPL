@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "fr.projetabpl"
+    },
+    "jhipsterVersion": "5.5.0",
+    "applicationType": "monolith",
+    "baseName": "ProjetABPL",
+    "packageName": "fr.projetabpl",
+    "packageFolder": "fr/projetabpl",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTgwNGNlY2VmZDZlMDE0MGNlYTI1NDhhODMwMzgxNDJhMmRmNDhkM2VjZjQ2NDA2NjdjNGI2MWI1YWM1OWZjNDY3NmM1OGZhMGNlYjUyZmU5MzZjMzEzZmIyMWE5ODlkMzUxYTUwZWYyNzg3ZTM0NGZhYmJhNmY5ZjI3ZWYwMWU=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false,
+    "herokuAppName": "projet-abpl",
+    "herokuDeployType": "git"
+  }
+}
