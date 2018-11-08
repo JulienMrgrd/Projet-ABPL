@@ -101,7 +101,7 @@ jhipster:
                 # As this is the PRODUCTION configuration, you MUST change the default key, and store it securely:
                 # - In the JHipster Registry (which includes a Spring Cloud Config server)
                 # - In a separate `application-prod.yml` file, in the same folder as your executable WAR file
-                # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable
+                # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
                 base64-secret: MTgwNGNlY2VmZDZlMDE0MGNlYTI1NDhhODMwMzgxNDJhMmRmNDhkM2VjZjQ2NDA2NjdjNGI2MWI1YWM1OWZjNDY3NmM1OGZhMGNlYjUyZmU5MzZjMzEzZmIyMWE5ODlkMzUxYTUwZWYyNzg3ZTM0NGZhYmJhNmY5ZjI3ZWYwMWU=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
@@ -112,8 +112,8 @@ jhipster:
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
             enabled: true
-        prometheus: 
-            enabled: false #expose metrics via prometheus 
+        prometheus:
+            enabled: false #expose metrics via prometheus
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
