@@ -4,7 +4,7 @@
   margin-top: 1em;
   color: #bdbac0;
   text-align: center;
-  background-color: #353d47;
+  background-color: var(--abpl-primary, #353d47);
   border-radius: 0.25rem;
 }
 

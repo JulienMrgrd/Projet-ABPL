@@ -1,0 +1,3 @@
+<div class="highlights palette">
+  <span *ngFor="let color of colorInspirationClasses; let i = index" ngStyle="background-color: {{color}}; border-color: black; color: {{color}};" (click)="changeColor(i)"></span>
+</div>

@@ -19,7 +19,7 @@ import { ProjetAbplAccountModule } from './account/account.module';
 import { ProjetAbplEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, ErrorComponent } from './layouts';
+import { JhiMainComponent, NavbarComponent, FooterComponent, ErrorComponent, ColorChooserComponent } from './layouts';
 
 @NgModule({
   imports: [
@@ -34,7 +34,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, ErrorComponent } fr
     ProjetAbplEntityModule,
     ProjetAbplQuizModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent, ColorChooserComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

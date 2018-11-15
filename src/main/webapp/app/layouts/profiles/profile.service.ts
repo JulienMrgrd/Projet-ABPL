@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-import { SERVER_API_URL } from 'app/app.constants';
+import { DISABLED_BACK, SERVER_API_URL } from 'app/app.constants';
 import { ProfileInfo } from './profile-info.model';
 import { map } from 'rxjs/operators';
 
@@ -13,6 +13,10 @@ export class ProfileService {
   constructor(private http: HttpClient) {}
 
   getProfileInfo(): Promise<ProfileInfo> {
+    if (DISABLED_BACK) {
+      return Promise.reject();
+    }
+
     if (!this.profileInfo) {
       this.profileInfo = this.http
         .get<ProfileInfo>(this.infoUrl, { observe: 'response' })

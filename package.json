@@ -114,6 +114,7 @@
     "e2e": "protractor src/test/javascript/protractor.conf.js",
     "postinstall": "webdriver-manager update --gecko false",
     "start": "npm run webpack:dev",
+    "start:noback": "npm run webpack:dev -- --noback",
     "start-tls": "npm run webpack:dev -- --env.tls",
     "serve": "npm run start",
     "build": "npm run webpack:prod",
