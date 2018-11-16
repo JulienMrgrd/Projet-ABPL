@@ -4,7 +4,8 @@ const path = require('path');
 module.exports = {
     parseVersion,
     root,
-    isExternalLib
+    isExternalLib,
+    hasToDisableBack
 };
 
 const parseString = require('xml2js').parseString;
@@ -41,4 +42,16 @@ function isExternalLib(module, check = /node_modules/) {
         return false;
     }
     return req.search(check) >= 0;
+}
+
+function hasToDisableBack(args) {
+  if (!args) {
+    args = process.argv;
+  }
+  if (args && args.some(arg => ['noback', '--noback'].some(v => arg.includes(v)))) {
+    console.log('=> Activation of the project variable : DISABLED_BACK');
+    return true;
+  } else {
+    return false;
+  }
 }
