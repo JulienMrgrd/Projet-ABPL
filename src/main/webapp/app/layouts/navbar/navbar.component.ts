@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
-import { VERSION } from 'app/app.constants';
 import { Principal, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from '../profiles/profile.service';
+import { Category } from 'app/quiz/shared/categories-info/categories-info.model';
+import { QuizService } from 'app/quiz/shared/services/quiz.service';
 
 @Component({
   selector: 'jhi-navbar',
@@ -18,27 +19,35 @@ export class NavbarComponent implements OnInit {
   modalRef: NgbModalRef;
   version: string;
 
+  quizCategories: Category[];
+
   constructor(
     private loginService: LoginService,
     private principal: Principal,
     private loginModalService: LoginModalService,
     private profileService: ProfileService,
     private router: Router,
-    private config: NgbPopoverConfig
+    private config: NgbPopoverConfig,
+    private quizService: QuizService
   ) {
-    this.version = VERSION ? 'v' + VERSION : '';
+    // this.version = VERSION ? 'v' + VERSION : '';
     this.isNavbarCollapsed = true;
 
     // customize default values of popovers used by this component tree
-    this.config.placement = 'left-bottom';
+    this.config.placement = 'bottom';
     this.config.triggers = 'hover';
   }
 
-  ngOnInit() {
-    // FIXME re-disabled feature
+  async ngOnInit() {
     this.profileService.getProfileInfo().then(profileInfo => {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
+    });
+
+    // load quizes categories
+    this.quizCategories = (await this.quizService.getCategories()).categories;
+    this.quizService.getCategoriesNameWithQuizes().then(value => {
+      debugger;
     });
   }
 

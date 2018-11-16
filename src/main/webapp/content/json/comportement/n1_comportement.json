@@ -1,7 +1,7 @@
 {
-  "id": 1,
-  "name": "Moyen",
-  "description": "Description du quiz moyen (à remplir)",
+  "id": 3,
+  "name": "N1 Comportement",
+  "description": "Description du quiz difficile (à remplir)",
   "questions": [
     {
       "id": 10,
@@ -126,25 +126,6 @@
         }
       ],
       "questionType": 1
-    },
-    {
-      "id": 14,
-      "name": "Question QCM avec 2 réponses ?",
-      "options": [
-        {
-          "id": 1071,
-          "questionId": 14,
-          "name": "Réponse A",
-          "isAnswer": true
-        },
-        {
-          "id": 1072,
-          "questionId": 14,
-          "name": "Réponse B",
-          "isAnswer": true
-        }
-      ],
-      "questionType": 2
     }
   ],
   "config": {

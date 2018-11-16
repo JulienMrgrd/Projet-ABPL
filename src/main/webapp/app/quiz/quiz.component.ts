@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Option } from 'app/quiz/shared/option/option.model';
 import { QuestionType } from 'app/quiz/shared/question-type/question-type.enum';
 import { Question } from 'app/quiz/shared/question/question.model';
@@ -27,9 +28,12 @@ export class QuizComponent implements OnInit, OnDestroy {
   startTime: Date;
   ellapsedTime = '00:00';
 
-  constructor(private quizService: QuizService) {}
+  constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
+    console.log(this.activatedRoute.params);
+    console.log(this.activatedRoute.data);
+
     this.quizes = this.quizService.getQuizesInfo();
     this.quizId = this.quizes[0].id;
     this.loadQuiz(this.quizId);

@@ -10,6 +10,7 @@ import { ProjetAbplSharedModule } from 'app/shared';
   declarations: [QuizComponent],
   entryComponents: [],
   providers: [QuizService],
+  exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProjetAbplQuizModule {}

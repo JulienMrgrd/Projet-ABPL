@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "name": "Comportement",
+      "folder": "comportement"
+    },
+    {
+      "name": "Gestion des déchets",
+      "folder": "dechets"
+    },
+    {
+      "name": "Pictogrammes",
+      "folder": "pictogrammes"
+    }
+  ]
+}
