@@ -1,25 +1,25 @@
-import './vendor.ts';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Ng2Webstorage } from 'ngx-webstorage';
-
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
-import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { ProjetAbplSharedModule } from 'app/shared';
 import { ProjetAbplCoreModule } from 'app/core';
 import { ProjetAbplQuizModule } from 'app/quiz/quiz.module';
-import { ProjetAbplAppRoutingModule } from './app-routing.module';
-import { ProjetAbplHomeModule } from './home/home.module';
-import { ProjetAbplAccountModule } from './account/account.module';
-import { ProjetAbplEntityModule } from './entities/entity.module';
+import { ProjetAbplSharedModule } from 'app/shared';
 import * as moment from 'moment';
+import { Ng2Webstorage } from 'ngx-webstorage';
+import { ProjetAbplAccountModule } from './account/account.module';
+import { ProjetAbplAppRoutingModule } from './app-routing.module';
+import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
+
+import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
+import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
+import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
+import { ProjetAbplEntityModule } from './entities/entity.module';
+import { ProjetAbplHomeModule } from 'app/home';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, ErrorComponent, ColorChooserComponent } from './layouts';
+import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent } from './layouts';
+import './vendor.ts';
 
 @NgModule({
   imports: [
@@ -34,7 +34,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, ErrorComponent, Col
     ProjetAbplEntityModule,
     ProjetAbplQuizModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent, ColorChooserComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -7,7 +7,8 @@ Navbar
 }
 
 .jh-navbar {
-  background-color: var(--abpl-primary, #353d47);
+  background-color: var(--abpl-primary, steelblue);
+  border-bottom: 1px solid var(--abpl-primary-border, darkgrey);
   padding: 0.2em 1em;
 }
 
@@ -21,7 +22,7 @@ Navbar
 .jh-navbar .dropdown-item.active,
 .jh-navbar .dropdown-item.active:focus,
 .jh-navbar .dropdown-item.active:hover {
-  background-color: var(--abpl-primary, #353d47);
+  background-color: var(--abpl-primary, steelblue);
 }
 
 .jh-navbar .dropdown-toggle::after {
@@ -59,6 +60,9 @@ Navbar
 @media screen and (max-width: 992px) {
   .jh-logo-container {
     width: 100%;
+  }
+  .navbar-collapse {
+    flex-basis: 100%;
   }
 }
 

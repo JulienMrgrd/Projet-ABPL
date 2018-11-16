@@ -1,26 +1,28 @@
-.bs-docs-footer {
+.footer {
   padding-top: 2em;
   padding-bottom: 1em;
   margin-top: 1em;
   color: #bdbac0;
   text-align: center;
-  background-color: var(--abpl-primary, #353d47);
-  border-radius: 0.25rem;
+  border: 1px solid var(--abpl-primary-border, darkgrey);
+  border-bottom: none;
+  background-color: var(--abpl-primary, midnightblue);
+  border-radius: 0.25rem 0.25rem 0 0;
 }
 
-.bs-docs-footer-links {
+.footer-links {
   padding-left: 0;
   margin-bottom: 2em;
 }
 
-.bs-docs-footer-links li {
+.footer-links li {
   display: inline-block;
 }
 
-.bs-docs-footer-links li + li {
+.footer-links li + li {
   margin-left: 15px;
 }
 
-.bs-docs-footer a {
+.footer a {
   color: #c6c6c6;
 }

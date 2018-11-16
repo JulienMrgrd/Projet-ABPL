@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  text-align: center !important;
+}
+
+.alert-color {
+  color: #c6c6c6;
+  border-color: var(--abpl-primary, steelblue);
+  background-color: var(--abpl-primary-darker, midnightblue);
+}

@@ -6,4 +6,3 @@ export * from './navbar/navbar.component';
 export * from './navbar/navbar.route';
 export * from './profiles/profile.service';
 export * from './profiles/profile-info.model';
-export * from './color-chooser/color-chooser.component';

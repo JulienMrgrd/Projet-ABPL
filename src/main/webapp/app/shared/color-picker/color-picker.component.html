@@ -1,0 +1,20 @@
+<div class="card card-frame">
+  <div class="card-block">
+    <div class="alert alert-color">
+      <h2 class="display-10"><fa-icon [icon]="'arrow-down'"></fa-icon>&nbsp;Essayez-moi !</h2>
+    </div>
+    <hr/>
+    <div class="container-fluid">
+      <span
+        [(colorPicker)]="defaultColor"
+        [style.background]="defaultColor"
+        [cpDialogDisplay]="'inline'"
+        [cpToggle]="true"
+        [cpCancelButton]="false"
+        [cpDisableInput]="true"
+        [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
+        (colorPickerChange)="changeColor($event)">
+    </span>
+    </div>
+  </div>
+</div>

@@ -222,5 +222,8 @@ ui bootstrap tweaks
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
 :root {
-  --abpl-primary: blue;
+  --abpl-primary: steelblue;
+  --abpl-primary-border: grey;
+  --abpl-primary-darker: midnightblue;
+  --abpl-primary-lighter: dodgerblue;
 }
