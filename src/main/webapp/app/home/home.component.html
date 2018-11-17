@@ -2,7 +2,7 @@
   <div class="card-block">
 
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-12 d-flex justify-content-center">
         <span class="abpl img-fluid rounded"></span>
       </div>
     </div>
@@ -17,33 +17,36 @@
     <br/> <!-- FIXME use margin --><br/>
 
     <div class="row">
-      <section class="section">
-        <div class="container-fluid">
-          <div class="alert alert-info">
-            <p class="lead">Ceci est, comme tu l'as sans doute deviné... ta page d'accueil.</p>
+      <section class="section col-md-6">
+        <div [ngSwitch]="isAuthenticated()">
+          <div class="alert alert-success" *ngSwitchCase="true">
+            <span id="home-logged-message" *ngIf="account">Vous êtes connecté comme l'utilisateur : "{{account.login}}". </span>
           </div>
+
+          <br/> <!-- FIXME use margin --><br/><br/><br/>
+
+          <div class="alert alert-warning" *ngSwitchCase="false">
+            <span>Si vous souhaitez vous </span>
+            <a class="alert-link" (click)="login()">connecter</a><span>, vous pouvez essayer le compte par défaut:
+            <br/>- Administrateur (login="admin" and mdp="admin"). <span class="be-careful">/!\ pas de bêtises avec lui...!</span>
+            <br/>- Utilisateur (login="user" and mdp="user").</span>
+          </div>
+          <!-- FIXME disabled for the moment -->
+          <!--<div class="alert alert-warning" *ngSwitchCase="false">
+            <span>You don't have an account yet?</span>&nbsp;
+            <a class="alert-link" routerLink="register">Register a new account</a>
+          </div>-->
         </div>
+
+        <div class="alert alert-info">
+          <p class="lead">Ceci est, comme tu l'as sans doute deviné... ta page d'accueil.</p>
+        </div>
+      </section>
+
+      <section class="section col-md-6 d-flex justify-content-center">
+        <jhi-color-picker></jhi-color-picker>
       </section>
     </div>
 
-    <br/> <!-- FIXME use margin --><br/><br/><br/><br/><br/><br/>
-
-    <div [ngSwitch]="isAuthenticated()">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account">Vous êtes connecté comme l'utilisateur : "{{account.login}}". </span>
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span>Si vous souhaitez vous </span>
-        <a class="alert-link" (click)="login()">connecter</a><span>, vous pouvez essayer le compte par défaut:
-        <br/>- Administrateur (login="admin" and mdp="admin"). <span class="be-careful">/!\ pas de bêtises avec lui...!</span>
-        <br/>- Utilisateur (login="user" and mdp="user").</span>
-      </div>
-      <!-- FIXME disabled for the moment -->
-      <!--<div class="alert alert-warning" *ngSwitchCase="false">
-        <span>You don't have an account yet?</span>&nbsp;
-        <a class="alert-link" routerLink="register">Register a new account</a>
-      </div>-->
-    </div>
   </div>
 </div>

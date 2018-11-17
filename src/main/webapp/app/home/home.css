@@ -26,7 +26,17 @@ Main page styles
 Custom
 ========================================================================== */
 .home-card {
-  padding: 10px;
+  padding: 10px 200px;
+}
+
+.alert {
+  min-width: 350px;
+}
+
+@media (max-width: 1400px) {
+  .home-card {
+    padding: 10px;
+  }
 }
 
 .be-careful {

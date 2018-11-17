@@ -42,6 +42,7 @@ import {
   faHome,
   faQuestionCircle,
   faQuestion,
+  faArrowDown,
   faDumbbell,
   faGraduationCap,
   faBookOpen
@@ -86,6 +87,7 @@ library.add(faAsterisk);
 // jhipster-needle-add-element-to-vendor - JHipster will add new menu items here
 library.add(faQuestion);
 library.add(faQuestionCircle);
+library.add(faArrowDown);
 library.add(faDumbbell);
 library.add(faGraduationCap);
 library.add(faBookOpen);
