@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModalRef, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Principal, LoginModalService, LoginService } from 'app/core';
-import { ProfileService } from '../profiles/profile.service';
+import { NgbDropdown, NgbModalRef, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalService, LoginService, Principal } from 'app/core';
+import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { Category } from 'app/quiz/shared/categories-info/categories-info.model';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
+import { noop } from 'rxjs';
+import { NamedObject } from 'app/shared/models/named-object.model';
 
 @Component({
   selector: 'jhi-navbar',
@@ -19,7 +21,7 @@ export class NavbarComponent implements OnInit {
   modalRef: NgbModalRef;
   version: string;
 
-  quizCategories: Category[];
+  subMenus: Map<Category, NamedObject[]>;
 
   constructor(
     private loginService: LoginService,
@@ -39,16 +41,16 @@ export class NavbarComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.profileService.getProfileInfo().then(profileInfo => {
-      this.inProduction = profileInfo.inProduction;
-      this.swaggerEnabled = profileInfo.swaggerEnabled;
-    });
+    this.profileService
+      .getProfileInfo()
+      .then(profileInfo => {
+        this.inProduction = profileInfo.inProduction;
+        this.swaggerEnabled = profileInfo.swaggerEnabled;
+      })
+      .catch(noop);
 
     // load quizes categories
-    this.quizCategories = (await this.quizService.getCategories()).categories;
-    this.quizService.getCategoriesNameWithQuizes().then(value => {
-      debugger;
-    });
+    this.subMenus = await this.quizService.getCategoriesNameWithQuizes();
   }
 
   collapseNavbar() {
@@ -75,5 +77,17 @@ export class NavbarComponent implements OnInit {
 
   getImageUrl() {
     return this.isAuthenticated() ? this.principal.getImageUrl() : null;
+  }
+
+  getSubMenusCat() {
+    if (this.subMenus) {
+      return Array.from(this.subMenus.keys());
+    }
+  }
+
+  getSubMenusQuizes(key: Category) {
+    if (key && this.subMenus.has(key)) {
+      return this.subMenus.get(key);
+    }
   }
 }

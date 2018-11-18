@@ -11,6 +11,10 @@
     {
       "name": "Pictogrammes",
       "folder": "pictogrammes"
+    },
+    {
+      "name": "Hygiène et sécurité",
+      "folder": "hygiene_securite"
     }
   ]
 }

@@ -26,39 +26,50 @@ export class QuizService {
     ];
   }
 
-  async getQuizesByDirectory(category?: Category): Promise<Quiz[]> {
-    // TODO: to promise with good type
-    if (!category) {
-      category = await this.getDefaultCategory();
-    }
-
+  getQuizesByDirectory(category: Category): Promise<Quiz[]> {
     const dirUrl = 'content/json/' + category.folder + '/';
-    const jsons: string[] = await this.http.get<string[]>(dirUrl).toPromise();
-    if (jsons && jsons.length > 0) {
-      return await Promise.all(jsons.map(async json => await this.get(dirUrl + json)));
-    }
-    return Promise.reject('Empty directory : ' + category.folder);
+    return this.http
+      .get<string[]>(dirUrl)
+      .toPromise()
+      .then(jsons => {
+        return Promise.all(jsons.map(json => this.get(dirUrl + json)));
+      });
   }
 
-  async getDefaultCategory(): Promise<Category> {
-    return (await this.getCategories())[0];
+  getQuizesInfoByDirectory(category: Category): Promise<NamedObject[]> {
+    const dirUrl = 'content/json/' + category.folder + '/';
+    return this.http
+      .get<string[]>(dirUrl)
+      .toPromise()
+      .then(jsons => {
+        return Promise.all(
+          jsons.map(json => {
+            return this.get(dirUrl + json).then(quiz => {
+              return { id: quiz.id, name: quiz.name } as NamedObject;
+            });
+          })
+        );
+      });
   }
 
-  getCategories(): Promise<CategoriesInfo> {
+  getDefaultCategory(): Promise<Category> {
+    return this.getCategoriesInfo()[0];
+  }
+
+  getCategoriesInfo(): Promise<CategoriesInfo> {
     const jsonFile = 'content/json/categories.json';
     return this.http.get<CategoriesInfo>(jsonFile).toPromise();
   }
 
-  async getCategoriesNameWithQuizes(): Promise<Map<string, Quiz[]>> {
-    const categories = (await this.getCategories()).categories;
-    const resMap = new Map<string, Quiz[]>();
+  getCategoriesNameWithQuizes(): Promise<Map<Category, NamedObject[]>> {
+    return this.getCategoriesInfo().then(async (info: CategoriesInfo) => {
+      const resMap = new Map<Category, NamedObject[]>();
 
-    categories.forEach(async cat => {
-      const quizes: Quiz[] = await this.getQuizesByDirectory(cat);
-      resMap.set(cat.name, quizes); // TODO Parallelize all promises
-      debugger;
+      const putQuizesIntoMap = function(cat: Category, $this) {
+        $this.getQuizesInfoByDirectory(cat).then(quizes => resMap.set(cat, quizes));
+      };
+
+      return await Promise.all(info.categories.map(cat => Promise.resolve(putQuizesIntoMap(cat, this)))).then(() => resMap);
     });
-
-    return Promise.resolve(resMap);
   }
 }

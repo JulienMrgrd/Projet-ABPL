@@ -1,6 +1,5 @@
 <nav class="navbar navbar-dark navbar-expand-md jh-navbar fixed-top">
     <div class="jh-logo-container float-left">
-        {{quizCategories}}
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
             <span class="logo-img"></span>
             <span class="navbar-title">Projet ABPL</span> <span *ngIf="version" class="navbar-version">{{version}}</span>
@@ -23,18 +22,28 @@
               </a>
             </li>
 
-            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-              <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">
+            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle #dropDown href="javascript:void(0);">
+                 <!--(mouseover)="dropDown.toggle()"-->
+                 <!--(mouseout)="dropDown.toggle()"-->
                   <span>
                       <fa-icon [icon]="'dumbbell'"></fa-icon>
                       <span>Entraînement</span>
                   </span>
               </a>
-              <ul class="dropdown-menu" ngbDropdownMenu *ngIf="quizCategories">
-                <li *ngFor="let category of quizCategories">
-                  <a class="dropdown-item" routerLink="['/quiz/training/', {{category.folder}}]" routerLinkActive="active" (click)="collapseNavbar()">
+              <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus">
+                <li class="dropdown-submenu" *ngFor="let category of getSubMenusCat()">
+                  <a class="dropdown-item" ngbDropdownToggle tabindex="-1" href="javascript:void(0);">
                     <span>{{category.name}}</span>
                   </a>
+                  <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus.has(category)">
+                    <li *ngFor="let quiz of getSubMenusQuizes(category)" tabindex="-1">
+                      <a class="dropdown-item" routerLink="['/quiz/training/', {{quiz.name}}]" routerLinkActive="active" (click)="collapseNavbar()">
+                        <span>{{quiz.name}}</span>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>

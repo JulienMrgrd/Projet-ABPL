@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['color-picker.css']
 })
 export class ColorPickerComponent {
-  public defaultColor = '#4682B4';
+  public defaultColor = '#316080';
 
   changeColor(color) {
     const bodyStyles = document.body.style;
@@ -17,9 +17,6 @@ export class ColorPickerComponent {
 
     const lighterColor = this.shadeColor(color, 50);
     bodyStyles.setProperty('--abpl-primary-lighter', lighterColor);
-
-    const borderDarkerColor = this.shadeColor(color, -20);
-    bodyStyles.setProperty('--abpl-primary-border', borderDarkerColor);
   }
 
   shadeColor(color: string, percent: number) {

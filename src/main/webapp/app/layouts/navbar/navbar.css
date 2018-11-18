@@ -112,3 +112,13 @@ Custom
   pointer-events: none; /*This makes it not clickable*/
   opacity: 0.6; /*This grays it out to look disabled*/
 }
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
