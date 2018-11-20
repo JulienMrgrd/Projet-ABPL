@@ -6,8 +6,10 @@ import { Question } from 'app/quiz/shared/question/question.model';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
-import { NamedObject } from 'app/shared/models/named-object.model';
 import { TimeUtil } from 'app/shared/util/time-util';
+import { Data } from 'app/shared/models/data.model';
+import { Subscription } from 'rxjs';
+import { QuizConfig } from 'app/quiz/shared/quiz/quiz-config.model';
 
 @Component({
   selector: 'jhi-quiz',
@@ -16,35 +18,66 @@ import { TimeUtil } from 'app/shared/util/time-util';
 })
 export class QuizComponent implements OnInit, OnDestroy {
   quiz: Quiz;
-  quizId: string;
+  categoryName: string;
+  quizFilename: string;
 
   // template values
+  isTest = false; // TODO enum ?
   quizModeEnum = QuizMode;
-  quizes: NamedObject[];
   mode = QuizMode.QUIZ;
+  config: QuizConfig = this.getDefaultConfig();
 
   pager = this.initPager();
   timer: any = null;
   startTime: Date;
   ellapsedTime = '00:00';
 
-  constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute) {}
+  routeDataSub: Subscription; // TODO: replace by takeUntil
 
-  ngOnInit() {
-    console.log(this.activatedRoute.params);
-    console.log(this.activatedRoute.data);
+  constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute, private sharedData: Data) {}
 
-    this.quizes = this.quizService.getQuizesInfo();
-    this.quizId = this.quizes[0].id;
-    this.loadQuiz(this.quizId);
+  async ngOnInit() {
+    this.routeDataSub = this.activatedRoute.params.subscribe(params => {
+      // TODO: RESOLVER
+      this.categoryName = params['path']; // TODO check empty path, NOW
+      if (!this.categoryName) {
+        console.error('No choosen category...');
+        this.categoryName = 'comportement'; // TODO: go to home page
+      }
+      if (!this.sharedData.choosenQuiz) {
+        console.error('No choosen quiz...');
+        this.quizFilename = 'n1_' + this.categoryName + '.json'; // TODO: LOAD default quiz by choosen category
+      } else {
+        this.quizFilename = this.sharedData.choosenQuiz.filename;
+      }
+      console.error('ON INIT ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
+
+      if (!params['path']) {
+        // DETECT TEST mode (data.config, url, ...)
+        this.isTest = true;
+        this.config = {
+          allowMove: false,
+          allowReview: false,
+          duration: 5,
+          showClock: true,
+          autoMove: true
+        };
+      }
+
+      this.quizService.getQuizByNames(this.categoryName, this.quizFilename); // TODO catch not found
+      this.loadQuiz(this.categoryName, this.quizFilename);
+    });
   }
 
   ngOnDestroy() {
+    console.error('ON DESTROY ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
     clearInterval(this.timer);
+    this.sharedData.reset();
+    this.routeDataSub.unsubscribe(); // TODO: TakeUntil
   }
 
-  loadQuiz(quizId: string) {
-    this.quizService.get(quizId).then((quiz: Quiz) => {
+  loadQuiz(categoryName: string, quizFilename: string) {
+    this.quizService.getQuizByNames(categoryName, quizFilename).then((quiz: Quiz) => {
       this.quiz = quiz;
       this.mode = QuizMode.QUIZ;
 
@@ -59,7 +92,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   reloadQuiz() {
-    this.loadQuiz(this.quizId ? this.quizId : this.quizes[0].id);
+    console.error('ON INIT ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
+    this.loadQuiz(this.categoryName, this.quizFilename);
   }
 
   private initPager() {
@@ -145,5 +179,15 @@ export class QuizComponent implements OnInit, OnDestroy {
     // TODO: Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
     this.mode = QuizMode.RESULT;
+  }
+
+  getDefaultConfig(): QuizConfig {
+    return {
+      allowMove: true,
+      allowBack: true,
+      allowReview: true,
+      autoMove: false,
+      showClock: true
+    };
   }
 }

@@ -1,4 +1,5 @@
 export interface QuizConfig {
+  allowMove?: boolean;
   allowBack?: boolean;
   allowReview?: boolean;
   autoMove?: boolean; // if boolean; it will move to next question automatically when answered.

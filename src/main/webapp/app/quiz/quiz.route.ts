@@ -18,12 +18,18 @@ export const quizState: Routes = [
         path: 'test',
         component: QuizComponent,
         data: {
+          config: {
+            allowMove: false,
+            allowReview: false,
+            duration: 5, // in minutes
+            autoMove: true
+          },
           authorities: [],
           pageTitle: 'Test blanc ABPL'
         }
       },
       {
-        path: 'training',
+        path: 'training/:path',
         component: QuizComponent,
         data: {
           authorities: [],

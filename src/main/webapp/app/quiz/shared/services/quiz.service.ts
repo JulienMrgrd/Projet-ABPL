@@ -4,14 +4,22 @@ import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { NamedObject } from 'app/shared/models/named-object.model';
 import { CategoriesInfo } from 'app/quiz/shared/categories-info/categories-info.model';
 import { Category } from 'app/quiz/shared/categories-info/categories-info.model';
-import { first, map, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { FileObject } from 'app/shared/models/file-object.model';
 
 @Injectable()
 export class QuizService {
   constructor(private http: HttpClient) {}
 
   get(url: string): Promise<Quiz> {
+    return this.http.get<Quiz>(url).toPromise();
+  }
+
+  getQuiz(category: Category, fileName: string): Promise<Quiz> {
+    return this.getQuizByNames(category.folder, fileName);
+  }
+
+  getQuizByNames(categoryName: string, fileName: string): Promise<Quiz> {
+    const url = 'content/json/' + categoryName + '/' + fileName;
     return this.http.get<Quiz>(url).toPromise();
   }
 
@@ -26,17 +34,7 @@ export class QuizService {
     ];
   }
 
-  getQuizesByDirectory(category: Category): Promise<Quiz[]> {
-    const dirUrl = 'content/json/' + category.folder + '/';
-    return this.http
-      .get<string[]>(dirUrl)
-      .toPromise()
-      .then(jsons => {
-        return Promise.all(jsons.map(json => this.get(dirUrl + json)));
-      });
-  }
-
-  getQuizesInfoByDirectory(category: Category): Promise<NamedObject[]> {
+  getQuizesInfoByDirectory(category: Category): Promise<FileObject[]> {
     const dirUrl = 'content/json/' + category.folder + '/';
     return this.http
       .get<string[]>(dirUrl)
@@ -45,7 +43,7 @@ export class QuizService {
         return Promise.all(
           jsons.map(json => {
             return this.get(dirUrl + json).then(quiz => {
-              return { id: quiz.id, name: quiz.name } as NamedObject;
+              return { id: quiz.id, name: quiz.name, filename: json } as FileObject;
             });
           })
         );
@@ -61,9 +59,9 @@ export class QuizService {
     return this.http.get<CategoriesInfo>(jsonFile).toPromise();
   }
 
-  getCategoriesNameWithQuizes(): Promise<Map<Category, NamedObject[]>> {
+  getCategoriesNameWithQuizes(): Promise<Map<Category, FileObject[]>> {
     return this.getCategoriesInfo().then(async (info: CategoriesInfo) => {
-      const resMap = new Map<Category, NamedObject[]>();
+      const resMap = new Map<Category, FileObject[]>();
 
       const putQuizesIntoMap = function(cat: Category, $this) {
         $this.getQuizesInfoByDirectory(cat).then(quizes => resMap.set(cat, quizes));

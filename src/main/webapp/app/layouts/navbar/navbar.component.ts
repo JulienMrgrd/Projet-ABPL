@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbDropdown, NgbModalRef, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalRef, NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalService, LoginService, Principal } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { Category } from 'app/quiz/shared/categories-info/categories-info.model';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
 import { noop } from 'rxjs';
-import { NamedObject } from 'app/shared/models/named-object.model';
+import { FileObject } from 'app/shared/models/file-object.model';
+import { Data } from 'app/shared/models/data.model';
 
 @Component({
   selector: 'jhi-navbar',
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
   modalRef: NgbModalRef;
   version: string;
 
-  subMenus: Map<Category, NamedObject[]>;
+  subMenus: Map<Category, FileObject[]>;
 
   constructor(
     private loginService: LoginService,
@@ -30,7 +31,8 @@ export class NavbarComponent implements OnInit {
     private profileService: ProfileService,
     private router: Router,
     private config: NgbPopoverConfig,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private sharedData: Data
   ) {
     // this.version = VERSION ? 'v' + VERSION : '';
     this.isNavbarCollapsed = true;
@@ -85,9 +87,16 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  getSubMenusQuizes(key: Category) {
+  getSubMenusQuizes(key: Category): FileObject[] {
     if (key && this.subMenus.has(key)) {
       return this.subMenus.get(key);
     }
+  }
+
+  goToQuiz(category: Category): void {
+    const quiz: FileObject = this.getSubMenusQuizes(category)[0];
+    this.sharedData.choosenQuiz = quiz;
+
+    this.router.navigate(['quiz/training/', category.folder]);
   }
 }
