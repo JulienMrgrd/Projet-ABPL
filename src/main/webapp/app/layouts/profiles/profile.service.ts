@@ -14,7 +14,7 @@ export class ProfileService {
 
   getProfileInfo(): Promise<ProfileInfo> {
     if (DISABLED_BACK) {
-      return Promise.reject();
+      return Promise.reject('DISABLED_BACK');
     }
 
     if (!this.profileInfo) {

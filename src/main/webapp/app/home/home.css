@@ -30,7 +30,7 @@ Custom
 }
 
 .alert {
-  min-width: 350px;
+  min-width: 300px;
 }
 
 @media (max-width: 1400px) {

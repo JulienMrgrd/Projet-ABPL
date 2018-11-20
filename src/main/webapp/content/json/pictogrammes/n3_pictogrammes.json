@@ -1,7 +1,7 @@
 {
-  "id": 3,
-  "name": "Difficile",
-  "description": "Description du quiz difficile (à remplir)",
+  "id": 2,
+  "name": "N3 Pictogrammes",
+  "description": "Description du quiz facile (à remplir)",
   "questions": [
     {
       "id": 10,

@@ -11,6 +11,10 @@ Custom
   padding: 10px;
 }
 
+.title-quiz {
+  margin-top: 5px;
+}
+
 .result-question {
   margin-bottom: 5px;
 }

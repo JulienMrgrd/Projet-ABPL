@@ -42,7 +42,10 @@ import {
   faHome,
   faQuestionCircle,
   faQuestion,
-  faArrowDown
+  faArrowDown,
+  faDumbbell,
+  faGraduationCap,
+  faBookOpen
 } from '@fortawesome/free-solid-svg-icons';
 
 // Adds the SVG icon to the library so you can use it in your page
@@ -85,3 +88,6 @@ library.add(faAsterisk);
 library.add(faQuestion);
 library.add(faQuestionCircle);
 library.add(faArrowDown);
+library.add(faDumbbell);
+library.add(faGraduationCap);
+library.add(faBookOpen);

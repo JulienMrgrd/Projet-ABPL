@@ -125,11 +125,11 @@
 }
 .app-loading .lds-pacman > div:nth-child(1) div {
   position: absolute;
-  top: 92px;
+  top: 80px;
   left: -8px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 32px;
+  height: 40px;
+  /*border-radius: 50%;*/
   background-image: url('../images/loading-abpl.png');
   background-size: contain;
   -webkit-animation: lds-pacman-3 1s linear infinite;

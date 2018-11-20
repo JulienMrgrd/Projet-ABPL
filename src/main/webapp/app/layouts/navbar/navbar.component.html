@@ -2,7 +2,7 @@
     <div class="jh-logo-container float-left">
         <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
             <span class="logo-img"></span>
-            <span class="navbar-title">Projet ABPL</span> <span class="navbar-version">{{version}}</span>
+            <span class="navbar-title">Projet ABPL</span> <span *ngIf="version" class="navbar-version">{{version}}</span>
         </a>
         <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
           <fa-icon [icon]="'bars'"></fa-icon>
@@ -10,16 +10,84 @@
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/quiz" (click)="collapseNavbar()">
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                ngbPopover="Désactivé pour l'instant..."
+                [autoClose]="'outside'" triggers="mouseenter:mouseleave">
+              <a class="nav-link disabled" routerLink="/quiz/revision" (click)="collapseNavbar()">
                     <span>
-                        <fa-icon [icon]="'question'"></fa-icon>
-                        <span>Quiz</span>
+                        <fa-icon [icon]="'book-open'"></fa-icon>
+                        <span>Révisions</span>
+                    </span>
+              </a>
+            </li>
+
+            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle #dropDown href="javascript:void(0);">
+                  <span>
+                      <fa-icon [icon]="'dumbbell'"></fa-icon>
+                      <span>Entraînement</span>
+                  </span>
+              </a>
+              <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus">
+                <li class="dropdown-submenu" *ngFor="let category of getSubMenusCat()">
+                  <a class="dropdown-item" (click)="goToQuiz(category); collapseNavbar()">
+                    <span>{{category.name}}</span>
+                  </a>
+                  <!--TODO MULTI-SELECT <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus.has(category)">
+                    <li *ngFor="let quiz of getSubMenusQuizes(category)">
+                      <a class="dropdown-item" routerLink="['/quiz/training/', {{quiz.name}}]" routerLinkActive="active" (click)="collapseNavbar()">
+                        <span>{{quiz.name}}</span>
+                      </a>
+                    </li>
+                  </ul>-->
+                </li>
+                <!--TODO MULTI-SELECT <li><a class="dropdown-item" href="#">HTML</a></li>
+                <li class="dropdown-submenu">
+                  <a class="test dropdown-item" ngbDropdownToggle
+                     (click)="$event.stopPropagation(); myDrop.open();" href="javascript:void(0);">
+                    <span>name1</span>
+                  </a>
+                  <ul class="dropdown-menu" ngbDropdown #myDrop="ngbDropdown">
+                    <li>
+                      <a class="dropdown-item" routerLinkActive="active" (click)="collapseNavbar()">
+                        <span>subName</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" routerLinkActive="active" (click)="collapseNavbar()">
+                        <span>subName</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>-->
+              </ul>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/quiz/test" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon [icon]="'graduation-cap'"></fa-icon>
+                        <span>Test blanc</span>
                     </span>
                 </a>
             </li>
+
+            <!-- TODO: Celui-ci devrait être activé par les profs via un écran -->
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                ngbPopover="Celui-ci devra être activé par les profs via un écran"
+                [autoClose]="'outside'" triggers="mouseenter:mouseleave">
+              <a class="nav-link disabled" routerLink="/quiz/exam" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon [icon]="'graduation-cap'"></fa-icon>
+                        <span>Examen</span>
+                    </span>
+              </a>
+            </li>
+
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer disabled" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            <!--<li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer disabled" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                 ngbPopover="Désactivé pour l'instant..." triggers="mouseenter:mouseleave">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
@@ -30,9 +98,9 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    &lt;!&ndash; jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here &ndash;&gt;
                 </ul>
-            </li>
+            </li>-->
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

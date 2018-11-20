@@ -10,11 +10,12 @@
         [style.background]="defaultColor"
         [cpDialogDisplay]="'inline'"
         [cpToggle]="true"
-        [cpCancelButton]="false"
         [cpDisableInput]="true"
+        [cpCancelButton]="false"
+        [cpAlphaChannel]="'disabled'"
         [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
         (colorPickerChange)="changeColor($event)">
-    </span>
+      </span>
     </div>
   </div>
 </div>
