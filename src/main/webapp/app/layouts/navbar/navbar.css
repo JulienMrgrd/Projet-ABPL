@@ -108,6 +108,11 @@ Logo styles
 =============================================================================
 Custom
 ========================================================================== */
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: #eee;
+}
+
 .disabled {
   pointer-events: none; /*This makes it not clickable*/
   opacity: 0.6; /*This grays it out to look disabled*/

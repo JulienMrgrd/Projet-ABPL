@@ -23,6 +23,7 @@
   margin-left: 15px;
 }
 
+.footer p,
 .footer a {
-  color: #c6c6c6;
+  color: var(--abpl-primary-link, #eee);
 }
