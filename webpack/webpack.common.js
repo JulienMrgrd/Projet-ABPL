@@ -87,6 +87,7 @@ module.exports = (options) => ({
             { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
             // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
             { from: './src/main/webapp/robots.txt', to: 'robots.txt' },
+            { from: './src/main/webapp/wakemydyno.txt', to: 'wakemydyno.txt' },
             { from: './src/main/webapp/content/json/comportement', to: 'content/json/comportement' },
         ]),
         new HtmlWebpackPlugin({
