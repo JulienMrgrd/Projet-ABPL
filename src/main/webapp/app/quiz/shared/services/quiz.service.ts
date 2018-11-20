@@ -23,17 +23,6 @@ export class QuizService {
     return this.http.get<Quiz>(url).toPromise();
   }
 
-  /**
-   * TODO: not hard coded files
-   */
-  getQuizesInfo(): NamedObject[] {
-    return [
-      { id: 'content/json/comportement/n2_comportement.json', name: 'Moyen' },
-      { id: 'content/json/comportement/n3_comportement.json', name: 'Facile' },
-      { id: 'content/json/comportement/n1_comportement.json', name: 'Difficile' }
-    ];
-  }
-
   /** TODO and FIXME: use DB !! */
   getQuizesInfoByDirectory(category: Category): Promise<FileObject[]> {
     const dirUrl = 'content/json/' + category.folder + '/';
@@ -56,6 +45,18 @@ export class QuizService {
       });
   }
 
+  /** TODO and FIXME: use DB !! */
+  getQuizesInfoByCategory(category: Category): Promise<FileObject[]> {
+    const dirUrl = 'content/json/' + category.folder + '/';
+    return Promise.all(
+      category.files.map(json => {
+        return this.get(dirUrl + json).then(quiz => {
+          return { id: quiz.id, name: quiz.name, filename: json } as FileObject;
+        });
+      })
+    );
+  }
+
   getDefaultCategory(): Promise<Category> {
     return this.getCategoriesInfo()[0];
   }
@@ -70,7 +71,7 @@ export class QuizService {
       const resMap = new Map<Category, FileObject[]>();
 
       const putQuizesIntoMap = function(cat: Category, $this) {
-        $this.getQuizesInfoByDirectory(cat).then(quizes => resMap.set(cat, quizes));
+        $this.getQuizesInfoByCategory(cat).then(quizes => resMap.set(cat, quizes));
       };
 
       return await Promise.all(info.categories.map(cat => Promise.resolve(putQuizesIntoMap(cat, this)))).then(() => resMap);

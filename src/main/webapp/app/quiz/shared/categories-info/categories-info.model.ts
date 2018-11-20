@@ -5,4 +5,5 @@ export class CategoriesInfo {
 export class Category {
   name: string;
   folder: string;
+  files: string[];
 }

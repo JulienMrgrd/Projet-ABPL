@@ -2,19 +2,23 @@
   "categories": [
     {
       "name": "Comportement",
-      "folder": "comportement"
+      "folder": "comportement",
+      "files": ["n1_comportement.json", "n2_comportement.json", "n3_comportement.json"]
     },
     {
       "name": "Gestion des déchets",
-      "folder": "dechets"
+      "folder": "dechets",
+      "files": ["n1_dechets.json", "n2_dechets.json"]
     },
     {
       "name": "Pictogrammes",
-      "folder": "pictogrammes"
+      "folder": "pictogrammes",
+      "files": ["n1_pictogrammes.json", "n2_pictogrammes.json", "n3_pictogrammes.json"]
     },
     {
       "name": "Hygiène et sécurité",
-      "folder": "hygiene_securite"
+      "folder": "hygiene_securite",
+      "files": ["n1_hygiene_securite.json"]
     }
   ]
 }
