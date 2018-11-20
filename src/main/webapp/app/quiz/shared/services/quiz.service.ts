@@ -34,12 +34,18 @@ export class QuizService {
     ];
   }
 
+  /** TODO and FIXME: use DB !! */
   getQuizesInfoByDirectory(category: Category): Promise<FileObject[]> {
     const dirUrl = 'content/json/' + category.folder + '/';
     return this.http
       .get<string[]>(dirUrl)
       .toPromise()
       .then(jsons => {
+        if (!jsons || jsons.length === 0) {
+          console.error('Cannot list files in : ' + dirUrl);
+          jsons = ['n1_' + category.folder + '.json']; // TODO: load other files
+        }
+
         return Promise.all(
           jsons.map(json => {
             return this.get(dirUrl + json).then(quiz => {
