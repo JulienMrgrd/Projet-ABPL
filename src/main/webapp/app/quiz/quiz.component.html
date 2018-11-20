@@ -136,7 +136,7 @@
    <!-- ================================
        ============ BUTTONS =========== -->
       <div class="float-right" *ngIf="mode != quizModeEnum.RESULT">
-        <button type="button" class="btn btn-default" *ngIf="!isInTest && mode != quizModeEnum.QUIZ" (click)="mode = quizModeEnum.QUIZ">Quiz</button>
+        <button type="button" class="btn btn-default" *ngIf="!isTest && mode != quizModeEnum.QUIZ" (click)="mode = quizModeEnum.QUIZ">Quiz</button>
         <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW" (click)="mode = quizModeEnum.REVIEW">Revue</button>
         <button type="button" class="btn btn-primary" (click)="onSubmit()">Soumettre le quiz</button>
       </div>
