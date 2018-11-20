@@ -64,7 +64,6 @@ export class QuizComponent implements OnInit, OnDestroy {
         };
       }
 
-      this.quizService.getQuizByNames(this.categoryName, this.quizFilename); // TODO catch not found
       this.loadQuiz(this.categoryName, this.quizFilename);
     });
   }
