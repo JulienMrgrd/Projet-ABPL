@@ -1,0 +1,263 @@
+-----> Node.js app detected
+       
+-----> Creating runtime environment
+       
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       NODE_VERBOSE=false
+       
+-----> Installing binaries
+       engines.node (package.json):  >=8.9.0
+       engines.npm (package.json):   unspecified (use default)
+       
+       Resolving node version >=8.9.0...
+       Downloading and installing node 11.1.0...
+       Using default npm version: 6.4.1
+       
+-----> Restoring cache
+       Loading 1 from cacheDirectories (package.json):
+       - node_modules
+       
+-----> Building dependencies
+       Installing node modules (package.json + package-lock)
+       
+       > projet-abpl@0.0.1-BETA postinstall /tmp/build_DIR
+       > webdriver-manager update --gecko false
+       
+       [17:50:19] I/config_source - curl -o/tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/standalone-response.xml https://selenium-release.storage.googleapis.com/
+       [17:50:19] I/config_source - curl -o/tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/chrome-response.xml https://chromedriver.storage.googleapis.com/
+       [17:50:20] I/update - chromedriver: file exists /tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.43.zip
+       [17:50:20] I/update - chromedriver: unzipping chromedriver_2.43.zip
+       [17:50:20] I/update - chromedriver: setting permissions to 0755 for /tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.43
+       [17:50:20] I/update - chromedriver: chromedriver_2.43 up to date
+       [17:50:20] I/update - selenium standalone: file exists /tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.5.jar
+       [17:50:20] I/update - selenium standalone: selenium-server-standalone-3.141.5.jar up to date
+       audited 65371 packages in 23.008s
+       found 1 high severity vulnerability
+         run `npm audit fix` to fix them, or `npm audit` for details
+       
+-----> Caching build
+       Saving 1 cacheDirectories (package.json):
+       - node_modules
+       
+-----> Pruning devDependencies
+       
+       > husky@1.1.0 preuninstall node_modules/husky
+       > node husky uninstall
+       
+       husky > uninstalling git hooks
+       Can't find resolved .git directory, skipping Git hooks uninstallation.
+       removed 2161 packages and audited 100 packages in 26.641s
+       found 0 vulnerabilities
+       
+       
+-----> Build succeeded!
+-----> Java app detected
+-----> Installing JDK 1.8... done
+-----> Executing: ./mvnw -DskipTests clean dependency:list install
+       [INFO] Scanning for projects...
+       [INFO] 
+       [INFO] ---------------------< fr.projetabpl:projet-abpl >----------------------
+       [INFO] Building Projet ABPL 0.0.1-BETA
+       [INFO] --------------------------------[ war ]---------------------------------
+       [INFO] 
+       [INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ projet-abpl ---
+       [INFO] 
+       [INFO] --- maven-dependency-plugin:2.8:list (default-cli) @ projet-abpl ---
+       [INFO] 
+       [INFO] --- maven-resources-plugin:3.1.0:copy-resources (default-resources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 4 resources
+       [INFO] Copying 13 resources
+       [INFO] 
+       [INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 4 resources
+       [INFO] Copying 13 resources
+       [INFO] 
+       [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (enforce-versions) @ projet-abpl ---
+       [INFO] 
+       [INFO] --- jacoco-maven-plugin:0.8.2:prepare-agent (pre-unit-tests) @ projet-abpl ---
+       [INFO] argLine set to -javaagent:/app/tmp/cache/.m2/repository/org/jacoco/org.jacoco.agent/0.8.2/org.jacoco.agent-0.8.2-runtime.jar=destfile=/tmp/build_DIR/target/test-results/coverage/jacoco/jacoco.exec -Djava.security.egd=file:/dev/./urandom -Xmx256m
+       [INFO] 
+       [INFO] --- frontend-maven-plugin:1.6:install-node-and-npm (install node and npm) @ projet-abpl ---
+       [INFO] Installing node version v10.13.0
+       [INFO] Unpacking /app/tmp/cache/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/build_DIR/node/tmp
+       [INFO] Copying node binary from /tmp/build_DIR/node/tmp/node-v10.13.0-linux-x64/bin/node to /tmp/build_DIR/node/node
+       [INFO] Installed node locally.
+       [INFO] Installing npm version 6.4.1
+       [INFO] Unpacking /app/tmp/cache/.m2/repository/com/github/eirslett/npm/6.4.1/npm-6.4.1.tar.gz into /tmp/build_DIR/node/node_modules
+       [INFO] Installed npm locally.
+       [INFO] 
+       [INFO] --- frontend-maven-plugin:1.6:npm (npm install) @ projet-abpl ---
+       [INFO] Running 'npm install' in /tmp/build_DIR
+       [INFO] 
+       [INFO] > husky@1.1.0 install /tmp/build_DIR/node_modules/husky
+       [INFO] > node husky install
+       [INFO] 
+       [INFO] husky > setting up git hooks
+       [INFO] Can't find .git, skipping Git hooks installation.
+       [INFO] Please check that you're in a cloned repository or run 'git init' to create an empty Git repository and reinstall husky.
+       [INFO] 
+       [INFO] > spawn-sync@1.0.15 postinstall /tmp/build_DIR/node_modules/spawn-sync
+       [INFO] > node postinstall
+       [INFO] 
+       [INFO] 
+       [INFO] > projet-abpl@0.0.1-BETA postinstall /tmp/build_DIR
+       [INFO] > webdriver-manager update --gecko false
+       [INFO] 
+       [INFO] [17:52:05] I/file_manager - creating folder /tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium
+       [INFO] [17:52:05] I/config_source - curl -o/tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/standalone-response.xml https://selenium-release.storage.googleapis.com/
+       [INFO] [17:52:05] I/config_source - curl -o/tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/chrome-response.xml https://chromedriver.storage.googleapis.com/
+       [INFO] [17:52:05] I/downloader - curl -o/tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.43.zip https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip
+       [INFO] [17:52:05] I/downloader - curl -o/tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.5.jar https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.5.jar
+       [INFO] [17:52:06] I/update - chromedriver: unzipping chromedriver_2.43.zip
+       [INFO] [17:52:06] I/update - chromedriver: setting permissions to 0755 for /tmp/build_DIR/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.43
+       [WARNING] npm WARN bootstrap@4.1.3 requires a peer of jquery@1.9.1 - 3 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN bootstrap@4.1.3 requires a peer of popper.js@^1.14.3 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN ng-jhipster@0.5.4 requires a peer of @angular/core@^6.0.0 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN ng-jhipster@0.5.4 requires a peer of @angular/router@^6.0.0 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN ngx-webstorage@2.0.1 requires a peer of @angular/core@^5.0.0 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+       [WARNING] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+       [ERROR] 
+       [INFO] added 2161 packages from 1565 contributors and audited 65371 packages in 52.005s
+       [INFO] found 1 high severity vulnerability
+       [INFO]   run `npm audit fix` to fix them, or `npm audit` for details
+       [INFO] 
+       [INFO] --- frontend-maven-plugin:1.6:npm (webpack build dev) @ projet-abpl ---
+       [INFO] npm not inheriting proxy config from Maven
+       [INFO] Running 'npm run webpack:build' in /tmp/build_DIR
+       [INFO] 
+       [INFO] > projet-abpl@0.0.1-BETA webpack:build /tmp/build_DIR
+       [INFO] > npm run cleanup && npm run webpack:build:main
+       [INFO] 
+       [INFO] 
+       [INFO] > projet-abpl@0.0.1-BETA cleanup /tmp/build_DIR
+       [INFO] > rimraf target/{aot,www}
+       [INFO] 
+       [INFO] 
+       [INFO] > projet-abpl@0.0.1-BETA webpack:build:main /tmp/build_DIR
+       [INFO] > npm run webpack -- --config webpack/webpack.dev.js --env.stats=minimal
+       [INFO] 
+       [INFO] 
+       [INFO] > projet-abpl@0.0.1-BETA webpack /tmp/build_DIR
+       [INFO] > node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js "--config" "webpack/webpack.dev.js" "--env.stats=minimal"
+       [INFO] 
+       [INFO] Webpack: Starting ...
+       [INFO] Starting type checking service...
+       [INFO] Using 1 worker with 2048MB memory limit
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ❯ Compile modules
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ❯ Build modules (0%)
+       [INFO]      → 0 of 1 modules :: src/main/webapp/app/polyfills.ts ~ internal
+       
+       
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ❯ Optimize modules (100%)
+       [INFO]      → After asset optimization ...
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ❯ Optimize modules (102%)
+       [INFO]      → After seal ...
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ✔ Optimize modules
+       [INFO]    ❯ Emit files
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ✔ Optimize modules
+       [INFO]    ❯ Emit files
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ✔ Optimize modules
+       [INFO]    ❯ Emit files
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ✔ Optimize modules
+       [INFO]    ❯ Emit files
+       [INFO] [GWebpack: Starting ...
+       [INFO] 
+       [INFO]    ✔ Compile modules
+       [INFO]    ✔ Build modules
+       [INFO]    ✔ Optimize modules
+       [INFO]    ✔ Emit files
+       [INFO] 
+       [INFO] Webpack: Finished after 27.914 seconds.
+       [INFO] 
+       [INFO]  DONE  Compiled successfully in 27956ms5:52:39 PM
+       [INFO] 
+       [INFO]    824 modules
+       [INFO] 
+       [INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ projet-abpl ---
+       [INFO] Changes detected - recompiling the module!
+       [INFO] Compiling 75 source files to /tmp/build_DIR/target/classes
+       [INFO] 
+       [INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 4 resources
+       [INFO] Copying 2 resources
+       [INFO] 
+       [INFO] --- maven-compiler-plugin:3.8.0:testCompile (default-testCompile) @ projet-abpl ---
+       [INFO] Changes detected - recompiling the module!
+       [INFO] Compiling 24 source files to /tmp/build_DIR/target/test-classes
+       [INFO] 
+       [INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ projet-abpl ---
+       [INFO] Tests are skipped.
+       [INFO] 
+       [INFO] --- maven-surefire-plugin:2.22.1:test (without-cucumber) @ projet-abpl ---
+       [INFO] Tests are skipped.
+       [INFO] 
+       [INFO] --- jacoco-maven-plugin:0.8.2:report (post-unit-test) @ projet-abpl ---
+       [INFO] Skipping JaCoCo execution due to missing execution data file.
+       [INFO] 
+       [INFO] --- maven-war-plugin:3.2.2:war (default-war) @ projet-abpl ---
+       [INFO] Packaging webapp
+       [INFO] Assembling webapp [projet-abpl] in [/tmp/build_DIR/target/projet-abpl-0.0.1-BETA]
+       [INFO] Processing war project
+       [INFO] Copying webapp webResources [/tmp/build_DIR/src/main/webapp] to [/tmp/build_DIR/target/projet-abpl-0.0.1-BETA]
+       [INFO] Copying webapp resources [/tmp/build_DIR/target/www]
+       [INFO] Webapp assembled in [864 msecs]
+       [INFO] Building war: /tmp/build_DIR/target/projet-abpl-0.0.1-BETA.war
+       [INFO] 
+       [INFO] --- spring-boot-maven-plugin:2.0.6.RELEASE:repackage (default) @ projet-abpl ---
+       [INFO] 
+       [INFO] --- maven-resources-plugin:3.1.0:copy-resources (docker-resources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 52 resources
+       [INFO] 
+       [INFO] --- maven-install-plugin:2.4:install (default-install) @ projet-abpl ---
+       [INFO] Installing /tmp/build_DIR/target/projet-abpl-0.0.1-BETA.war to /app/tmp/cache/.m2/repository/fr/projetabpl/projet-abpl/0.0.1-BETA/projet-abpl-0.0.1-BETA.war
+       [INFO] Installing /tmp/build_DIR/pom.xml to /app/tmp/cache/.m2/repository/fr/projetabpl/projet-abpl/0.0.1-BETA/projet-abpl-0.0.1-BETA.pom
+       [INFO] ------------------------------------------------------------------------
+       [INFO] BUILD SUCCESS
+       [INFO] ------------------------------------------------------------------------
+       [INFO] Total time:  01:47 min
+       [INFO] Finished at: 2018-11-08T17:52:54Z
+       [INFO] ------------------------------------------------------------------------
+-----> Discovering process types
+       Procfile declares types -> web
+-----> Compressing...
+       Done: 352.4M
+-----> Launching...
+ !     Warning: Your slug size exceeds our soft limit (352 MB) which may affect boot time.
+       Released v19
+       https://projet-abpl.herokuapp.com/ deployed to Heroku    
