@@ -127,13 +127,15 @@
   position: absolute;
   top: 80px;
   left: -8px;
-  width: 32px;
+  width: 40px;
   height: 40px;
-  /*border-radius: 50%;*/
-  background-image: url('../images/loading-abpl.png');
+  border-radius: 100%;
+  background: whitesmoke url('../images/loading-abpl.png') no-repeat center;
+  border: 1px solid var(--abpl-primary-border, darkgrey);
+  margin-right: 2px;
   background-size: contain;
   -webkit-animation: lds-pacman-3 1s linear infinite;
-  animation: lds-pacman-3 1.5s linear infinite;
+  animation: lds-pacman-3 1s linear infinite;
 }
 .app-loading .lds-pacman > div:nth-child(1) div:nth-child(1) {
   -webkit-animation-delay: -0.67s;

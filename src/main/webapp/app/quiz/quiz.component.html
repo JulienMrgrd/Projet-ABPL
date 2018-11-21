@@ -21,10 +21,14 @@
     <div id="quiz">
       <div *ngIf="mode == quizModeEnum.QUIZ">
         <h2 class="text-center font-weight-normal">
-          <span *ngIf="!isTest">Quiz: {{quiz.name}}</span>
-          <span *ngIf="isTest">Test blanc</span>
+          <span *ngIf="!testMode">Quiz: {{quiz.name}}</span>
+          <span *ngIf="testMode">Test blanc</span>
         </h2>
-        <hr />
+        <h4 class="text-center" *ngIf="!testMode && quiz.description">
+          Description :
+          <span class="font-italic">{{quiz.description}}</span>
+        </h4>
+        <hr/>
         <div *ngFor="let question of filteredQuestions">
 
           <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}.</div>
@@ -34,12 +38,24 @@
             <span *ngIf="config.duration">&nbsp;/&nbsp;{{config.duration}} minutes</span>
           </div>
 
-          <h3 class="title-quiz font-weight-normal">{{pager.index + 1}}.
-            <span [innerHTML]="question.name"></span>
-          </h3>
+          <div class="row title-question" *ngIf="question.image; else onlyQuestion">
+            <section class="section col-md-6">
+              <h3 class="font-weight-normal">{{pager.index + 1}}.
+                <span [innerHTML]="question.name"></span>
+              </h3>
+            </section>
+            <section class="section col-md-6" *ngIf="question.image">
+              <span class="badge badge-img">{{question.image}}</span>
+            </section>
+          </div>
+          <ng-template #onlyQuestion>
+            <h3 class="title-question font-weight-normal">{{pager.index + 1}}.
+              <span [innerHTML]="question.name"></span>
+            </h3>
+          </ng-template>
 
-          <div class="row">
-            <div class="col-6" *ngFor="let option of question.options; let index = index">
+          <div class="row quiz-choices">
+            <section class="section col-md-6" *ngFor="let option of question.options; let index = index">
               <label for="check-{{index}}" *ngIf="!isSimpleChoice(question)"> <!-- checkboxes -->
                 <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
                 <span class="label-text">{{option.name}}</span>
@@ -49,20 +65,24 @@
                 <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected" (change)="onSelect($event, question, option)">
                 <span class="label-text">{{option.name}}</span>
               </label>
-            </div>
+            </section>
           </div>
         </div>
         <hr />
         <div class="text-center">
           <button type="button" class="btn btn-outline-dark" (click)="goTo(0)"
-                  disabled="{{config.allowMove && config.allowBack && pager.index != 0 ? '' : 'disabled'}}">Début</button>
+                  *ngIf="config.allowMove && config.allowBack"
+                  disabled="{{pager.index != 0 ? '' : 'disabled'}}">Début</button>
           <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1)"
-                  disabled="{{config.allowMove && config.allowBack ? '' : 'disabled'}}"
-                  *ngIf="pager.index != 0">Préc.</button>
+                  *ngIf="config.allowMove && config.allowBack && pager.index != 0">Préc.</button>
           <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index + 1)"
-                  *ngIf="pager.index != (pager.count-1)">Suiv.</button>
+                  *ngIf="pager.index != (pager.count-1)">
+            <span *ngIf="!testMode">Suiv.</span>
+            <span *ngIf="testMode">Valider</span>
+          </button>
           <button type="button" class="btn btn-outline-dark" (click)="goTo(pager.count - 1)"
-                  disabled="{{config.allowMove && config.allowBack && pager.index != (pager.count-1) ? '' : 'disabled'}}">Fin</button>
+                  *ngIf="config.allowMove && config.allowBack"
+                  disabled="{{pager.index != (pager.count-1) ? '' : 'disabled'}}">Fin</button>
           <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
         </div>
       </div>
@@ -73,7 +93,7 @@
         <h2 class="text-center font-weight-normal">Revue du quiz : {{quiz.name}}</h2>
         <hr />
         <div class="row text-center">
-        <div class="col-4" *ngFor="let question of quiz.questions; let index = index" [ngSwitch]="isAnswered(question)">
+        <div class="col-md-4" *ngFor="let question of quiz.questions; let index = index" [ngSwitch]="isAnswered(question)">
           <ngb-alert type="info" (click)="goTo(index)" [dismissible]="false" *ngSwitchCase="true">
             <strong>{{index + 1}}. Répondue</strong>
           </ngb-alert>
@@ -89,15 +109,36 @@
       <div class="result" *ngIf="mode == quizModeEnum.RESULT">
 
         <h2 class="text-center font-weight-normal">
-          <span *ngIf="isTest">Résultats du test blanc</span>
-          <span *ngIf="!isTest">Résultats du quiz : {{quiz.name}}</span>
+          <fa-icon [icon]="'flag-checkered'"></fa-icon>&nbsp;
+          <span *ngIf="testMode">Résultats du test blanc</span>
+          <span *ngIf="!testMode">Résultats du quiz : {{quiz.name}}</span>
         </h2>
-        <hr />
+        <hr/>
+
+        <br/> <!-- FIXME use margin --><br/>
+        <h2 class="text-center font-weight-bold">
+          <fa-icon [icon]="'smile-wink'"></fa-icon>
+          <br>
+          ==== Insérer ici les pourcentages de réussite ====
+        </h2>
+        <hr/>
+        <br/> <!-- FIXME use margin -->
+
         <div *ngFor="let question of quiz.questions; let index = index">
           <div class="result-question">
-            <h5>{{index + 1}}. {{question.name}}</h5>
-            <div class="row">
-              <div class="col-6 disabled" *ngFor="let option of question.options">
+
+            <div class="row title-question" *ngIf="question.image">
+              <section class="section col-md-6">
+                <h5 class="font-weight-normal">{{index + 1}}. {{question.name}}</h5>
+              </section>
+              <section class="section col-md-6" *ngIf="question.image">
+                <span class="badge badge-img">{{question.image}}</span>
+              </section>
+            </div>
+            <h5 class="title-question font-weight-normal" *ngIf="!question.image">{{index + 1}}. {{question.name}}</h5>
+
+            <div class="row quiz-choices">
+              <section class="section col-md-6 disabled" *ngFor="let option of question.options">
                 <div class="form-check" *ngIf="!isSimpleChoice(question)"> <!-- checkboxes -->
                   <label>
                     <input class="checkbox-{{ isCorrect(question) ? 'green': 'red'}}" type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
@@ -111,14 +152,14 @@
                     <span class="label-text">{{option.name}}</span>
                   </label>
                 </div>
-              </div>
+              </section>
             </div>
             <div class="m-2 alert response {{ isCorrect(question) ? 'alert-success': 'alert-danger'}}">
-              <span *ngIf="!isCorrect(question); else right"><strong>Faux.</strong>
+              <span *ngIf="!isCorrect(question); else right"><strong>Faux.</strong><br>
                 <span [ngPlural]="getAnswers(question).length">
-                  <ng-template ngPluralCase="=0">La bonne réponse était : <i>{{getAnswers(question)}}</i></ng-template>
-                  <ng-template ngPluralCase="=1">La bonne réponse était : <i>{{getAnswers(question)}}</i></ng-template>
-                  <ng-template ngPluralCase="other"><br>Les bonnes réponses étaient : <br>
+                  <ng-template ngPluralCase="=0">La bonne réponse était : "<i>{{getAnswers(question)}}</i>"</ng-template>
+                  <ng-template ngPluralCase="=1">La bonne réponse était : "<i>{{getAnswers(question)}}</i>"</ng-template>
+                  <ng-template ngPluralCase="other">Les bonnes réponses étaient : <br>
                     <ul class="response-list">
                       <li *ngFor="let ans of getAnswers(question)"><i>{{ans}}</i></li>
                     </ul>
@@ -126,6 +167,10 @@
                 </span>
               </span>
               <ng-template #right><strong>Vrai.</strong></ng-template>
+            </div>
+            <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation && question.explanation.length > 0">
+              <span><b>Explication :&nbsp;</b></span>
+              <span [innerHTML]=question.explanation></span>
             </div>
           </div>
           <hr *ngIf="index < quiz.questions.length - 1"/>
@@ -136,7 +181,7 @@
    <!-- ================================
        ============ BUTTONS =========== -->
       <div class="float-right" *ngIf="mode != quizModeEnum.RESULT">
-        <button type="button" class="btn btn-default" *ngIf="!isTest && mode != quizModeEnum.QUIZ" (click)="mode = quizModeEnum.QUIZ">Quiz</button>
+        <button type="button" class="btn btn-default" *ngIf="!testMode && mode != quizModeEnum.QUIZ" (click)="mode = quizModeEnum.QUIZ">Quiz</button>
         <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW" (click)="mode = quizModeEnum.REVIEW">Revue</button>
         <button type="button" class="btn btn-primary" (click)="onSubmit()">Soumettre le quiz</button>
       </div>

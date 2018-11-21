@@ -45,7 +45,10 @@ import {
   faArrowDown,
   faDumbbell,
   faGraduationCap,
-  faBookOpen
+  faBookOpen,
+  faFlagCheckered,
+  faCheckCircle,
+  faSmileWink
 } from '@fortawesome/free-solid-svg-icons';
 
 // Adds the SVG icon to the library so you can use it in your page
@@ -91,3 +94,6 @@ library.add(faArrowDown);
 library.add(faDumbbell);
 library.add(faGraduationCap);
 library.add(faBookOpen);
+library.add(faFlagCheckered);
+library.add(faCheckCircle);
+library.add(faSmileWink);

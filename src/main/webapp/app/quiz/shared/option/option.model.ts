@@ -1,7 +1,8 @@
-export class Option {
-  public id: string;
-  public questionId: string;
-  public name: string;
-  public isAnswer: boolean;
-  public selected = false;
+export interface Option {
+  id: string;
+  questionId: string;
+  name: string;
+  image?: string;
+  isAnswer: boolean;
+  selected?: boolean;
 }

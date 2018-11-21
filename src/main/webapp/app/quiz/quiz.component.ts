@@ -22,7 +22,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   quizFilename: string;
 
   // template values
-  isTest = false; // TODO enum ?
+  testMode = false; // TODO enum ?
   quizModeEnum = QuizMode;
   mode = QuizMode.QUIZ;
   config: QuizConfig = this.getDefaultConfig();
@@ -53,14 +53,16 @@ export class QuizComponent implements OnInit, OnDestroy {
       console.error('ON INIT ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
 
       if (!params['path']) {
-        // DETECT TEST mode (data.config, url, ...)
-        this.isTest = true;
+        // TODO: DETECT TEST mode (data.config, url, ...), and load config
+        this.testMode = true;
         this.config = {
           allowMove: false,
           allowReview: false,
           duration: 5,
           showClock: true,
-          autoMove: true
+          autoMove: true,
+          nbQuestions: 20,
+          shuffleQuestions: true
         };
       }
 

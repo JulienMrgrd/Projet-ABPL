@@ -7,6 +7,7 @@ export interface QuizConfig {
   pageSize?: number;
   requiredAll?: boolean; // indicates if you must answer all the questions before submitting.
   richText?: boolean;
+  nbQuestions?: number;
   shuffleQuestions?: boolean;
   shuffleOptions?: boolean;
   showClock?: boolean;

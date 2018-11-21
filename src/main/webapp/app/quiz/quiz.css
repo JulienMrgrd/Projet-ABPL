@@ -11,21 +11,44 @@ Custom
   padding: 10px;
 }
 
-.title-quiz {
-  margin-top: 5px;
+.title-question {
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .result-question {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.result-question + hr {
+  /*right after*/
+  margin-bottom: 30px;
+}
+
+.quiz-choices {
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .response {
   display: inline-block;
+}
+
+.response.alert-danger {
   min-width: 25%;
 }
 
 .response-list {
   margin-top: 5px;
+}
+
+.explanation {
+  background-color: whitesmoke;
+}
+
+.badge-img {
+  color: red;
+  border: 1px solid black;
 }
 
 @media only screen and (max-width: 480px) {

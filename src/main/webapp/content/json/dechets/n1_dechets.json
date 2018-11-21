@@ -1,144 +1,125 @@
 {
   "id": 3,
-  "name": "N1 Déchets",
-  "description": "Description du quiz difficile (à remplir)",
+  "name": "Déchets",
+  "description": "questionnaire n°1 de la catégorie \"Déchets\"",
   "questions": [
     {
       "id": 10,
-      "name": "Question QCM ?",
+      "name": "Quels sont les risques associés aux déchets piquants et tranchants ?",
+      "image": "==== insérer Pr Bio blessé ====",
       "options": [
         {
           "id": 1055,
           "questionId": 10,
-          "name": "Réponse A",
+          "name": "Risque de blessures",
           "isAnswer": true
         },
         {
           "id": 1056,
           "questionId": 10,
-          "name": "Réponse B",
+          "name": "Risque pour le système nerveux",
           "isAnswer": false
         },
         {
           "id": 1057,
           "questionId": 10,
-          "name": "Réponse C",
+          "name": "Risque de cancer",
           "isAnswer": false
         },
         {
           "id": 1058,
           "questionId": 10,
-          "name": "Réponse D",
-          "isAnswer": false
+          "name": "Risque de transmission de maladies",
+          "isAnswer": true
         }
       ],
-      "questionType": 2
+      "questionType": 2,
+      "explanation": null
     },
     {
       "id": 11,
-      "name": "Question classique ? (avec 3 réponses)",
-      "options": [
-        {
-          "id": 1059,
-          "questionId": 11,
-          "name": "Réponse A",
-          "isAnswer": true
-        },
-        {
-          "id": 1060,
-          "questionId": 11,
-          "name": "Réponse B",
-          "isAnswer": false
-        },
-        {
-          "id": 1061,
-          "questionId": 11,
-          "name": "Réponse C",
-          "isAnswer": false
-        }
-      ],
-      "questionType": 1
-    },
-    {
-      "id": 12,
-      "name": "Question classique ? (avec 4 réponses)",
-      "options": [
-        {
-          "id": 1062,
-          "questionId": 12,
-          "name": "Réponse A",
-          "isAnswer": true
-        },
-        {
-          "id": 1063,
-          "questionId": 12,
-          "name": "Réponse B",
-          "isAnswer": false
-        },
-        {
-          "id": 1064,
-          "questionId": 12,
-          "name": "Réponse C",
-          "isAnswer": false
-        },
-        {
-          "id": 1065,
-          "questionId": 12,
-          "name": "Réponse D",
-          "isAnswer": false
-        }
-      ],
-      "questionType": 1
-    },
-    {
-      "id": 13,
-      "name": "Question classique ? (avec 5 réponses)",
+      "name": "Le personnel chargé du nettoyage peut-il prendre en charge les déchets domestiques ?",
       "options": [
         {
           "id": 1066,
           "questionId": 13,
-          "name": "Réponse A",
+          "name": "Oui",
           "isAnswer": true
         },
         {
           "id": 1067,
           "questionId": 13,
-          "name": "Réponse B",
-          "isAnswer": false
-        },
-        {
-          "id": 1068,
-          "questionId": 13,
-          "name": "Réponse C",
-          "isAnswer": false
-        },
-        {
-          "id": 1069,
-          "questionId": 13,
-          "name": "Réponse D",
-          "isAnswer": false
-        },
-        {
-          "id": 1070,
-          "questionId": 13,
-          "name": "Réponse E",
+          "name": "Non",
           "isAnswer": false
         }
       ],
-      "questionType": 1
+      "questionType": 1,
+      "explanation": "A la fin d’une journée de TP, il est fortement apprécié de ranger son matériel et la salle pour faciliter le travail du personnel de préparation. Un moment ou un autre, vous serez amenés à l’effectuer au laboratoire."
+    },
+    {
+      "id": 12,
+      "name": "Les déchets chimiques contenant des acides doivent être étiquetés en :",
+      "image": "==== insérer photo(tableau) ====",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": 10,
+          "name": "Jaune",
+          "isAnswer": true
+        },
+        {
+          "id": 1056,
+          "questionId": 10,
+          "name": "Rouge",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": 10,
+          "name": "Vert",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": 10,
+          "name": "Bleu",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Il existe une couleur associée à chaque type de déchets chimiques."
+    },
+    {
+      "id": 13,
+      "name": "Quel est le risque majeur lorsque l'on travaille en présence d'une poche d'urine ?",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": 10,
+          "name": "Biologique",
+          "isAnswer": true
+        },
+        {
+          "id": 1056,
+          "questionId": 10,
+          "name": "Nocif",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": 10,
+          "name": "==== Insérer picto ici ====",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": 10,
+          "name": "==== Insérer picto ici ====",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": "L'urine est un fluide biologique, il représente donc un risque biologique pour le manipulateur."
     }
-  ],
-  "config": {
-    "allowBack": true,
-    "allowReview": true,
-    "autoMove": false,
-    "pageSize": 2,
-    "requiredAll": true,
-    "richText": false,
-    "shuffleQuestions": false,
-    "shuffleOptions": false,
-    "showClock": true,
-    "showPager": true,
-    "theme": "none"
-  }
+  ]
 }

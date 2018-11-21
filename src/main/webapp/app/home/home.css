@@ -5,9 +5,12 @@ Main page styles
 .abpl {
   display: inline-block;
   width: 347px;
-  height: 250px;
-  background: url('../../content/images/abpl.png') no-repeat center top;
+  max-width: 300px;
+  height: 290px;
+  background: url('../../content/images/abpl.png') no-repeat center top whitesmoke;
   background-size: contain;
+  border-radius: 100%;
+  border: 1px solid var(--abpl-primary-border, darkgrey);
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -17,7 +20,7 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .abpl {
-    background: url('../../content/images/abpl.png') no-repeat center top;
+    background: url('../../content/images/abpl.png') no-repeat center top whitesmoke;
     background-size: contain;
   }
 }

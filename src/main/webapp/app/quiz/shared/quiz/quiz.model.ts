@@ -4,7 +4,7 @@ import { QuizConfig } from './quiz-config.model';
 export interface Quiz {
   id: string;
   name: string;
-  description: string;
-  config: QuizConfig;
+  description?: string;
+  config?: QuizConfig;
   questions: Question[];
 }

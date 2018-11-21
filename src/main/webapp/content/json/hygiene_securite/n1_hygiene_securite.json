@@ -1,144 +1,71 @@
 {
   "id": 3,
-  "name": "N1 Hygiène et sécurité",
-  "description": "Description du quiz difficile (à remplir)",
+  "name": "Hygiène et sécurité",
+  "description": "questionnaire n°1 de la catégorie \"Hygiène et sécurité\"",
   "questions": [
     {
       "id": 10,
-      "name": "Question QCM ?",
+      "name": "Sans faire exprès, j’ai mis le doigt dans une solution de bactéries...",
       "options": [
         {
           "id": 1055,
           "questionId": 10,
-          "name": "Réponse A",
-          "isAnswer": true
+          "name": "ce n’est pas grave, je m’essuie sur ma blouse, elle est là pour ça",
+          "isAnswer": false
         },
         {
           "id": 1056,
           "questionId": 10,
-          "name": "Réponse B",
-          "isAnswer": false
+          "name": "ce n’est pas grave, je vais me laver les mains",
+          "isAnswer": true
         },
         {
           "id": 1057,
           "questionId": 10,
-          "name": "Réponse C",
+          "name": "ce n’est pas grave, c’est même drôle, je dis à mon binôme de faire pareil !",
           "isAnswer": false
         },
         {
           "id": 1058,
           "questionId": 10,
-          "name": "Réponse D",
+          "name": "ce n’est pas grave, je continue de manipuler",
           "isAnswer": false
         }
       ],
-      "questionType": 2
+      "questionType": 2,
+      "explanation": null
     },
     {
       "id": 11,
-      "name": "Question classique ? (avec 3 réponses)",
-      "options": [
-        {
-          "id": 1059,
-          "questionId": 11,
-          "name": "Réponse A",
-          "isAnswer": true
-        },
-        {
-          "id": 1060,
-          "questionId": 11,
-          "name": "Réponse B",
-          "isAnswer": false
-        },
-        {
-          "id": 1061,
-          "questionId": 11,
-          "name": "Réponse C",
-          "isAnswer": false
-        }
-      ],
-      "questionType": 1
-    },
-    {
-      "id": 12,
-      "name": "Question classique ? (avec 4 réponses)",
-      "options": [
-        {
-          "id": 1062,
-          "questionId": 12,
-          "name": "Réponse A",
-          "isAnswer": true
-        },
-        {
-          "id": 1063,
-          "questionId": 12,
-          "name": "Réponse B",
-          "isAnswer": false
-        },
-        {
-          "id": 1064,
-          "questionId": 12,
-          "name": "Réponse C",
-          "isAnswer": false
-        },
-        {
-          "id": 1065,
-          "questionId": 12,
-          "name": "Réponse D",
-          "isAnswer": false
-        }
-      ],
-      "questionType": 1
-    },
-    {
-      "id": 13,
-      "name": "Question classique ? (avec 5 réponses)",
+      "name": "Porter la blouse en salle de travaux pratique, :",
       "options": [
         {
           "id": 1066,
           "questionId": 13,
-          "name": "Réponse A",
+          "name": "Ca fait scientifique !",
           "isAnswer": true
         },
         {
           "id": 1067,
           "questionId": 13,
-          "name": "Réponse B",
+          "name": "C’est conseillé",
           "isAnswer": false
         },
         {
           "id": 1068,
           "questionId": 13,
-          "name": "Réponse C",
-          "isAnswer": false
+          "name": "C’est obligatoire",
+          "isAnswer": true
         },
         {
           "id": 1069,
           "questionId": 13,
-          "name": "Réponse D",
-          "isAnswer": false
-        },
-        {
-          "id": 1070,
-          "questionId": 13,
-          "name": "Réponse E",
-          "isAnswer": false
+          "name": "Ca permet de me protéger des produits dangereux",
+          "isAnswer": true
         }
       ],
-      "questionType": 1
+      "questionType": 2,
+      "explanation": null
     }
-  ],
-  "config": {
-    "allowBack": true,
-    "allowReview": true,
-    "autoMove": false,
-    "pageSize": 2,
-    "requiredAll": true,
-    "richText": false,
-    "shuffleQuestions": false,
-    "shuffleOptions": false,
-    "showClock": true,
-    "showPager": true,
-    "theme": "none"
-  }
+  ]
 }
