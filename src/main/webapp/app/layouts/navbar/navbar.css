@@ -51,18 +51,19 @@ Navbar
   color: #fff;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 986px) {
   .jh-navbar-toggler {
     display: none;
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 986px) {
   .jh-logo-container {
     width: 100%;
   }
   .navbar-collapse {
     flex-basis: 100%;
+    display: none !important;
   }
 }
 

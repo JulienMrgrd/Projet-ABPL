@@ -7,7 +7,7 @@ Main page styles
   width: 347px;
   max-width: 300px;
   height: 290px;
-  background: url('../../content/images/abpl.png') no-repeat center top whitesmoke;
+  background: url('../../content/images/abpl.png') no-repeat center whitesmoke;
   background-size: contain;
   border-radius: 100%;
   border: 1px solid var(--abpl-primary-border, darkgrey);
@@ -20,7 +20,7 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .abpl {
-    background: url('../../content/images/abpl.png') no-repeat center top whitesmoke;
+    background: url('../../content/images/abpl.png') no-repeat center whitesmoke;
     background-size: contain;
   }
 }
@@ -30,6 +30,12 @@ Custom
 ========================================================================== */
 .home-card {
   padding: 10px 200px;
+}
+
+@media (min-width: 768px) {
+  .row {
+    margin-top: 50px;
+  }
 }
 
 .alert {

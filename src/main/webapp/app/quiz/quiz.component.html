@@ -70,17 +70,17 @@
         </div>
         <hr />
         <div class="text-center">
-          <button type="button" class="btn btn-outline-dark" (click)="goTo(0)"
+          <button type="button" class="btn btn-outline-dark" (click)="goTo(0); scrollTop()"
                   *ngIf="config.allowMove && config.allowBack"
                   disabled="{{pager.index != 0 ? '' : 'disabled'}}">Début</button>
-          <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1)"
+          <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1); scrollTop()"
                   *ngIf="config.allowMove && config.allowBack && pager.index != 0">Préc.</button>
-          <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index + 1)"
+          <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index + 1); scrollTop()"
                   *ngIf="pager.index != (pager.count-1)">
             <span *ngIf="!testMode">Suiv.</span>
             <span *ngIf="testMode">Valider</span>
           </button>
-          <button type="button" class="btn btn-outline-dark" (click)="goTo(pager.count - 1)"
+          <button type="button" class="btn btn-outline-dark" (click)="goTo(pager.count - 1); scrollTop()"
                   *ngIf="config.allowMove && config.allowBack"
                   disabled="{{pager.index != (pager.count-1) ? '' : 'disabled'}}">Fin</button>
           <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
@@ -94,10 +94,10 @@
         <hr />
         <div class="row text-center">
         <div class="col-md-4" *ngFor="let question of quiz.questions; let index = index" [ngSwitch]="isAnswered(question)">
-          <ngb-alert type="info" (click)="goTo(index)" [dismissible]="false" *ngSwitchCase="true">
+          <ngb-alert type="info" (click)="goTo(index); scrollTop()" [dismissible]="false" *ngSwitchCase="true">
             <strong>{{index + 1}}. Répondue</strong>
           </ngb-alert>
-          <ngb-alert type="warning" (click)="goTo(index)" [dismissible]="false" *ngSwitchCase="false">
+          <ngb-alert type="warning" (click)="goTo(index); scrollTop()" [dismissible]="false" *ngSwitchCase="false">
             <strong>{{index + 1}}. A répondre</strong>
           </ngb-alert>
         </div>
@@ -181,12 +181,16 @@
    <!-- ================================
        ============ BUTTONS =========== -->
       <div class="float-right" *ngIf="mode != quizModeEnum.RESULT">
-        <button type="button" class="btn btn-default" *ngIf="!testMode && mode != quizModeEnum.QUIZ" (click)="mode = quizModeEnum.QUIZ">Quiz</button>
-        <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW" (click)="mode = quizModeEnum.REVIEW">Revue</button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()">Soumettre le quiz</button>
+        <button type="button" class="btn btn-default" *ngIf="!testMode && mode != quizModeEnum.QUIZ"
+                (click)="mode = quizModeEnum.QUIZ; scrollTop()">Quiz</button>
+        <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW"
+                (click)="mode = quizModeEnum.REVIEW; scrollTop()">Revue</button>
+        <button type="button" class="btn btn-primary"
+                (click)="onSubmit(); scrollTop();">Soumettre le quiz</button>
       </div>
       <div *ngIf="mode == quizModeEnum.RESULT">
-        <button type="button" class="btn btn-primary" (click)="reloadQuiz()">Redémarrer</button>
+        <button type="button" class="btn btn-primary"
+                (click)="scrollTop(); reloadQuiz();">Redémarrer</button>
       </div>
     </div>
   </div>

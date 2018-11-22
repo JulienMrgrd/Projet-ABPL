@@ -191,4 +191,11 @@ export class QuizComponent implements OnInit, OnDestroy {
       showClock: true
     };
   }
+
+  private scrollTop() {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+    }, 500);
+  }
 }

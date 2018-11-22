@@ -1,25 +1,21 @@
 <div class="card card-frame home-card">
   <div class="card-block">
 
-    <br/> <!-- FIXME use margin --><br/>
     <div class="row">
-      <section class="section col-md-4">
+      <section class="section col-md-6">
         <div class="d-flex justify-content-center">
           <span class="abpl img-fluid"></span>
-          <br/> <!-- FIXME use margin -->
         </div>
       </section>
 
-      <section class="section col-md-8 justify-content-center">
+      <section class="section col-md-6 justify-content-center">
         <br/> <!-- FIXME use margin --><br/><br/>
         <span>
-          <h1 class="display-5">Bienvenue,</h1>
-          <h2 class="display-10">futur certifié de laboratoire !</h2>
+          <h1 class="display-5 text-nowrap">Bienvenue,</h1>
+          <h2 class="display-10 break-word">futur certifié de laboratoire !</h2>
         </span>
       </section>
     </div>
-
-    <br/> <!-- FIXME use margin --><br/>
 
     <div class="row">
       <section class="section col-md-6">
@@ -31,10 +27,10 @@
           <br/> <!-- FIXME use margin --><br/><br/><br/>
 
           <div class="alert alert-warning" *ngSwitchCase="false">
-            <span>Si vous souhaitez vous </span>
-            <a class="alert-link" (click)="login()">connecter</a><span>, vous pouvez essayer le compte par défaut:
-            <br/>- Administrateur (login="admin" and mdp="admin"). <span class="be-careful">/!\ pas de bêtises avec lui...!</span>
-            <br/>- Utilisateur (login="user" and mdp="user").</span>
+            Si vous souhaitez vous
+            <a class="alert-link" (click)="login()">connecter</a>, vous pouvez essayer le compte par défaut:
+            <p>- Utilisateur (login="user" and mdp="user").</p>
+            <p>- Administrateur (login="admin" and mdp="admin").<br>&nbsp;<span class="be-careful">/!\ pas de bêtises avec lui...!</span></p>
           </div>
           <!-- FIXME disabled for the moment -->
           <!--<div class="alert alert-warning" *ngSwitchCase="false">
@@ -47,8 +43,8 @@
           <p class="lead">Ceci est, comme tu l'as sans doute deviné... ta page d'accueil.</p>
         </div>-->
       </section>
-
-      <section class="section col-md-6 d-flex justify-content-center">
+      <section class="section col-md-1"></section>
+      <section class="section col-md-5 d-flex justify-content-center">
         <jhi-color-picker></jhi-color-picker>
       </section>
     </div>
