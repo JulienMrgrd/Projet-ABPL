@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { QuizResponseModalComponent } from 'app/quiz/quiz-reponses/quiz-response-modal/quiz-response-modal.component';
 import { Option } from 'app/quiz/shared/option/option.model';
 import { QuestionType } from 'app/quiz/shared/question-type/question-type.enum';
 import { Question } from 'app/quiz/shared/question/question.model';
@@ -26,6 +28,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   quizModeEnum = QuizMode;
   mode = QuizMode.QUIZ;
   config: QuizConfig = this.getDefaultConfig();
+  currentQuestion: Question;
+  validatedQuestions: string[] = [];
 
   pager = this.initPager();
   timer: any = null;
@@ -34,9 +38,17 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   routeDataSub: Subscription; // TODO: replace by takeUntil
 
-  constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute, private sharedData: Data) {}
+  constructor(
+    private quizService: QuizService,
+    private activatedRoute: ActivatedRoute,
+    private sharedData: Data,
+    private modalService: NgbModal
+  ) {}
 
   async ngOnInit() {
+    const res1 = await this.quizService.getRandomizedQuiz();
+    // debugger;
+
     this.routeDataSub = this.activatedRoute.params.subscribe(params => {
       // TODO: RESOLVER
       this.categoryName = params['path']; // TODO check empty path, NOW
@@ -84,10 +96,9 @@ export class QuizComponent implements OnInit, OnDestroy {
 
       // default values
       this.quiz.questions.forEach(question => question.options.forEach(opt => (opt.selected = false)));
+      this.currentQuestion = this.quiz.questions[0];
 
-      this.pager = this.initPager();
-      this.pager.count = this.quiz.questions.length;
-
+      this.pager = this.initPager(this.quiz.questions.length);
       this.startTimer();
     });
   }
@@ -97,11 +108,10 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.loadQuiz(this.categoryName, this.quizFilename);
   }
 
-  private initPager() {
+  private initPager(count = 1) {
     return {
       index: 0,
-      size: 1,
-      count: 1
+      count: count
     };
   }
 
@@ -123,10 +133,6 @@ export class QuizComponent implements OnInit, OnDestroy {
     // this.duration = this.parseTime(this.quiz.config.duration); TODO: timer
   }
 
-  get filteredQuestions(): Question[] {
-    return this.quiz.questions ? this.quiz.questions.slice(this.pager.index, this.pager.index + this.pager.size) : [];
-  }
-
   /**
    * Unselect all others options (radio buttons) for this question, except the given one.
    */
@@ -142,15 +148,8 @@ export class QuizComponent implements OnInit, OnDestroy {
     }*/
   }
 
-  goTo(index: number) {
-    if (index >= 0 && index < this.pager.count) {
-      this.pager.index = index;
-      this.mode = QuizMode.QUIZ;
-    }
-  }
-
   isAnswered(question: Question): boolean {
-    return !!question.options.find(x => x.selected);
+    return question && question.options && !!question.options.find(x => x.selected);
   }
 
   isCorrect(question: Question): boolean {
@@ -161,16 +160,6 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   isSimpleChoice(question: Question): boolean {
     return question && question.questionType === QuestionType.SIMPLE;
-  }
-
-  getAnswers(question: Question) {
-    return question.options
-      .map(opt => {
-        if (opt.isAnswer) {
-          return opt.name;
-        }
-      })
-      .filter(res => !!res);
   }
 
   onSubmit() {
@@ -192,10 +181,31 @@ export class QuizComponent implements OnInit, OnDestroy {
     };
   }
 
-  private scrollTop() {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-      document.body.scrollTop = 0;
-    }, 500);
+  isValidated(question: Question): boolean {
+    return this.validatedQuestions.includes(question.id);
+  }
+
+  validate(question: Question) {
+    this.validatedQuestions.push(question.id);
+
+    const cancellationModalRef = this.modalService.open(QuizResponseModalComponent);
+    cancellationModalRef.componentInstance.question = question;
+
+    cancellationModalRef.result.then(cancelEvent => {
+      this.goToNext();
+    });
+  }
+
+  goTo(index: number) {
+    debugger;
+    if (index >= 0 && index < this.pager.count) {
+      this.pager.index = index;
+      this.currentQuestion = this.quiz.questions[index];
+      this.mode = QuizMode.QUIZ; // display the question by changing the mode
+    }
+  }
+
+  goToNext() {
+    this.goTo(this.pager.index + 1);
   }
 }

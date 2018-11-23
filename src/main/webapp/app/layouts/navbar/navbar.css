@@ -51,21 +51,37 @@ Navbar
   color: #fff;
 }
 
-@media screen and (min-width: 986px) {
+@media screen and (min-width: 768px) {
   .jh-navbar-toggler {
     display: none;
   }
 }
 
-@media screen and (max-width: 986px) {
+@media screen and (max-width: 992px) {
   .jh-logo-container {
     width: 100%;
   }
   .navbar-collapse {
     flex-basis: 100%;
-    display: none !important;
   }
 }
+
+/*
+  @media screen and (max-width: 986px) and (min-width: 768px) { /*display the icon bars on tablet*\/
+  .navbar-collapse:not(.show) {
+    display: none !important;
+  }
+  .navbar-collapse .show .navbar {
+    justify-content: flex-start;
+    flex-flow: wrap;
+    flex-grow: 1;
+    align-items: center;
+  }
+  .navbar-expand-md > .show {
+    flex-wrap: wrap;
+  }
+}
+*/
 
 .navbar-title {
   display: inline-block;
