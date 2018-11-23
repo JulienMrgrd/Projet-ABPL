@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuizResponseModalComponent } from 'app/quiz/quiz-reponses/quiz-response-modal/quiz-response-modal.component';
 import { Option } from 'app/quiz/shared/option/option.model';
-import { QuestionType } from 'app/quiz/shared/question-type/question-type.enum';
-import { Question } from 'app/quiz/shared/question/question.model';
+import { Question, QuestionUtils } from 'app/quiz/shared/question/question.model';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
@@ -27,6 +26,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   testMode = false; // TODO enum ?
   quizModeEnum = QuizMode;
   mode = QuizMode.QUIZ;
+  utils = QuestionUtils;
   config: QuizConfig = this.getDefaultConfig();
   currentQuestion: Question;
   validatedQuestions: string[] = [];
@@ -97,6 +97,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       // default values
       this.quiz.questions.forEach(question => question.options.forEach(opt => (opt.selected = false)));
       this.currentQuestion = this.quiz.questions[0];
+      this.validatedQuestions = [];
 
       this.pager = this.initPager(this.quiz.questions.length);
       this.startTimer();
@@ -111,7 +112,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   private initPager(count = 1) {
     return {
       index: 0,
-      count: count
+      count
     };
   }
 
@@ -137,7 +138,7 @@ export class QuizComponent implements OnInit, OnDestroy {
    * Unselect all others options (radio buttons) for this question, except the given one.
    */
   onSelect($event, question: Question, response: Option) {
-    if ($event.target.checked && this.isSimpleChoice(question)) {
+    if ($event.target.checked && QuestionUtils.isSimpleChoice(question)) {
       question.options.forEach(opt => {
         opt.selected = opt.id === response.id;
       });
@@ -148,23 +149,11 @@ export class QuizComponent implements OnInit, OnDestroy {
     }*/
   }
 
-  isAnswered(question: Question): boolean {
-    return question && question.options && !!question.options.find(x => x.selected);
-  }
-
-  isCorrect(question: Question): boolean {
-    return question.options.every(x => {
-      return (x.selected && x.selected === x.isAnswer) || (!x.selected && !x.isAnswer);
-    });
-  }
-
-  isSimpleChoice(question: Question): boolean {
-    return question && question.questionType === QuestionType.SIMPLE;
-  }
-
   onSubmit() {
     const answers = []; // TODO: type answers
-    this.quiz.questions.forEach(x => answers.push({ quizId: this.quiz.id, questionId: x.id, answered: this.isAnswered(x) }));
+    this.quiz.questions.forEach(x => {
+      return answers.push({ quizId: this.quiz.id, questionId: x.id, answered: QuestionUtils.isAnswered(x) });
+    });
 
     // TODO: Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
@@ -188,16 +177,12 @@ export class QuizComponent implements OnInit, OnDestroy {
   validate(question: Question) {
     this.validatedQuestions.push(question.id);
 
-    const cancellationModalRef = this.modalService.open(QuizResponseModalComponent);
-    cancellationModalRef.componentInstance.question = question;
-
-    cancellationModalRef.result.then(cancelEvent => {
-      this.goToNext();
-    });
+    const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true });
+    modalRef.componentInstance.question = question;
+    modalRef.result.then(() => this.goToNext(), () => this.goToNext());
   }
 
   goTo(index: number) {
-    debugger;
     if (index >= 0 && index < this.pager.count) {
       this.pager.index = index;
       this.currentQuestion = this.quiz.questions[index];
@@ -206,6 +191,14 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   goToNext() {
-    this.goTo(this.pager.index + 1);
+    this.isLastPos() ? this.onSubmit() : this.goTo(this.pager.index + 1);
+  }
+
+  isLastPos() {
+    return this.pager.index === this.pager.count - 1;
+  }
+
+  isFirstPos() {
+    return this.pager.index === 0;
   }
 }

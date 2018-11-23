@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
-import { ModalContentComponent } from 'app/shared/modal/modal-content/modal-content.component';
-import { Question } from '../../shared/question/question.model';
+import { Component, OnInit } from '@angular/core';
+import { Question, QuestionUtils } from '../../shared/question/question.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-quiz-response-modal',
   templateUrl: './quiz-response-modal.component.html',
-  styles: []
+  styleUrls: ['../../quiz.css']
 })
-export class QuizResponseModalComponent extends ModalContentComponent {
+export class QuizResponseModalComponent implements OnInit {
   question: Question;
-  index: number = -1; // question number, -1 by default
+  index = -1; // question number, -1 by default
+
+  utils = QuestionUtils;
+
+  constructor(public modal: NgbActiveModal) {}
+
+  ngOnInit() {
+    console.log('modal init');
+  }
 }

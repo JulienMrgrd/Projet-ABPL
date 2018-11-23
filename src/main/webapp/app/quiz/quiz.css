@@ -8,6 +8,7 @@ Custom
 }
 
 .quiz-card {
+  min-height: 450px;
   padding: 10px;
 }
 
@@ -16,13 +17,8 @@ Custom
   margin-bottom: 20px;
 }
 
-.result-question {
-  margin-bottom: 10px;
-}
-
-.result-question + hr {
-  /*right after*/
-  margin-bottom: 30px;
+.question {
+  min-height: 210px;
 }
 
 .quiz-choices {
@@ -34,7 +30,18 @@ Custom
   cursor: pointer;
 }
 
-.response {
+/** ====== RESULT PART ====== **/
+.result-responses {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+jhi-quiz-reponse + hr {
+  /*right after*/
+  margin-bottom: 30px;
+}
+
+.alert-response {
   display: inline-block;
 }
 

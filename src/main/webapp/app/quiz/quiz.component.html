@@ -16,7 +16,7 @@
 
 <!-- ================================
     ============= QUIZ ============ -->
-<div class="card card-frame quiz-card" *ngIf="quiz">
+<div class="card card-frame quiz-card" *ngIf="quiz"> <!-- TODO LOADING : https://www.npmjs.com/package/ngx-loading -->
   <div class="card-block">
     <div id="quiz">
       <div *ngIf="mode == quizModeEnum.QUIZ">
@@ -29,7 +29,7 @@
           <span class="font-italic">{{quiz.description}}</span>
         </h4>
         <hr/>
-        <div *ngIf="currentQuestion">
+        <div class="question" *ngIf="currentQuestion">
           <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}.</div>
 
           <!--TODO: timer-->
@@ -55,12 +55,12 @@
 
           <div class="row quiz-choices {{isValidated(currentQuestion) ? 'disabled' : ''}}"> <!--disabled choices if already validated-->
             <section class="section col-md-6" *ngFor="let option of currentQuestion.options; let index = index">
-              <label for="check-{{index}}" *ngIf="!isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
+              <label for="check-{{index}}" *ngIf="!utils.isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
                 <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
                 <span class="label-text">{{option.name}}</span>
               </label>
 
-              <label for="radio-{{index}}" *ngIf="isSimpleChoice(currentQuestion)"> <!-- radio buttons -->
+              <label for="radio-{{index}}" *ngIf="utils.isSimpleChoice(currentQuestion)"> <!-- radio buttons -->
                 <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected"
                        (change)="onSelect($event, currentQuestion, option)">
                 <span class="label-text">{{option.name}}</span>
@@ -69,39 +69,37 @@
           </div>
         </div>
         <hr />
-        <div class="text-center">                                                            <!-- Move buttons -->
+
+        <!-- Move buttons -->
+        <div class="text-center">
           <button type="button" class="btn btn-outline-dark" (click)="goTo(0)"
                   *ngIf="config.allowMove && config.allowBack"
-                  disabled="{{pager.index != 0 ? '' : 'disabled'}}">Début</button>
+                  disabled="{{ isFirstPos() ? 'disabled' : '' }}">Début</button>
 
           <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1)"
-                  *ngIf="config.allowMove && config.allowBack && pager.index != 0">Préc.</button>
+                  *ngIf="config.allowMove && config.allowBack && !isFirstPos()">Préc.</button>
 
-
-          <button type="button" class="btn btn-outline-primary"
-                  *ngIf="!testMode && pager.index != (pager.count-1)">
-
+          <ng-container *ngIf="!testMode; else testModeButtons">
             <!--Not yet validated -->
-            <span *ngIf="isAnswered(currentQuestion) && !isValidated(currentQuestion)"
-                  (click)="validate(currentQuestion)">Valider</span>
+            <button type="button" class="btn btn-outline-primary" (click)="validate(currentQuestion)"
+                    *ngIf="(utils.isAnswered(currentQuestion) && !isValidated(currentQuestion)); else nextButton">Valider</button>
+
             <!-- Already answered and validated-->
-            <span *ngIf="!isAnswered(currentQuestion) || isValidated(currentQuestion)"
-                  (click)="goToNext()">Suiv.</span>
-          </button>
+            <ng-template #nextButton>
+              <button type="button" class="btn btn-outline-primary" (click)="goToNext()" *ngIf="!isLastPos()">Suiv.</button>
+            </ng-template>
+          </ng-container>
 
           <ng-template #testModeButtons>
             <button type="button" class="btn btn-outline-primary" (click)="goToNext()"
-                    *ngIf="pager.index != (pager.count-1)">Valider</button>
+                    *ngIf="!isLastPos()">Valider</button>
           </ng-template>
 
           <button type="button" class="btn btn-outline-dark" (click)="goTo(pager.count - 1)"
                   *ngIf="config.allowMove && config.allowBack"
-                  disabled="{{pager.index != (pager.count-1) ? '' : 'disabled'}}">Fin</button>
+                  disabled="{{ isLastPos() ? 'disabled' : '' }}">Fin</button>
           <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
         </div>
-
-
-        {{ validatedQuestions | json}}
       </div>
 
       <!-- ================================
@@ -111,13 +109,13 @@
         <hr />
         <div class="row text-center">
           <div class="col-md-4" *ngFor="let question of quiz.questions; let index = index">
-            <ngb-alert *ngIf="isValidated(question)" type="{{isCorrect(question) ? 'success' : 'danger'}}"
-                       (click)="goTo(index)" [dismissible]="false">
+            <ngb-alert *ngIf="isValidated(question)" type="{{utils.isCorrect(question) ? 'success' : 'danger'}}"
+                       (click)="this.pager.index = index; goTo(index)" [dismissible]="false">
               <strong>{{index + 1}}.&nbsp;{{question.name}}</strong>
             </ngb-alert>
 
-            <ngb-alert *ngIf="!isValidated(question)"  type="{{isAnswered(question) ? 'info' : 'warning'}}"
-                       (click)="goTo(index)" [dismissible]="false">
+            <ngb-alert *ngIf="!isValidated(question)"  type="{{utils.isAnswered(question) ? 'info' : 'warning'}}"
+                       (click)="this.pager.index = index; goTo(index)" [dismissible]="false">
               <strong>{{index + 1}}.&nbsp;{{question.name}}</strong>
             </ngb-alert>
           </div>
@@ -145,7 +143,7 @@
         <br/> <!-- FIXME use margin -->
 
         <div *ngFor="let question of quiz.questions; let index = index">
-          <jhi-quiz-reponse [question]="question" [index]="index"></jhi-quiz-reponse>
+          <jhi-quiz-reponse [question]="question" [index]="index" [disabled]="true"></jhi-quiz-reponse>
           <hr *ngIf="index < quiz.questions.length - 1"/>
         </div>
       </div>

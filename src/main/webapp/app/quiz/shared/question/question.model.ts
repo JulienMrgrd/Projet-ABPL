@@ -11,3 +11,29 @@ export interface Question {
   explanation?: string;
   answered?: boolean;
 }
+
+export class QuestionUtils {
+  static isCorrect(question: Question): boolean {
+    return question.options.every(x => {
+      return (x.selected && x.selected === x.isAnswer) || (!x.selected && !x.isAnswer);
+    });
+  }
+
+  static isSimpleChoice(question: Question): boolean {
+    return question && question.questionType === QuestionType.SIMPLE;
+  }
+
+  static isAnswered(question: Question): boolean {
+    return question && question.options && !!question.options.find(x => x.selected);
+  }
+
+  static getAnswers(question: Question) {
+    return question.options
+      .map(opt => {
+        if (opt.isAnswer) {
+          return opt.name;
+        }
+      })
+      .filter(res => !!res);
+  }
+}
