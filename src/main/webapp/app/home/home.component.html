@@ -2,9 +2,30 @@
   <div class="card-block">
 
     <div class="row">
+      <section class="section col-md-12">
+        <div class="card d-flex justify-content-center">
+          <span class="card-img-top img-fluid main_abpl2"></span>
+          <div class="card-body">
+            <h5 class="card-title">Titre de texte</h5>
+            <p class="card-text">Ce long texte peut être une description ... ce long texte peut être une description ... ce long texte bla bla...</p>
+            <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!--<div class="row">
+      <section class="section col-md-12">
+        <div class="d-flex justify-content-center">
+          <span class="main_abpl img-fluid"></span>
+        </div>
+      </section>
+    </div>-->
+
+    <div class="row">
       <section class="section col-md-6">
         <div class="d-flex justify-content-center">
-          <span class="abpl img-fluid"></span>
+          <span class="body_abpl img-fluid"></span>
         </div>
       </section>
 
@@ -14,40 +35,36 @@
           <h1 class="display-5 text-nowrap">Bienvenue,</h1>
           <h2 class="display-10 break-word">futur certifié de laboratoire !</h2>
         </span>
-      </section>
-    </div>
 
-    <div class="row">
-      <section class="section col-md-6">
         <div [ngSwitch]="isAuthenticated()">
           <div class="alert alert-success" *ngSwitchCase="true">
             <span id="home-logged-message" *ngIf="account">Vous êtes connecté comme l'utilisateur : "{{account.login}}". </span>
           </div>
 
-          <br/> <!-- FIXME use margin --><br/><br/><br/>
-
+          <br/> <!-- FIXME use margin -->
           <div class="alert alert-warning" *ngSwitchCase="false">
             Si vous souhaitez vous
             <a class="alert-link" (click)="login()">connecter</a>, vous pouvez essayer le compte par défaut:
             <p>- Utilisateur (login="user" and mdp="user").</p>
             <p>- Administrateur (login="admin" and mdp="admin").<br>&nbsp;<span class="be-careful">/!\ pas de bêtises avec lui...!</span></p>
           </div>
-          <!-- FIXME disabled for the moment -->
+          <!-- FIXME disabled register for the moment -->
           <!--<div class="alert alert-warning" *ngSwitchCase="false">
             <span>You don't have an account yet?</span>&nbsp;
             <a class="alert-link" routerLink="register">Register a new account</a>
           </div>-->
         </div>
-
-        <!--<div class="alert alert-info">
-          <p class="lead">Ceci est, comme tu l'as sans doute deviné... ta page d'accueil.</p>
-        </div>-->
-      </section>
-      <section class="section col-md-1"></section>
-      <section class="section col-md-5 d-flex justify-content-center">
-        <jhi-color-picker></jhi-color-picker>
       </section>
     </div>
 
+    <!--
+    <div class="row">
+
+      <section class="section col-md-6"></section>
+      <section class="section col-md-5 d-flex justify-content-center">
+        <jhi-color-picker></jhi-color-picker>
+      </section> TODO: COLOR picker in admin params
+    </div>
+    -->
   </div>
 </div>

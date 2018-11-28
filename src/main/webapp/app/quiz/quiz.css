@@ -21,6 +21,14 @@ Custom
   min-height: 210px;
 }
 
+.countdown-red {
+  color: red;
+  font-weight: bold;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 1px solid red;
+}
+
 .quiz-choices {
   margin-top: 5px;
   margin-left: 5px;

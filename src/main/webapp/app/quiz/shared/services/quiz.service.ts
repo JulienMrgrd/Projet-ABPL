@@ -57,20 +57,4 @@ export class QuizService {
       return Promise.all(info.categories.map(cat => Promise.resolve(putQuizesIntoMap(cat)))).then(() => resMap);
     });
   }
-
-  getRandomizedQuiz(): Promise<Quiz> {
-    return this.getCategoriesInfo().then((info: CategoriesInfo) => {
-      const allQuizes: Quiz[] = [];
-
-      const collectQuizes = (cat: Category): Promise<any> => {
-        return this.getQuizesByCategory(cat).then(quizes => allQuizes.push(...quizes));
-      };
-
-      return Promise.all(info.categories.map(cat => Promise.resolve(collectQuizes(cat)))).then(() => {
-        // debugger;
-        return allQuizes[0];
-        // return { questions: [] } as Quiz;
-      });
-    });
-  }
 }

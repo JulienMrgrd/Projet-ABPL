@@ -16,7 +16,7 @@
 
 <!-- ================================
     ============= QUIZ ============ -->
-<div class="card card-frame quiz-card" *ngIf="quiz"> <!-- TODO LOADING : https://www.npmjs.com/package/ngx-loading -->
+<div class="card card-frame quiz-card" *ngIf="quiz && config"> <!-- TODO LOADING : https://www.npmjs.com/package/ngx-loading -->
   <div class="card-block">
     <div id="quiz">
       <div *ngIf="mode == quizModeEnum.QUIZ">
@@ -32,9 +32,9 @@
         <div class="question" *ngIf="currentQuestion">
           <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}.</div>
 
-          <!--TODO: timer-->
-          <div *ngIf="config.showClock" class="badge badge-info float-right">Temps total: {{ellapsedTime}}
-            <span *ngIf="config.duration">&nbsp;/&nbsp;{{config.duration}} minutes</span>
+          <div *ngIf="config.showClock"
+               class="badge badge-info float-right {{config.countdown && counter < 10 ? 'countdown-red' : ''}}">
+            Temps : {{counter | formatTime}}
           </div>
 
           <div class="row title-question" *ngIf="currentQuestion.image; else onlyQuestion">
@@ -133,14 +133,16 @@
         </h2>
         <hr/>
 
-        <br/> <!-- FIXME use margin --><br/>
         <h2 class="text-center font-weight-bold">
-          <fa-icon [icon]="'smile-wink'"></fa-icon>
-          <br>
-          ==== Insérer ici les pourcentages de réussite ====
+          <span *ngIf="correctAnswers > 1">{{ correctAnswers }} questions réussies sur {{ quiz.questions.length }}</span>
+          <span *ngIf="correctAnswers <= 1">{{ correctAnswers }} question réussie sur {{ quiz.questions.length }}</span>
+          &nbsp;({{goodPercent | number:'1.1-2'}}&nbsp;%)
+
+          <br><br/> <!-- FIXME use margin -->
+          <fa-icon *ngIf="goodPercent >= 50" [icon]="'smile-wink'"></fa-icon>
+          <fa-icon *ngIf="goodPercent < 50" [icon]="'sad-tear'"></fa-icon>
         </h2>
         <hr/>
-        <br/> <!-- FIXME use margin -->
 
         <div *ngFor="let question of quiz.questions; let index = index">
           <jhi-quiz-reponse [question]="question" [index]="index" [disabled]="true"></jhi-quiz-reponse>
@@ -157,7 +159,7 @@
         <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW"
                 (click)="mode = quizModeEnum.REVIEW">Revue de vos questions</button>
         <button type="button" class="btn btn-primary"
-                (click)="onSubmit();">Soumettre le quiz</button>
+                (click)="onSubmit();">Soumettre le {{testMode ? 'test' : 'quiz'}}</button>
       </div>
       <div *ngIf="mode == quizModeEnum.RESULT">
         <button type="button" class="btn btn-primary"
