@@ -1,30 +1,14 @@
 <!-- ================================
-    ============ CHOICE =========== -->
-<!--
-<div class="row" *ngIf="quiz">
-  <div class="col-12 text-right">
-    Difficulté:
-    <select [(ngModel)]="quizId" (change)="loadQuiz(quizId)">
-      <option *ngFor="let quiz of quizes" [value]="quiz.id" [disabled]="quiz.name !== 'Moyen'"> &lt;!&ndash;TODO: disabled to remove&ndash;&gt;
-        <span>{{quiz.name}}</span>
-      </option>
-
-    </select>
-  </div>
-</div>
--->
-
-<!-- ================================
     ============= QUIZ ============ -->
 <div class="card card-frame quiz-card" *ngIf="quiz && config"> <!-- TODO LOADING : https://www.npmjs.com/package/ngx-loading -->
   <div class="card-block">
     <div id="quiz">
-      <div *ngIf="mode == quizModeEnum.QUIZ">
+      <div *ngIf="actualStepMode == quizModeEnum.QUIZ">
         <h2 class="text-center font-weight-normal">
-          <span *ngIf="!testMode">Quiz: {{quiz.name}}</span>
-          <span *ngIf="testMode">Test blanc</span>
+          <span *ngIf="!isTestMode">Quiz: {{quiz.name}}</span>
+          <span *ngIf="isTestMode">Test blanc</span>
         </h2>
-        <h4 class="text-center" *ngIf="!testMode && quiz.description">
+        <h4 class="text-center" *ngIf="!isTestMode && quiz.description">
           Description :
           <span class="font-italic">{{quiz.description}}</span>
         </h4>
@@ -79,7 +63,7 @@
           <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1)"
                   *ngIf="config.allowMove && config.allowBack && !isFirstPos()">Préc.</button>
 
-          <ng-container *ngIf="!testMode; else testModeButtons">
+          <ng-container *ngIf="!isTestMode; else testModeButtons">
             <!--Not yet validated -->
             <button type="button" class="btn btn-outline-primary" (click)="validate(currentQuestion)"
                     *ngIf="(utils.isAnswered(currentQuestion) && !isValidated(currentQuestion)); else nextButton">Valider</button>
@@ -104,7 +88,7 @@
 
       <!-- ================================
           =============REVUE ============ -->
-      <div class="review" *ngIf="mode == quizModeEnum.REVIEW">
+      <div class="review" *ngIf="actualStepMode == quizModeEnum.REVIEW">
         <h2 class="text-center font-weight-normal">Revue du quiz : {{quiz.name}}</h2>
         <hr />
         <div class="row text-center">
@@ -124,12 +108,12 @@
 
       <!-- ================================
           ============ RESULT =========== -->
-      <div class="result" *ngIf="mode == quizModeEnum.RESULT">
+      <div class="result" *ngIf="actualStepMode == quizModeEnum.RESULT">
 
         <h2 class="text-center font-weight-normal">
           <fa-icon [icon]="'flag-checkered'"></fa-icon>&nbsp;
-          <span *ngIf="testMode">Résultats du test blanc</span>
-          <span *ngIf="!testMode">Résultats du quiz : {{quiz.name}}</span>
+          <span *ngIf="isTestMode">Résultats du test blanc</span>
+          <span *ngIf="!isTestMode">Résultats du quiz : {{quiz.name}}</span>
         </h2>
         <hr/>
 
@@ -153,17 +137,17 @@
 
    <!-- ================================
        ============ BUTTONS =========== -->
-      <div class="float-right" *ngIf="mode != quizModeEnum.RESULT">
-        <button type="button" class="btn btn-default" *ngIf="!testMode && mode != quizModeEnum.QUIZ"
-                (click)="mode = quizModeEnum.QUIZ">Retour au quiz</button>
-        <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW"
-                (click)="mode = quizModeEnum.REVIEW">Revue de vos questions</button>
+      <div class="float-right" *ngIf="actualStepMode != quizModeEnum.RESULT">
+        <button type="button" class="btn btn-default" *ngIf="!isTestMode && actualStepMode != quizModeEnum.QUIZ"
+                (click)="actualStepMode = quizModeEnum.QUIZ">Retour au quiz</button>
+        <button type="button" class="btn btn-info" *ngIf="config.allowReview && actualStepMode != quizModeEnum.REVIEW"
+                (click)="actualStepMode = quizModeEnum.REVIEW">Revue de vos questions</button>
         <button type="button" class="btn btn-primary"
-                (click)="onSubmit();">Soumettre le {{testMode ? 'test' : 'quiz'}}</button>
+                (click)="onSubmit();">Soumettre le {{isTestMode ? 'test' : 'quiz'}}</button>
       </div>
-      <div *ngIf="mode == quizModeEnum.RESULT">
+      <div *ngIf="actualStepMode == quizModeEnum.RESULT">
         <button type="button" class="btn btn-primary"
-                (click)="reloadQuiz();">Redémarrer</button>
+                (click)="restartQuiz();">Redémarrer</button>
       </div>
     </div>
   </div>

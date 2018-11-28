@@ -8,12 +8,13 @@ Navbar
 
 .jh-navbar {
   background-color: var(--abpl-primary, steelblue);
-  border-bottom: 1px solid var(--abpl-primary-border, darkgrey);
-  padding: 0.2em 1em;
+  border-bottom: 1px solid var(--abpl-primary-darker-opacity, rgba(25, 25, 112, 0.2));
+  box-shadow: 0 5px 10px rgba(25, 25, 112, 0.3);
+  padding: 0.3em 1em;
 }
 
 .jh-navbar .profile-image {
-  margin: -10px 0px;
+  margin: -10px 0;
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -22,7 +23,7 @@ Navbar
 .jh-navbar .dropdown-item.active,
 .jh-navbar .dropdown-item.active:focus,
 .jh-navbar .dropdown-item.active:hover {
-  background-color: var(--abpl-primary, steelblue);
+  background-color: var(--abpl-primary-darker, #254962);
 }
 
 .jh-navbar .dropdown-toggle::after {
@@ -87,6 +88,7 @@ Navbar
   display: inline-block;
   vertical-align: middle;
   padding-left: 1em;
+  color: #f6f6f6;
 }
 
 /* ==========================================================================
@@ -125,9 +127,8 @@ Logo styles
 =============================================================================
 Custom
 ========================================================================== */
-.navbar-brand,
-.navbar-nav .nav-link {
-  color: #eee;
+.nav-item:not(.active) .nav-link {
+  color: #d6d6d6;
 }
 
 .disabled {

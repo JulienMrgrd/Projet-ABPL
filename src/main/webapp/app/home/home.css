@@ -11,6 +11,10 @@ Main page styles
   background: url('../../content/images/main_abpl.png') no-repeat center;
   background-size: contain;
 }
+
+.center-section {
+  margin: auto;
+}
 /*
 .main_abpl {
   display: inline-block;

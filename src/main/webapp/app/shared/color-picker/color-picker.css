@@ -8,5 +8,5 @@
 .alert-color {
   color: #c6c6c6;
   border-color: var(--abpl-primary, steelblue);
-  background-color: var(--abpl-primary-darker, midnightblue);
+  background-color: var(--abpl-primary-darker, #254962);
 }

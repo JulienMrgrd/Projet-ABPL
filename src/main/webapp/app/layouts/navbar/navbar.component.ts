@@ -81,6 +81,9 @@ export class NavbarComponent implements OnInit {
     return this.isAuthenticated() ? this.principal.getImageUrl() : null;
   }
 
+  /**
+   * TODO: manage sub categories
+   */
   getSubMenusCat() {
     if (this.subMenus) {
       return Array.from(this.subMenus.keys());
@@ -94,9 +97,7 @@ export class NavbarComponent implements OnInit {
   }
 
   goToQuiz(category: Category): void {
-    const quiz: FileObject = this.getSubMenusQuizes(category)[0];
-    this.sharedData.choosenQuiz = quiz;
-
+    this.sharedData.choosenQuiz = this.getSubMenusQuizes(category)[0]; // TODO: manage sub categories
     this.router.navigate(['quiz/training/', category.folder]);
   }
 }
