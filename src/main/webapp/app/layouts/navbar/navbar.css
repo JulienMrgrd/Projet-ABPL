@@ -66,6 +66,23 @@ Navbar
   }
 }
 
+/*
+  @media screen and (max-width: 986px) and (min-width: 768px) { /*display the icon bars on tablet*\/
+  .navbar-collapse:not(.show) {
+    display: none !important;
+  }
+  .navbar-collapse .show .navbar {
+    justify-content: flex-start;
+    flex-flow: wrap;
+    flex-grow: 1;
+    align-items: center;
+  }
+  .navbar-expand-md > .show {
+    flex-wrap: wrap;
+  }
+}
+*/
+
 .navbar-title {
   display: inline-block;
   vertical-align: middle;

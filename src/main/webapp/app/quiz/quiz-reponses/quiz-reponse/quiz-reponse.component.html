@@ -1,0 +1,48 @@
+<div class="result-responses" *ngIf="question">
+
+  <div class="row title-question" *ngIf="question.image">
+    <section class="section col-md-7">
+      <h5 class="font-weight-normal"><span *ngIf="index >= 0">{{index + 1}}.&nbsp;</span>{{question.name}}</h5>
+    </section>
+    <section class="section col-md-5 w-100 text-center" *ngIf="question.image">
+      <span class="badge badge-img">{{question.image}}</span>
+    </section>
+  </div>
+  <h5 class="title-question font-weight-normal" *ngIf="!question.image"><span *ngIf="index >= 0">{{index + 1}}.&nbsp;</span>{{question.name}}</h5>
+
+  <div class="row quiz-choices">
+    <section class="section col-md-6 {{disabled ? 'disabled' : ''}}" *ngFor="let option of question.options">
+      <div class="form-check" *ngIf="!utils.isSimpleChoice(question)"> <!-- checkboxes -->
+        <label>
+          <input class="checkbox-{{ utils.isCorrect(question) ? 'green': 'red'}}" type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
+          <span class="label-text">{{option.name}}</span>
+        </label>
+      </div>
+
+      <div class="form-check" *ngIf="utils.isSimpleChoice(question)"> <!-- radio buttons -->
+        <label>
+          <input class="radio-{{ utils.isCorrect(question) ? 'green': 'red'}}" type="radio" [checked]="option.selected">
+          <span class="label-text">{{option.name}}</span>
+        </label>
+      </div>
+    </section>
+  </div>
+  <div class="m-2 alert alert-response {{ utils.isCorrect(question) ? 'alert-success': 'alert-danger'}}">
+      <span *ngIf="!utils.isCorrect(question); else right"><strong>Faux.</strong><br>
+        <span [ngPlural]="utils.getAnswers(question).length">
+          <ng-template ngPluralCase="=0">La bonne réponse était : "<i>{{utils.getAnswers(question)}}</i>"</ng-template>
+          <ng-template ngPluralCase="=1">La bonne réponse était : "<i>{{utils.getAnswers(question)}}</i>"</ng-template>
+          <ng-template ngPluralCase="other">Les bonnes réponses étaient : <br>
+            <ul class="response-list">
+              <li *ngFor="let ans of utils.getAnswers(question)"><i>{{ans}}</i></li>
+            </ul>
+          </ng-template>
+        </span>
+      </span>
+    <ng-template #right><strong>Vrai.</strong></ng-template>
+  </div>
+  <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation && question.explanation.length > 0">
+    <span><b>Explication :&nbsp;</b></span>
+    <span [innerHTML]=question.explanation></span>
+  </div>
+</div>

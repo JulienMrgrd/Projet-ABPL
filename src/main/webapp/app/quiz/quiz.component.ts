@@ -1,15 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { QuizResponseModalComponent } from 'app/quiz/quiz-reponses/quiz-response-modal/quiz-response-modal.component';
 import { Option } from 'app/quiz/shared/option/option.model';
-import { QuestionType } from 'app/quiz/shared/question-type/question-type.enum';
-import { Question } from 'app/quiz/shared/question/question.model';
+import { Question, QuestionUtils } from 'app/quiz/shared/question/question.model';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
-import { TimeUtil } from 'app/shared/util/time-util';
 import { Data } from 'app/shared/models/data.model';
 import { Subscription } from 'rxjs';
 import { QuizConfig } from 'app/quiz/shared/quiz/quiz-config.model';
+import Timer = NodeJS.Timer;
 
 @Component({
   selector: 'jhi-quiz',
@@ -22,19 +23,30 @@ export class QuizComponent implements OnInit, OnDestroy {
   quizFilename: string;
 
   // template values
-  isTest = false; // TODO enum ?
+  testMode = false; // TODO enum ?
   quizModeEnum = QuizMode;
   mode = QuizMode.QUIZ;
-  config: QuizConfig = this.getDefaultConfig();
+  utils = QuestionUtils;
+  config: QuizConfig;
+  currentQuestion: Question;
+  validatedQuestions: string[] = [];
+
+  // results
+  correctAnswers = 0;
+  goodPercent = 0;
 
   pager = this.initPager();
-  timer: any = null;
-  startTime: Date;
-  ellapsedTime = '00:00';
+  timer: Timer;
+  counter = 300;
 
   routeDataSub: Subscription; // TODO: replace by takeUntil
 
-  constructor(private quizService: QuizService, private activatedRoute: ActivatedRoute, private sharedData: Data) {}
+  constructor(
+    private quizService: QuizService,
+    private activatedRoute: ActivatedRoute,
+    private sharedData: Data,
+    private modalService: NgbModal
+  ) {}
 
   async ngOnInit() {
     this.routeDataSub = this.activatedRoute.params.subscribe(params => {
@@ -53,15 +65,20 @@ export class QuizComponent implements OnInit, OnDestroy {
       console.error('ON INIT ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
 
       if (!params['path']) {
-        // DETECT TEST mode (data.config, url, ...)
-        this.isTest = true;
+        // TODO: DETECT TEST mode (data.config, url, ...), and load config
+        this.testMode = true;
         this.config = {
           allowMove: false,
           allowReview: false,
-          duration: 5,
+          duration: 3,
+          countdown: true,
           showClock: true,
-          autoMove: true
+          autoMove: true,
+          nbQuestions: 20,
+          shuffleQuestions: true
         };
+      } else {
+        this.config = this.getDefaultConfig();
       }
 
       this.loadQuiz(this.categoryName, this.quizFilename);
@@ -70,7 +87,7 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.error('ON DESTROY ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
-    clearInterval(this.timer);
+    this.clearAll();
     this.sharedData.reset();
     this.routeDataSub.unsubscribe(); // TODO: TakeUntil
   }
@@ -82,54 +99,52 @@ export class QuizComponent implements OnInit, OnDestroy {
 
       // default values
       this.quiz.questions.forEach(question => question.options.forEach(opt => (opt.selected = false)));
+      this.currentQuestion = this.quiz.questions[0];
+      this.validatedQuestions = [];
 
-      this.pager = this.initPager();
-      this.pager.count = this.quiz.questions.length;
+      this.pager = this.initPager(this.quiz.questions.length);
 
-      this.startTimer();
+      if (this.config.showClock) {
+        this.startTimer();
+      }
     });
   }
 
   reloadQuiz() {
-    console.error('ON INIT ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
+    console.error('ON RELOAD ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
+    this.clearAll();
     this.loadQuiz(this.categoryName, this.quizFilename);
   }
 
-  private initPager() {
+  private initPager(count = 1) {
     return {
       index: 0,
-      size: 1,
-      count: 1
+      count
     };
   }
 
   private startTimer() {
-    if (this.timer != null) {
-      clearInterval(this.timer);
+    if (this.timer) {
+      this.clearAll();
     }
 
-    this.startTime = new Date();
+    if (this.config.duration) {
+      this.counter = this.config.duration * 60;
+    }
     this.timer = setInterval(() => {
       // every second
-      const now = new Date();
-      const diff = (now.getTime() - this.startTime.getTime()) / 1000;
-      // if (diff >= this.quiz.config.duration) {  TODO: timer
-      //   this.onSubmit();
-      // }
-      this.ellapsedTime = TimeUtil.parseTime(diff);
+      this.config.countdown ? --this.counter : ++this.counter;
+      if (this.counter === 0) {
+        this.onSubmit();
+      }
     }, 1000);
-    // this.duration = this.parseTime(this.quiz.config.duration); TODO: timer
-  }
-
-  get filteredQuestions(): Question[] {
-    return this.quiz.questions ? this.quiz.questions.slice(this.pager.index, this.pager.index + this.pager.size) : [];
   }
 
   /**
    * Unselect all others options (radio buttons) for this question, except the given one.
    */
   onSelect($event, question: Question, response: Option) {
-    if ($event.target.checked && this.isSimpleChoice(question)) {
+    if ($event.target.checked && QuestionUtils.isSimpleChoice(question)) {
       question.options.forEach(opt => {
         opt.selected = opt.id === response.id;
       });
@@ -140,40 +155,15 @@ export class QuizComponent implements OnInit, OnDestroy {
     }*/
   }
 
-  goTo(index: number) {
-    if (index >= 0 && index < this.pager.count) {
-      this.pager.index = index;
-      this.mode = QuizMode.QUIZ;
-    }
-  }
-
-  isAnswered(question: Question): boolean {
-    return !!question.options.find(x => x.selected);
-  }
-
-  isCorrect(question: Question): boolean {
-    return question.options.every(x => {
-      return (x.selected && x.selected === x.isAnswer) || (!x.selected && !x.isAnswer);
-    });
-  }
-
-  isSimpleChoice(question: Question): boolean {
-    return question && question.questionType === QuestionType.SIMPLE;
-  }
-
-  getAnswers(question: Question) {
-    return question.options
-      .map(opt => {
-        if (opt.isAnswer) {
-          return opt.name;
-        }
-      })
-      .filter(res => !!res);
-  }
-
   onSubmit() {
+    this.clearAll();
     const answers = []; // TODO: type answers
-    this.quiz.questions.forEach(x => answers.push({ quizId: this.quiz.id, questionId: x.id, answered: this.isAnswered(x) }));
+    this.quiz.questions.forEach(x => {
+      this.correctAnswers = this.correctAnswers + +QuestionUtils.isCorrect(x); // cast boolean to numbers
+      return answers.push({ quizId: this.quiz.id, questionId: x.id, answered: QuestionUtils.isAnswered(x) });
+    });
+
+    this.goodPercent = (this.correctAnswers / this.quiz.questions.length) * 100;
 
     // TODO: Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
@@ -186,7 +176,60 @@ export class QuizComponent implements OnInit, OnDestroy {
       allowBack: true,
       allowReview: true,
       autoMove: false,
-      showClock: true
+      showClock: false,
+      countdown: false
     };
+  }
+
+  isValidated(question: Question): boolean {
+    return this.validatedQuestions.includes(question.id);
+  }
+
+  validate(question: Question) {
+    this.validatedQuestions.push(question.id);
+
+    const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true });
+    modalRef.componentInstance.question = question;
+    modalRef.result.then(() => this.goToNext(), () => this.goToNext());
+  }
+
+  goTo(index: number) {
+    if (index >= 0 && index < this.pager.count) {
+      this.pager.index = index;
+      this.currentQuestion = this.quiz.questions[index];
+      this.mode = QuizMode.QUIZ; // display the question by changing the mode
+    }
+  }
+
+  clearAll() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+    this.correctAnswers = 0;
+    this.goodPercent = 0;
+    this.validatedQuestions = [];
+    this.counter = 0;
+  }
+
+  goToNext() {
+    this.isLastPos() ? this.onSubmit() : this.goTo(this.pager.index + 1);
+  }
+
+  isLastPos() {
+    return this.pager.index === this.pager.count - 1;
+  }
+
+  isFirstPos() {
+    return this.pager.index === 0;
+  }
+}
+
+@Pipe({
+  name: 'formatTime'
+})
+export class FormatTimePipe implements PipeTransform {
+  transform(value: number): string {
+    const minutes: number = Math.floor(value / 60);
+    return ('00' + minutes).slice(-2) + ':' + ('00' + Math.floor(value - minutes * 60)).slice(-2);
   }
 }

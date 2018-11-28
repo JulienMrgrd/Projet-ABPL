@@ -1,144 +1,206 @@
 {
   "id": 3,
-  "name": "N1 Comportement",
-  "description": "Description du quiz difficile (à remplir)",
+  "name": "Comportement",
+  "description": "questionnaire n°1 de la catégorie \"Comportement\"",
   "questions": [
     {
       "id": 10,
-      "name": "Question QCM ?",
+      "name": "Dans le protocole, il y a un produit que je ne connais pas :",
       "options": [
         {
           "id": 1055,
           "questionId": 10,
-          "name": "Réponse A",
+          "name": "je demande au professeur comment je dois le manipuler",
           "isAnswer": true
         },
         {
           "id": 1056,
           "questionId": 10,
-          "name": "Réponse B",
+          "name": "je fais des recherches auparavant sur les conditions de manipulation du produit",
           "isAnswer": false
         },
         {
           "id": 1057,
           "questionId": 10,
-          "name": "Réponse C",
+          "name": "s’il est dans le protocole, c’est qu’il n’est pas dangereux !",
           "isAnswer": false
         },
         {
           "id": 1058,
           "questionId": 10,
-          "name": "Réponse D",
-          "isAnswer": false
+          "name": "je fais des recherches auparavant sur la façon adéquate de jeter ce produit",
+          "isAnswer": true
         }
       ],
-      "questionType": 2
+      "questionType": 2,
+      "explanation": "Avant d’utiliser un produit, toujours consulter sa fiche technique afin de connaître :<br/>- Les pictogrammes associés à ce produit<br/>- Les mesures de sécurités pour le manipuler<br/>- Les mesures de sécurités pour le stocker, le jeter et le recycler<br/>"
     },
     {
       "id": 11,
-      "name": "Question classique ? (avec 3 réponses)",
+      "name": "Bravo le TP est terminé, que me reste-t-il à faire ?",
+      "options": [
+        {
+          "id": 1066,
+          "questionId": 13,
+          "name": "je range mes affaires, ma blouse, je me prépare et je dis au revoir",
+          "isAnswer": false
+        },
+        {
+          "id": 1067,
+          "questionId": 13,
+          "name": "je vide, rince, nettoie la verrerie pour aider les préparateurs",
+          "isAnswer": true
+        },
+        {
+          "id": 1068,
+          "questionId": 13,
+          "name": "je nettoie correctement mon poste de travail",
+          "isAnswer": true
+        },
+        {
+          "id": 1069,
+          "questionId": 13,
+          "name": "je préviens si je m’aperçois pendant le TP qu’un matériel est défectueux ou abimé",
+          "isAnswer": true
+        },
+        {
+          "id": 1070,
+          "questionId": 13,
+          "name": "je garde ma lame montée pour la ramener chez moi, elle est bien faite",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "A la fin d’une journée de TP, il est fortement apprécié de ranger son matériel et la salle pour faciliter le travail du personnel de préparation. Un moment ou un autre, vous serez amenés à l’effectuer au laboratoire."
+    },
+    {
+      "id": 13,
+      "name": "Quels sont pour vous, les images montrant des comportements inappropriés ?",
+      "image": "==== insérer image de la question ici ====",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": 10,
+          "name": "Image 1 : Pipette retournée avec du produit",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": 10,
+          "name": "Image 2 : Blouse mal fermée",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": 10,
+          "name": "Image 3 : Chewing gum dans la bouche",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": 10,
+          "name": "Image 4 : Sans gants devant un bruleur",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": null
+    },
+    {
+      "id": 14,
+      "name": "Je manipule un produit avec une forte odeur :",
       "options": [
         {
           "id": 1059,
           "questionId": 11,
-          "name": "Réponse A",
-          "isAnswer": true
+          "name": "cela signifie que ce produit est dangereux",
+          "isAnswer": false
         },
         {
           "id": 1060,
           "questionId": 11,
-          "name": "Réponse B",
+          "name": "je le fais sentir à mon binôme",
           "isAnswer": false
         },
         {
           "id": 1061,
           "questionId": 11,
-          "name": "Réponse C",
+          "name": "il est interdit et dangereux de sentir, renifler un produit",
+          "isAnswer": true
+        },
+        {
+          "id": 1062,
+          "questionId": 11,
+          "name": "c’est qu’il est efficace",
           "isAnswer": false
         }
       ],
-      "questionType": 1
+      "questionType": 1,
+      "explanation": "Il est interdit et très dangereux de respirer un produit. En effet, certains produits sont très volatiles et toxiques pour les poumons."
     },
     {
-      "id": 12,
-      "name": "Question classique ? (avec 4 réponses)",
+      "id": 15,
+      "name": "Avec une pipette :",
       "options": [
         {
           "id": 1062,
           "questionId": 12,
-          "name": "Réponse A",
-          "isAnswer": true
+          "name": "je suis toujours précis(e), pas besoin de m’appliquer pour pipetter",
+          "isAnswer": false
         },
         {
           "id": 1063,
           "questionId": 12,
-          "name": "Réponse B",
+          "name": "je n’ai pas besoin de changer de cône en fonction du produit que je prélève",
           "isAnswer": false
         },
         {
           "id": 1064,
           "questionId": 12,
-          "name": "Réponse C",
+          "name": "avec la pipette je ne touche pas le produit donc je n’ai pas besoin de porter de gants",
           "isAnswer": false
         },
         {
           "id": 1065,
           "questionId": 12,
-          "name": "Réponse D",
-          "isAnswer": false
+          "name": "je dois toujours effectuer le même geste de prélèvement pour être précis(e)",
+          "isAnswer": true
         }
       ],
-      "questionType": 1
+      "questionType": 2,
+      "explanation": "==== Insérer vidéo tutoriel ici ===="
     },
     {
-      "id": 13,
-      "name": "Question classique ? (avec 5 réponses)",
+      "id": 16,
+      "name": "Vite, je suis en retard sur mes manipulations :",
       "options": [
         {
           "id": 1066,
           "questionId": 13,
-          "name": "Réponse A",
-          "isAnswer": true
+          "name": "je crie sur mon binôme parce que c’est de sa faute",
+          "isAnswer": false
         },
         {
           "id": 1067,
           "questionId": 13,
-          "name": "Réponse B",
+          "name": "j’ai le droit de courir dans le laboratoire tant que je ne fais pas tomber de produit",
           "isAnswer": false
         },
         {
           "id": 1068,
           "questionId": 13,
-          "name": "Réponse C",
+          "name": "j’ai le droit de courir dans le laboratoire tant que je reste en sécurité",
           "isAnswer": false
         },
         {
           "id": 1069,
           "questionId": 13,
-          "name": "Réponse D",
-          "isAnswer": false
-        },
-        {
-          "id": 1070,
-          "questionId": 13,
-          "name": "Réponse E",
-          "isAnswer": false
+          "name": "je dois organiser mon travail pour être plus efficace et ne pas faire d’erreurs",
+          "isAnswer": true
         }
       ],
-      "questionType": 1
+      "questionType": 2,
+      "explanation": "Il est interdit de courir dans un laboratoire pour des questions de sécurité. Le risque de renverser des produits dangereux ou du matériel biologique sur soi ou sur une autre personne est trop élevé.<br/>Même si vous n’êtes pas en train de manipuler ou si aucune manipulations n’est en cours dans le laboratoire, il est interdit de courir."
     }
-  ],
-  "config": {
-    "allowBack": true,
-    "allowReview": true,
-    "autoMove": false,
-    "pageSize": 2,
-    "requiredAll": true,
-    "richText": false,
-    "shuffleQuestions": false,
-    "shuffleOptions": false,
-    "showClock": true,
-    "showPager": true,
-    "theme": "none"
-  }
+  ]
 }

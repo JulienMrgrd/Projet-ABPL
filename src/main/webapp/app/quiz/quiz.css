@@ -8,24 +8,71 @@ Custom
 }
 
 .quiz-card {
+  min-height: 450px;
   padding: 10px;
 }
 
-.title-quiz {
+.title-question {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.question {
+  min-height: 210px;
+}
+
+.countdown-red {
+  color: red;
+  font-weight: bold;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 1px solid red;
+}
+
+.quiz-choices {
   margin-top: 5px;
+  margin-left: 5px;
 }
 
-.result-question {
-  margin-bottom: 5px;
+.review ngb-alert {
+  cursor: pointer;
 }
 
-.response {
+/** ====== RESULT PART ====== **/
+.result-responses {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+jhi-quiz-reponse + hr {
+  /*right after*/
+  margin-bottom: 30px;
+}
+
+.alert-response {
   display: inline-block;
+}
+
+.response.alert-danger {
   min-width: 25%;
 }
 
 .response-list {
   margin-top: 5px;
+}
+
+.explanation {
+  background-color: whitesmoke;
+}
+
+.badge-img {
+  color: red;
+  border: 1px solid black;
+}
+
+.text-center > button {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 @media only screen and (max-width: 480px) {

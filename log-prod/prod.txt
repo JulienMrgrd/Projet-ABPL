@@ -274,7 +274,7 @@
        [INFO]                                content/css/global.css   4.41 KiB          [emitted]         
        [INFO]                               content/css/loading.css   3.44 KiB          [emitted]         
        [INFO]                                content/css/vendor.css  133 bytes          [emitted]         
-       [INFO]                               content/images/abpl.png   46.2 KiB          [emitted]         
+       [INFO]                               content/images/abpl.png   46.2 KiB          [emitted]
        [INFO]                            content/images/hipster.png   9.28 KiB          [emitted]         
        [INFO]                         content/images/hipster192.png   27.1 KiB          [emitted]         
        [INFO]                         content/images/hipster256.png   39.8 KiB          [emitted]         

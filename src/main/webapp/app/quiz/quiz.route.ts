@@ -22,7 +22,10 @@ export const quizState: Routes = [
             allowMove: false,
             allowReview: false,
             duration: 5, // in minutes
-            autoMove: true
+            autoMove: true,
+            showClock: true,
+            nbQuestions: 20,
+            shuffleQuestions: true
           },
           authorities: [],
           pageTitle: 'Test blanc ABPL'
