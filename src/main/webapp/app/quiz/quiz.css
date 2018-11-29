@@ -2,6 +2,31 @@
 =============================================================================
 Custom
 ========================================================================== */
+img,
+video {
+  max-width: 640px;
+  max-height: 400px;
+  height: auto;
+}
+
+.label-text img {
+  border: none;
+  width: 60px;
+  height: 60px;
+}
+
+section > img,
+section > video {
+  border-radius: 10px;
+  border: 1px solid grey;
+  margin-top: 5px;
+}
+
+section video {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .disabled {
   pointer-events: none; /*This makes it not clickable*/
   opacity: 0.6; /*This grays it out to look disabled*/
@@ -79,6 +104,16 @@ jhi-quiz-reponse + hr {
 .text-center > button {
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.center-section {
+  margin: auto;
+}
+.center-vert-section {
+  margin: 0 auto;
+}
+.center-hor-section {
+  margin: auto 0;
 }
 
 @media only screen and (max-width: 480px) {

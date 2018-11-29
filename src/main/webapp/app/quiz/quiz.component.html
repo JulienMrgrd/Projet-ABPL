@@ -13,45 +13,52 @@
       </h4>
       <hr/>
       <div class="question" *ngIf="currentQuestion">
-        <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}.</div>
+        <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}</div>
 
         <div *ngIf="config.showClock"
              class="badge badge-info float-right {{config.countdown && counter < 10 ? 'countdown-red' : ''}}">
           Temps : {{counter | formatTime}}
         </div>
 
-        <div class="row title-question" *ngIf="currentQuestion.image; else onlyQuestion">
-          <section class="section col-md-6">
+        <div class="row title-question">
+          <section class="section {{(currentQuestion.image || currentQuestion.video) ? 'col-md-6' : 'col-md-10'}}">
             <h3 class="font-weight-normal">{{pager.index + 1}}.
               <span [innerHTML]="currentQuestion.name"></span>
             </h3>
           </section>
-          <section class="section col-md-6" *ngIf="currentQuestion.image">
-            <span class="badge badge-img">{{currentQuestion.image}}</span>
+          <section class="section col-md-5" *ngIf="currentQuestion.image">
+            <img [src]=getMediaUrl(currentQuestion.image) class="center-section">
+          </section>
+          <section class="section col-md-5" *ngIf="currentQuestion.video">
+            <video controls class="center-section">
+              <source [src]=getMediaUrl(currentQuestion.video) type="video/mp4">
+              Votre navigateur n'a pas l'air de supporter ce format vidéo...
+            </video>
           </section>
         </div>
-        <ng-template #onlyQuestion>
-          <h3 class="title-question font-weight-normal">{{pager.index + 1}}.
-            <span [innerHTML]="currentQuestion.name"></span>
-          </h3>
-        </ng-template>
 
         <div class="row quiz-choices {{isValidated(currentQuestion) ? 'disabled' : ''}}"> <!--disabled choices if already validated-->
           <section class="section col-md-6" *ngFor="let option of currentQuestion.options; let index = index">
             <label for="check-{{index}}" *ngIf="!utils.isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
               <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
-              <span class="label-text">{{option.name}}</span>
+              <div class="label-text">
+                <span *ngIf="option.name" [innerHTML]="option.name"></span>
+                <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
+              </div>
             </label>
 
             <label for="radio-{{index}}" *ngIf="utils.isSimpleChoice(currentQuestion)"> <!-- radio buttons -->
               <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected"
                      (change)="onSelect($event, currentQuestion, option)">
-              <span class="label-text">{{option.name}}</span>
+              <div class="label-text">
+                <span *ngIf="option.name" [innerHTML]="option.name"></span>
+                <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
+              </div>
             </label>
           </section>
         </div>
       </div>
-      <hr />
+      <hr *ngIf="!(isTestMode && isLastPos())" /> <!-- hide if it's the last question in test mode -->
 
       <!-- Move buttons -->
       <div class="text-center">

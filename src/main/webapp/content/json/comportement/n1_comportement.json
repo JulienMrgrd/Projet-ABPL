@@ -4,7 +4,137 @@
   "description": "questionnaire n°1 de la catégorie \"Comportement\"",
   "questions": [
     {
+      "id": 11,
+      "name": "Porter la blouse en salle de travaux pratique :",
+      "options": [
+        {
+          "id": 1066,
+          "questionId": 13,
+          "name": "Ca fait scientifique !",
+          "isAnswer": false
+        },
+        {
+          "id": 1067,
+          "questionId": 13,
+          "name": "C’est conseillé",
+          "isAnswer": false
+        },
+        {
+          "id": 1068,
+          "questionId": 13,
+          "name": "C’est obligatoire",
+          "isAnswer": true
+        },
+        {
+          "id": 1069,
+          "questionId": 13,
+          "name": "Ca permet de me protéger des produits dangereux",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Il est obligatoire de porter une blouse dans un laboratoire pour se protéger des produits dangereux et du matériel biologique. La blouse doit être en coton car les matières synthétiques sont plus facilement inflammables et résistent moins aux attaques par des produits chimiques.<br><br>De plus, il est <b>obligatoire de porter une blouse dans l’enceinte d’un laboratoire</b> même si on ne manipule pas."
+    },
+    {
       "id": 10,
+      "name": "Sans faire exprès, j’ai mis le doigt dans une solution de bactéries...",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": 10,
+          "name": "ce n’est pas grave, je m’essuie sur ma blouse, elle est là pour ça",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": 10,
+          "name": "ce n’est pas grave, je vais me laver les mains",
+          "isAnswer": true
+        },
+        {
+          "id": 1057,
+          "questionId": 10,
+          "name": "ce n’est pas grave, c’est même drôle, je dis à mon binôme de faire pareil !",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": 10,
+          "name": "ce n’est pas grave, je continue de manipuler",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Des erreurs de manipulations peuvent arriver, cependant il est important de réagir de façon adaptée. Dans ce cas précis : la contamination du matériel ou de l’expérimentateur nécessite une désinfection."
+    },
+    {
+      "id": 14,
+      "name": "Pour éviter toutes contaminations des plaques de culture avant de les placer sous le PSM, il faut : ====insérer l'image ici====",
+      "image": "",
+      "options": [
+        {
+          "id": 1059,
+          "questionId": 11,
+          "name": "Ne pas se préoccuper des contaminations, de toutes façons il y a des antibiotiques dans le milieu de culture.",
+          "isAnswer": false
+        },
+        {
+          "id": 1060,
+          "questionId": 11,
+          "name": "Introduire du désinfectant dans les puits de culture. ",
+          "isAnswer": false
+        },
+        {
+          "id": 1061,
+          "questionId": 11,
+          "name": "Laisser les plaques de cultures fermées et les manipuler avec précaution",
+          "isAnswer": true
+        },
+        {
+          "id": 1062,
+          "questionId": 11,
+          "name": "Retenir sa respiration pour vérifier si les puits sont contaminés.",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Pour éviter toutes contaminations des boites de culture, il faut les ouvrir seulement en zone stérile.<br>Tout en faisant bien attention à garder les boites fermées lors de la décontamination à l’éthanol avant de les placer sous le PSM.<br/>Pour éviter toutes contaminations dues au marqueur indélébile, il faut faire en sorte d’annoter les boites de culture sur les flancs et sur les bords au dessus du couvercle."
+    },
+    {
+      "id": 16,
+      "name": "Quels paramètres de l’incubateur sont à vérifier régulièrement ?====insérer l'image ici====",
+      "image": "",
+      "options": [
+        {
+          "id": 1066,
+          "questionId": 13,
+          "name": "La température, la pression partielle en O2 et CO2",
+          "isAnswer": false
+        },
+        {
+          "id": 1067,
+          "questionId": 13,
+          "name": "La température et l’humidité",
+          "isAnswer": false
+        },
+        {
+          "id": 1068,
+          "questionId": 13,
+          "name": "L’humidité, la température et la pression partielle en CO2",
+          "isAnswer": true
+        },
+        {
+          "id": 1069,
+          "questionId": 13,
+          "name": "La température et la pression partielle en O2",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "En biologie, 3 paramètres sont très importants :<br/>La température d’incubation (généralement 37°C)<br/>L’humidité (environs 80%)<br/>La pression partielle en CO2 (5%)"
+    },
+    {
+      "id": 18,
       "name": "Dans le protocole, il y a un produit que je ne connais pas :",
       "options": [
         {
@@ -36,31 +166,31 @@
       "explanation": "Avant d’utiliser un produit, toujours consulter sa fiche technique afin de connaître :<br/>- Les pictogrammes associés à ce produit<br/>- Les mesures de sécurités pour le manipuler<br/>- Les mesures de sécurités pour le stocker, le jeter et le recycler<br/>"
     },
     {
-      "id": 11,
+      "id": 19,
       "name": "Bravo le TP est terminé, que me reste-t-il à faire ?",
       "options": [
         {
           "id": 1066,
           "questionId": 13,
-          "name": "je range mes affaires, ma blouse, je me prépare et je dis au revoir",
+          "name": "Je range mes affaires, ma blouse, je me prépare et je dis au revoir",
           "isAnswer": false
         },
         {
           "id": 1067,
           "questionId": 13,
-          "name": "je vide, rince, nettoie la verrerie pour aider les préparateurs",
+          "name": "Je vide, rince, nettoie la verrerie pour aider les préparateurs",
           "isAnswer": true
         },
         {
           "id": 1068,
           "questionId": 13,
-          "name": "je nettoie correctement mon poste de travail",
+          "name": "Je nettoie correctement mon poste de travail",
           "isAnswer": true
         },
         {
           "id": 1069,
           "questionId": 13,
-          "name": "je préviens si je m’aperçois pendant le TP qu’un matériel est défectueux ou abimé",
+          "name": "Je préviens si je m’aperçois pendant le TP qu’un matériel est défectueux ou abimé",
           "isAnswer": true
         },
         {
@@ -75,8 +205,8 @@
     },
     {
       "id": 13,
-      "name": "Quels sont pour vous, les images montrant des comportements inappropriés ?",
-      "image": "==== insérer image de la question ici ====",
+      "name": "Quels sont pour vous, les images montrant des comportements inappropriés ?==== insérer image de la question ici ====",
+      "image": "",
       "options": [
         {
           "id": 1055,
@@ -107,7 +237,7 @@
       "explanation": null
     },
     {
-      "id": 14,
+      "id": 17,
       "name": "Je manipule un produit avec une forte odeur :",
       "options": [
         {
@@ -135,7 +265,7 @@
           "isAnswer": false
         }
       ],
-      "questionType": 1,
+      "questionType": 2,
       "explanation": "Il est interdit et très dangereux de respirer un produit. En effet, certains produits sont très volatiles et toxiques pour les poumons."
     },
     {
@@ -168,7 +298,8 @@
         }
       ],
       "questionType": 2,
-      "explanation": "==== Insérer vidéo tutoriel ici ===="
+      "explanation": "==== Insérer vidéo tutoriel ici ====",
+      "explanation_video": ""
     },
     {
       "id": 16,

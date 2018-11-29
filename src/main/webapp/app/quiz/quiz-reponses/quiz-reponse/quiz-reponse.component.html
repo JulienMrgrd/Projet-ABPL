@@ -1,28 +1,43 @@
 <div class="result-responses" *ngIf="question">
 
-  <div class="row title-question" *ngIf="question.image">
-    <section class="section col-md-7">
-      <h5 class="font-weight-normal"><span *ngIf="index >= 0">{{index + 1}}.&nbsp;</span>{{question.name}}</h5>
+  <div class="row title-question">
+    <section class="section {{(question.image || question.video) ? 'col-md-6' : 'col-md-10'}}">
+      <h3 class="font-weight-normal">{{index + 1}}.
+        <span [innerHTML]="question.name"></span>
+      </h3>
     </section>
-    <section class="section col-md-5 w-100 text-center" *ngIf="question.image">
-      <span class="badge badge-img">{{question.image}}</span>
+
+    <section class="section col-md-5" *ngIf="question.image">
+      <img [src]=getMediaUrl(question.image) class="center-section">
+    </section>
+
+    <section class="section col-md-5" *ngIf="question.video">
+      <video controls class="center-section">
+        <source [src]=getMediaUrl(question.video) type="video/mp4">
+        Votre navigateur n'a pas l'air de supporter ce format vidéo...
+      </video>
     </section>
   </div>
-  <h5 class="title-question font-weight-normal" *ngIf="!question.image"><span *ngIf="index >= 0">{{index + 1}}.&nbsp;</span>{{question.name}}</h5>
 
   <div class="row quiz-choices">
     <section class="section col-md-6 {{disabled ? 'disabled' : ''}}" *ngFor="let option of question.options">
       <div class="form-check" *ngIf="!utils.isSimpleChoice(question)"> <!-- checkboxes -->
         <label>
           <input class="checkbox-{{ utils.isCorrect(question) ? 'green': 'red'}}" type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
-          <span class="label-text">{{option.name}}</span>
+          <div class="label-text">
+            <span *ngIf="option.name" [innerHTML]="option.name"></span>
+            <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
+          </div>
         </label>
       </div>
 
       <div class="form-check" *ngIf="utils.isSimpleChoice(question)"> <!-- radio buttons -->
         <label>
           <input class="radio-{{ utils.isCorrect(question) ? 'green': 'red'}}" type="radio" [checked]="option.selected">
-          <span class="label-text">{{option.name}}</span>
+          <div class="label-text">
+            <span *ngIf="option.name" [innerHTML]="option.name"></span>
+            <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
+          </div>
         </label>
       </div>
     </section>
@@ -44,5 +59,15 @@
   <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation && question.explanation.length > 0">
     <span><b>Explication :&nbsp;</b></span>
     <span [innerHTML]=question.explanation></span>
+    <section class="section" *ngIf="question.explanation_image">
+      <img [src]=getMediaUrl(question.explanation_image)>
+    </section>
+
+    <section class="section" *ngIf="question.explanation_video">
+      <video controls>
+        <source [src]=getMediaUrl(question.explanation_video) type="video/mp4">
+        Votre navigateur n'a pas l'air de supporter ce format vidéo...
+      </video>
+    </section>
   </div>
 </div>

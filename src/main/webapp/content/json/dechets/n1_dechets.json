@@ -5,8 +5,8 @@
   "questions": [
     {
       "id": 10,
-      "name": "Quels sont les risques associés aux déchets piquants et tranchants ?",
-      "image": "==== insérer Pr Bio blessé ====",
+      "name": "Quels sont les risques associés aux déchets piquants et tranchants ?==== insérer Pr Bio blessé ====",
+      "image": "",
       "options": [
         {
           "id": 1055,
@@ -54,19 +54,13 @@
         }
       ],
       "questionType": 1,
-      "explanation": "A la fin d’une journée de TP, il est fortement apprécié de ranger son matériel et la salle pour faciliter le travail du personnel de préparation. Un moment ou un autre, vous serez amenés à l’effectuer au laboratoire."
+      "explanation": "Il n'existe pas de mesures restrictives dans le cas des déchets domestiques."
     },
     {
       "id": 12,
-      "name": "Les déchets chimiques contenant des acides doivent être étiquetés en :",
-      "image": "==== insérer photo(tableau) ====",
+      "name": "Les déchets chimiques contenant des acides doivent être étiquetés en :==== insérer photo(tableau) ====",
+      "image": "",
       "options": [
-        {
-          "id": 1055,
-          "questionId": 10,
-          "name": "Jaune",
-          "isAnswer": true
-        },
         {
           "id": 1056,
           "questionId": 10,
@@ -80,6 +74,12 @@
           "isAnswer": false
         },
         {
+          "id": 1055,
+          "questionId": 10,
+          "name": "Jaune",
+          "isAnswer": true
+        },
+        {
           "id": 1058,
           "questionId": 10,
           "name": "Bleu",
@@ -88,38 +88,6 @@
       ],
       "questionType": 2,
       "explanation": "Il existe une couleur associée à chaque type de déchets chimiques."
-    },
-    {
-      "id": 13,
-      "name": "Quel est le risque majeur lorsque l'on travaille en présence d'une poche d'urine ?",
-      "options": [
-        {
-          "id": 1055,
-          "questionId": 10,
-          "name": "Biologique",
-          "isAnswer": true
-        },
-        {
-          "id": 1056,
-          "questionId": 10,
-          "name": "Nocif",
-          "isAnswer": false
-        },
-        {
-          "id": 1057,
-          "questionId": 10,
-          "name": "==== Insérer picto ici ====",
-          "isAnswer": false
-        },
-        {
-          "id": 1058,
-          "questionId": 10,
-          "name": "==== Insérer picto ici ====",
-          "isAnswer": true
-        }
-      ],
-      "questionType": 2,
-      "explanation": "L'urine est un fluide biologique, il représente donc un risque biologique pour le manipulateur."
     }
   ]
 }

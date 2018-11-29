@@ -16,9 +16,6 @@ export class QuizTestComponent implements OnInit, OnDestroy {
   quiz: Quiz;
   testMode = QuizMode.TEST;
 
-  private categoryName: string;
-  private quizFilename: string;
-
   config: QuizConfig = {
     allowMove: false,
     allowReview: false,
@@ -36,9 +33,6 @@ export class QuizTestComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.categoryName = 'comportement'; // TODO: load shuffled questions
-      this.quizFilename = 'n1_' + this.categoryName + '.json';
-
       this.config = {
         allowMove: false,
         allowReview: false,
@@ -50,7 +44,7 @@ export class QuizTestComponent implements OnInit, OnDestroy {
         shuffleQuestions: true
       };
 
-      this.loadQuiz(this.categoryName, this.quizFilename);
+      this.loadQuiz();
     });
   }
 
@@ -59,13 +53,13 @@ export class QuizTestComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  loadQuiz(categoryName: string, quizFilename: string) {
-    this.quizService.getQuizByNames(categoryName, quizFilename).then((quiz: Quiz) => {
+  loadQuiz() {
+    this.quizService.getTest().then((quiz: Quiz) => {
       this.quiz = quiz;
     });
   }
 
   reloadQuiz() {
-    this.loadQuiz(this.categoryName, this.quizFilename);
+    this.loadQuiz();
   }
 }

@@ -175,4 +175,8 @@ export class QuizComponent implements OnChanges, OnDestroy {
   get isTestMode(): boolean {
     return this.quizMode === QuizMode.TEST;
   }
+
+  getMediaUrl(imageFilename: string) {
+    return QuestionUtils.getMediaUrl(imageFilename);
+  }
 }

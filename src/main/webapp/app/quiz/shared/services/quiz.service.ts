@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { QUIZES_URL } from 'app/app.constants';
+import { QUIZES_URL, TEST_DIR } from 'app/app.constants';
 import { CategoriesInfo, Category } from 'app/quiz/shared/categories-info/categories-info.model';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { FileObject } from 'app/shared/models/file-object.model';
@@ -8,6 +8,7 @@ import { FileObject } from 'app/shared/models/file-object.model';
 @Injectable()
 export class QuizService {
   INFO_FILENAME = 'categories.json';
+  TEST_FILENAME = 'test.json';
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +27,11 @@ export class QuizService {
 
   getQuizByNames(categoryName: string, fileName: string): Promise<Quiz> {
     const url = QUIZES_URL + categoryName + '/' + fileName;
+    return this.http.get<Quiz>(url).toPromise();
+  }
+
+  getTest(): Promise<Quiz> {
+    const url = QUIZES_URL + TEST_DIR + this.TEST_FILENAME;
     return this.http.get<Quiz>(url).toPromise();
   }
 
