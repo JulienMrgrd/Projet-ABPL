@@ -17,8 +17,10 @@ Custom
   margin-bottom: 20px;
 }
 
-.question {
-  min-height: 210px;
+.quiz,
+.review,
+.result {
+  min-height: 400px;
 }
 
 .countdown-red {
@@ -32,6 +34,10 @@ Custom
 .quiz-choices {
   margin-top: 5px;
   margin-left: 5px;
+}
+
+.review > hr {
+  margin-bottom: 50px;
 }
 
 .review ngb-alert {

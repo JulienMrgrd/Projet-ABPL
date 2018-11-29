@@ -38,7 +38,6 @@ export class QuizTestComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.categoryName = 'comportement'; // TODO: load shuffled questions
       this.quizFilename = 'n1_' + this.categoryName + '.json';
-      console.error('ON INIT TEST ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
 
       this.config = {
         allowMove: false,
@@ -56,7 +55,6 @@ export class QuizTestComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.error('ON DESTROY TEST ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
     this.destroy$.next();
     this.destroy$.complete();
   }

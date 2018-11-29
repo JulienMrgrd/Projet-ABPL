@@ -46,19 +46,12 @@ export class QuizComponent implements OnChanges, OnDestroy {
   constructor(private modalService: NgbModal) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.error(
-      'ON CHANGES quiz (' + !!changes['quiz'] + '), config (' + !!changes['config'] + '), quizMode (' + !!changes['quizMode'] + ')'
-    );
-    console.error('QuizComponent has quiz (' + !!this.quiz + '), config (' + !!this.config + '), quizMode (' + !!this.quizMode + ')');
     if (this.quiz && this.config) {
       this.startQuiz();
-    } else {
-      console.error('no quiz (' + !!this.quiz + '), config (' + !!this.config + '), quizMode (' + !!this.quizMode + ')');
     }
   }
 
   ngOnDestroy() {
-    console.error('ON DESTROY Quiz component !');
     this.clearAll();
   }
 

@@ -7,7 +7,7 @@ Navbar
 }
 
 .jh-navbar {
-  background-color: var(--abpl-primary, steelblue);
+  background-color: var(--abpl-primary, #316080);
   border-bottom: 1px solid var(--abpl-primary-darker-opacity, rgba(25, 25, 112, 0.2));
   box-shadow: 0 5px 10px rgba(25, 25, 112, 0.3);
   padding: 0.3em 1em;

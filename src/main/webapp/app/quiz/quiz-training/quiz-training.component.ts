@@ -37,23 +37,19 @@ export class QuizTrainingComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
       this.categoryName = params['path']; // TODO check empty path, NOW
       if (!this.categoryName) {
-        console.error('No choosen category...');
         this.categoryName = 'comportement'; // TODO: default quiz
       }
       if (!this.sharedData.choosenQuiz) {
-        console.error('No choosen quiz...');
         this.quizFilename = 'n1_' + this.categoryName + '.json'; // TODO: LOAD default quiz by choosen category
       } else {
         this.quizFilename = this.sharedData.choosenQuiz.filename;
       }
-      console.error('ON INIT TRAINING ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
 
       this.loadQuiz(this.categoryName, this.quizFilename);
     });
   }
 
   ngOnDestroy() {
-    console.error('ON DESTROY TEST ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
     this.sharedData.reset();
     this.destroy$.next();
     this.destroy$.complete();
