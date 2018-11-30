@@ -9,7 +9,8 @@ video {
   height: auto;
 }
 
-.label-text img {
+.label-text img,
+li img {
   border: none;
   width: 60px;
   height: 60px;
@@ -73,6 +74,10 @@ section video {
 .result-responses {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.result-img {
+  max-height: none;
 }
 
 jhi-quiz-reponse + hr {

@@ -128,9 +128,11 @@
         <span *ngIf="correctAnswers <= 1">{{ correctAnswers }} question réussie sur {{ quiz.questions.length }}</span>
         &nbsp;({{goodPercent | number:'1.1-2'}}&nbsp;%)
 
-        <br><br/> <!-- FIXME use margin -->
-        <fa-icon *ngIf="goodPercent >= 50" [icon]="'smile-wink'"></fa-icon>
-        <fa-icon *ngIf="goodPercent < 50" [icon]="'sad-tear'"></fa-icon>
+        <br><br/> <!-- FIXME use margin and component to choose image-->
+        <img *ngIf="goodPercent <= 33" src="../../content/images/you_sucks.png" class="result-img center-section">
+        <img *ngIf="goodPercent > 33 && goodPercent < 66" src="../../content/images/bof.png" class="result-img center-section">
+        <img *ngIf="goodPercent >= 66 && goodPercent <= 99" src="../../content/images/bravo.png" class="result-img center-section">
+        <img *ngIf="goodPercent > 99" src="../../content/images/congrats.png" class="result-img center-section">
       </h2>
       <hr/>
 

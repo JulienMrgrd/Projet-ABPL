@@ -204,39 +204,6 @@
       "explanation": "A la fin d’une journée de TP, il est fortement apprécié de ranger son matériel et la salle pour faciliter le travail du personnel de préparation. Un moment ou un autre, vous serez amenés à l’effectuer au laboratoire."
     },
     {
-      "id": 13,
-      "name": "Quels sont pour vous, les images montrant des comportements inappropriés ?==== insérer image de la question ici ====",
-      "image": "",
-      "options": [
-        {
-          "id": 1055,
-          "questionId": 10,
-          "name": "Image 1 : Pipette retournée avec du produit",
-          "isAnswer": false
-        },
-        {
-          "id": 1056,
-          "questionId": 10,
-          "name": "Image 2 : Blouse mal fermée",
-          "isAnswer": false
-        },
-        {
-          "id": 1057,
-          "questionId": 10,
-          "name": "Image 3 : Chewing gum dans la bouche",
-          "isAnswer": false
-        },
-        {
-          "id": 1058,
-          "questionId": 10,
-          "name": "Image 4 : Sans gants devant un bruleur",
-          "isAnswer": true
-        }
-      ],
-      "questionType": 2,
-      "explanation": null
-    },
-    {
       "id": 17,
       "name": "Je manipule un produit avec une forte odeur :",
       "options": [

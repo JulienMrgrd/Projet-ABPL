@@ -130,7 +130,7 @@ export class QuizComponent implements OnChanges, OnDestroy {
   validate(question: Question) {
     this.validatedQuestions.push(question.id);
 
-    const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true });
+    const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.question = question;
     modalRef.result.then(() => this.goToNext(), () => this.goToNext());
   }

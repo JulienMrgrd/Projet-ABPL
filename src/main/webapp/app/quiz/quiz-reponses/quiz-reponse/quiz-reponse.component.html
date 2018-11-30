@@ -23,7 +23,11 @@
     <section class="section col-md-6 {{disabled ? 'disabled' : ''}}" *ngFor="let option of question.options">
       <div class="form-check" *ngIf="!utils.isSimpleChoice(question)"> <!-- checkboxes -->
         <label>
-          <input class="checkbox-{{ utils.isCorrect(question) ? 'green': 'red'}}" type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
+          <input *ngIf="utils.isCorrectButNotSelectedOption(option); else otherOptionCases" class="checkbox-black" type="checkbox" name="check-{{option.id}}" checked>
+          <ng-template #otherOptionCases>
+            <input class="checkbox-{{ utils.isCorrectOption(option) ? 'green' : 'red'}}"
+                   type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
+          </ng-template>
           <div class="label-text">
             <span *ngIf="option.name" [innerHTML]="option.name"></span>
             <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
@@ -33,7 +37,7 @@
 
       <div class="form-check" *ngIf="utils.isSimpleChoice(question)"> <!-- radio buttons -->
         <label>
-          <input class="radio-{{ utils.isCorrect(question) ? 'green': 'red'}}" type="radio" [checked]="option.selected">
+          <input class="radio-{{ utils.isCorrectOption(option) ? 'green': 'red'}}" type="radio" [checked]="option.selected">
           <div class="label-text">
             <span *ngIf="option.name" [innerHTML]="option.name"></span>
             <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
@@ -45,11 +49,17 @@
   <div class="m-2 alert alert-response {{ utils.isCorrect(question) ? 'alert-success': 'alert-danger'}}">
       <span *ngIf="!utils.isCorrect(question); else right"><strong>Faux.</strong><br>
         <span [ngPlural]="utils.getAnswers(question).length">
-          <ng-template ngPluralCase="=0">La bonne réponse était : "<i>{{utils.getAnswers(question)}}</i>"</ng-template>
-          <ng-template ngPluralCase="=1">La bonne réponse était : "<i>{{utils.getAnswers(question)}}</i>"</ng-template>
+          <ng-template ngPluralCase="=0">Aucune bonne réponse.</ng-template>
+          <ng-template ngPluralCase="=1">La bonne réponse était :
+            <i *ngIf="utils.getAnswers(question)[0].name">"{{utils.getAnswers(question)[0].name}}"</i>
+            <img *ngIf="utils.getAnswers(question)[0].filename" [src]=getMediaUrl(utils.getAnswers(question)[0].filename)>
+          </ng-template>
           <ng-template ngPluralCase="other">Les bonnes réponses étaient : <br>
             <ul class="response-list">
-              <li *ngFor="let ans of utils.getAnswers(question)"><i>{{ans}}</i></li>
+              <li *ngFor="let ans of utils.getAnswers(question)">
+                 <i *ngIf="ans.name">{{ans.name}}</i>
+                 <img *ngIf="ans.filename" [src]=getMediaUrl(ans.filename)>
+              </li>
             </ul>
           </ng-template>
         </span>
