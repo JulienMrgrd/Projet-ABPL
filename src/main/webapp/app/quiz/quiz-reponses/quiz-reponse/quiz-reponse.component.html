@@ -20,7 +20,7 @@
   </div>
 
   <div class="row quiz-choices">
-    <section class="section col-md-6 {{disabled ? 'disabled' : ''}}" *ngFor="let option of question.options">
+    <section class="section col-md-6 {{disabled ? 'disabled' : ''}}" *ngFor="let option of question.options; let i = index">
       <div class="form-check" *ngIf="!utils.isSimpleChoice(question)"> <!-- checkboxes -->
         <label>
           <input *ngIf="utils.isCorrectButNotSelectedOption(option); else otherOptionCases" class="checkbox-black" type="checkbox" name="check-{{option.id}}" checked>
@@ -29,7 +29,7 @@
                    type="checkbox" name="check-{{option.id}}" [(ngModel)]="option.selected">
           </ng-template>
           <div class="label-text">
-            <span *ngIf="option.name" [innerHTML]="option.name"></span>
+            <span *ngIf="option.name">{{formatUtil.getLetter(i)}}.&nbsp;{{option.name}}</span>
             <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
           </div>
         </label>
@@ -39,7 +39,7 @@
         <label>
           <input class="radio-{{ utils.isCorrectOption(option) ? 'green': 'red'}}" type="radio" [checked]="option.selected">
           <div class="label-text">
-            <span *ngIf="option.name" [innerHTML]="option.name"></span>
+            <span *ngIf="option.name">{{formatUtil.getLetter(i)}}.&nbsp;{{option.name}}</span>
             <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
           </div>
         </label>

@@ -42,7 +42,7 @@
             <label for="check-{{index}}" *ngIf="!utils.isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
               <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
               <div class="label-text">
-                <span *ngIf="option.name" [innerHTML]="option.name"></span>
+                <span *ngIf="option.name">{{formatUtil.getLetter(index)}}.&nbsp;{{option.name}}</span>
                 <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
               </div>
             </label>
@@ -51,7 +51,7 @@
               <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected"
                      (change)="onSelect($event, currentQuestion, option)">
               <div class="label-text">
-                <span *ngIf="option.name" [innerHTML]="option.name"></span>
+                <span *ngIf="option.name">{{formatUtil.getLetter(index)}}.&nbsp;{{option.name}}</span>
                 <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
               </div>
             </label>

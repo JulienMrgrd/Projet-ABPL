@@ -6,6 +6,7 @@ import { Question, QuestionUtils } from 'app/quiz/shared/question/question.model
 import { QuizConfig } from 'app/quiz/shared/quiz/quiz-config.model';
 import { QuizMode, QuizStepMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
+import { FormatUtil } from 'app/shared/util/format-util';
 import Timer = NodeJS.Timer;
 
 @Component({
@@ -37,6 +38,7 @@ export class QuizComponent implements OnChanges, OnDestroy {
 
   // tools (page, counter, utils, ...)
   utils = QuestionUtils;
+  formatUtil = FormatUtil;
   pager = this.initPager();
   counter = 300;
 

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MEDIA_TEST_URL } from 'app/app.constants';
-import { QuizComponent } from 'app/quiz/quiz.component';
 import { Question, QuestionUtils } from 'app/quiz/shared/question/question.model';
+import { FormatUtil } from 'app/shared/util/format-util';
 
 @Component({
   selector: 'jhi-quiz-reponse',
@@ -19,6 +18,7 @@ export class QuizReponseComponent {
   disabled;
 
   utils = QuestionUtils;
+  formatUtil = FormatUtil;
 
   getMediaUrl(imageFilename: string) {
     return QuestionUtils.getMediaUrl(imageFilename);
