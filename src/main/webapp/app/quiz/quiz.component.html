@@ -41,8 +41,8 @@
           <section class="section col-md-6" *ngFor="let option of currentQuestion.options; let index = index">
             <label for="check-{{index}}" *ngIf="!utils.isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
               <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
-              <div class="label-text">
-                <span *ngIf="option.name">{{formatUtil.getLetter(index)}}.&nbsp;{{option.name}}</span>
+              <div class="label-text">{{formatUtil.getLetter(index)}}.&nbsp;
+                <span *ngIf="option.name">{{option.name}}</span>
                 <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
               </div>
             </label>
@@ -50,8 +50,8 @@
             <label for="radio-{{index}}" *ngIf="utils.isSimpleChoice(currentQuestion)"> <!-- radio buttons -->
               <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected"
                      (change)="onSelect($event, currentQuestion, option)">
-              <div class="label-text">
-                <span *ngIf="option.name">{{formatUtil.getLetter(index)}}.&nbsp;{{option.name}}</span>
+              <div class="label-text">{{formatUtil.getLetter(index)}}.&nbsp;
+                <span *ngIf="option.name">{{option.name}}</span>
                 <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
               </div>
             </label>
@@ -126,7 +126,7 @@
       <h2 class="text-center font-weight-bold">
         <span *ngIf="correctAnswers > 1">{{ correctAnswers }} questions réussies sur {{ quiz.questions.length }}</span>
         <span *ngIf="correctAnswers <= 1">{{ correctAnswers }} question réussie sur {{ quiz.questions.length }}</span>
-        &nbsp;({{goodPercent | number:'1.1-2'}}&nbsp;%)
+        &nbsp;({{goodPercent | number:'1.0-0'}}&nbsp;%)
 
         <br><br/> <!-- FIXME use margin and component to choose image-->
         <img *ngIf="goodPercent <= 33" src="../../content/images/you_sucks.png" class="result-img center-section">
@@ -136,9 +136,9 @@
       </h2>
       <hr/>
 
-      <div *ngFor="let question of quiz.questions; let index = index">
-        <jhi-quiz-reponse [question]="question" [index]="index" [disabled]="true"></jhi-quiz-reponse>
-        <hr *ngIf="index < quiz.questions.length - 1"/>
+      <div *ngFor="let question of quiz.questions; let i = index">
+        <jhi-quiz-reponse [question]="question" [index]="i" [disabled]="true"></jhi-quiz-reponse>
+        <hr *ngIf="i < quiz.questions.length - 1"/>
       </div>
     </div>
     <br/>

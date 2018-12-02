@@ -119,6 +119,13 @@ export class QuizComponent implements OnChanges, OnDestroy {
     });
 
     this.goodPercent = (this.correctAnswers / this.quiz.questions.length) * 100;
+    if (this.goodPercent > 100) {
+      // by security
+      console.error('Percent > 100');
+      console.error(this.quiz);
+      console.error(this.correctAnswers);
+      this.goodPercent = 100;
+    }
 
     // TODO: Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
@@ -134,6 +141,7 @@ export class QuizComponent implements OnChanges, OnDestroy {
 
     const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.question = question;
+    modalRef.componentInstance.index = this.pager.index;
     modalRef.result.then(() => this.goToNext(), () => this.goToNext());
   }
 
