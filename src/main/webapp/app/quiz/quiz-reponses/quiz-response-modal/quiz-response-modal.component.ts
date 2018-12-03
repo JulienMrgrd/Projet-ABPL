@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'jhi-quiz-response-modal',
   templateUrl: './quiz-response-modal.component.html',
-  styleUrls: ['../../quiz.css']
+  styleUrls: ['../../quiz.css', 'quiz-response-modal.css']
 })
 export class QuizResponseModalComponent implements OnInit {
   question: Question;

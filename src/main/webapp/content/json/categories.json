@@ -14,11 +14,6 @@
       "name": "Pictogrammes",
       "folder": "pictogrammes",
       "files": ["n1_pictogrammes.json"]
-    },
-    {
-      "name": "Hygiène et sécurité",
-      "folder": "hygiene_securite",
-      "files": ["n1_hygiene_securite.json"]
     }
   ]
 }

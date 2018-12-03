@@ -1,15 +1,12 @@
-import { Component, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QuizResponseModalComponent } from 'app/quiz/quiz-reponses/quiz-response-modal/quiz-response-modal.component';
 import { Option } from 'app/quiz/shared/option/option.model';
 import { Question, QuestionUtils } from 'app/quiz/shared/question/question.model';
-import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
-import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
-import { QuizService } from 'app/quiz/shared/services/quiz.service';
-import { Data } from 'app/shared/models/data.model';
-import { Subscription } from 'rxjs';
 import { QuizConfig } from 'app/quiz/shared/quiz/quiz-config.model';
+import { QuizMode, QuizStepMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
+import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
+import { FormatUtil } from 'app/shared/util/format-util';
 import Timer = NodeJS.Timer;
 
 @Component({
@@ -17,85 +14,52 @@ import Timer = NodeJS.Timer;
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.css']
 })
-export class QuizComponent implements OnInit, OnDestroy {
+export class QuizComponent implements OnChanges, OnDestroy {
+  @Input()
   quiz: Quiz;
-  categoryName: string;
-  quizFilename: string;
+
+  @Input()
+  config: QuizConfig;
+
+  @Input()
+  quizMode: QuizMode = QuizMode.TRAINING;
+
+  @Output()
+  restart = new EventEmitter<void>();
 
   // template values
-  testMode = false; // TODO enum ?
-  quizModeEnum = QuizMode;
-  mode = QuizMode.QUIZ;
-  utils = QuestionUtils;
-  config: QuizConfig;
+  quizModeEnum = QuizStepMode;
+  actualStepMode = QuizStepMode.QUIZ;
   currentQuestion: Question;
-  validatedQuestions: string[] = [];
 
   // results
   correctAnswers = 0;
   goodPercent = 0;
 
+  // tools (page, counter, utils, ...)
+  utils = QuestionUtils;
+  formatUtil = FormatUtil;
   pager = this.initPager();
-  timer: Timer;
   counter = 300;
 
-  routeDataSub: Subscription; // TODO: replace by takeUntil
+  private timer: Timer;
+  private validatedQuestions: string[] = [];
 
-  constructor(
-    private quizService: QuizService,
-    private activatedRoute: ActivatedRoute,
-    private sharedData: Data,
-    private modalService: NgbModal
-  ) {}
+  constructor(private modalService: NgbModal) {}
 
-  async ngOnInit() {
-    this.routeDataSub = this.activatedRoute.params.subscribe(params => {
-      // TODO: RESOLVER
-      this.categoryName = params['path']; // TODO check empty path, NOW
-      if (!this.categoryName) {
-        console.error('No choosen category...');
-        this.categoryName = 'comportement'; // TODO: go to home page
-      }
-      if (!this.sharedData.choosenQuiz) {
-        console.error('No choosen quiz...');
-        this.quizFilename = 'n1_' + this.categoryName + '.json'; // TODO: LOAD default quiz by choosen category
-      } else {
-        this.quizFilename = this.sharedData.choosenQuiz.filename;
-      }
-      console.error('ON INIT ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
-
-      if (!params['path']) {
-        // TODO: DETECT TEST mode (data.config, url, ...), and load config
-        this.testMode = true;
-        this.config = {
-          allowMove: false,
-          allowReview: false,
-          duration: 3,
-          countdown: true,
-          showClock: true,
-          autoMove: true,
-          nbQuestions: 20,
-          shuffleQuestions: true
-        };
-      } else {
-        this.config = this.getDefaultConfig();
-      }
-
-      this.loadQuiz(this.categoryName, this.quizFilename);
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.quiz && this.config) {
+      this.startQuiz();
+    }
   }
 
   ngOnDestroy() {
-    console.error('ON DESTROY ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
     this.clearAll();
-    this.sharedData.reset();
-    this.routeDataSub.unsubscribe(); // TODO: TakeUntil
   }
 
-  loadQuiz(categoryName: string, quizFilename: string) {
-    this.quizService.getQuizByNames(categoryName, quizFilename).then((quiz: Quiz) => {
-      this.quiz = quiz;
-      this.mode = QuizMode.QUIZ;
+  startQuiz() {
+    if (this.quiz) {
+      this.actualStepMode = QuizStepMode.QUIZ;
 
       // default values
       this.quiz.questions.forEach(question => question.options.forEach(opt => (opt.selected = false)));
@@ -107,20 +71,12 @@ export class QuizComponent implements OnInit, OnDestroy {
       if (this.config.showClock) {
         this.startTimer();
       }
-    });
+    }
   }
 
-  reloadQuiz() {
-    console.error('ON RELOAD ! Categ = ' + this.categoryName + ', quiz = ' + this.quizFilename);
+  restartQuiz() {
     this.clearAll();
-    this.loadQuiz(this.categoryName, this.quizFilename);
-  }
-
-  private initPager(count = 1) {
-    return {
-      index: 0,
-      count
-    };
+    this.restart.emit();
   }
 
   private startTimer() {
@@ -156,7 +112,6 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.clearAll();
     const answers = []; // TODO: type answers
     this.quiz.questions.forEach(x => {
       this.correctAnswers = this.correctAnswers + +QuestionUtils.isCorrect(x); // cast boolean to numbers
@@ -164,21 +119,17 @@ export class QuizComponent implements OnInit, OnDestroy {
     });
 
     this.goodPercent = (this.correctAnswers / this.quiz.questions.length) * 100;
+    if (this.goodPercent > 100) {
+      // by security
+      console.error('Percent > 100');
+      console.error(this.quiz);
+      console.error(this.correctAnswers);
+      this.goodPercent = 100;
+    }
 
     // TODO: Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
-    this.mode = QuizMode.RESULT;
-  }
-
-  getDefaultConfig(): QuizConfig {
-    return {
-      allowMove: true,
-      allowBack: true,
-      allowReview: true,
-      autoMove: false,
-      showClock: false,
-      countdown: false
-    };
+    this.actualStepMode = QuizStepMode.RESULT;
   }
 
   isValidated(question: Question): boolean {
@@ -188,8 +139,9 @@ export class QuizComponent implements OnInit, OnDestroy {
   validate(question: Question) {
     this.validatedQuestions.push(question.id);
 
-    const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true });
+    const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.question = question;
+    modalRef.componentInstance.index = this.pager.index;
     modalRef.result.then(() => this.goToNext(), () => this.goToNext());
   }
 
@@ -197,7 +149,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     if (index >= 0 && index < this.pager.count) {
       this.pager.index = index;
       this.currentQuestion = this.quiz.questions[index];
-      this.mode = QuizMode.QUIZ; // display the question by changing the mode
+      this.actualStepMode = QuizStepMode.QUIZ; // display the question by changing the mode
     }
   }
 
@@ -222,14 +174,19 @@ export class QuizComponent implements OnInit, OnDestroy {
   isFirstPos() {
     return this.pager.index === 0;
   }
-}
 
-@Pipe({
-  name: 'formatTime'
-})
-export class FormatTimePipe implements PipeTransform {
-  transform(value: number): string {
-    const minutes: number = Math.floor(value / 60);
-    return ('00' + minutes).slice(-2) + ':' + ('00' + Math.floor(value - minutes * 60)).slice(-2);
+  private initPager(count = 1) {
+    return {
+      index: 0,
+      count
+    };
+  }
+
+  get isTestMode(): boolean {
+    return this.quizMode === QuizMode.TEST;
+  }
+
+  getMediaUrl(imageFilename: string) {
+    return QuestionUtils.getMediaUrl(imageFilename);
   }
 }

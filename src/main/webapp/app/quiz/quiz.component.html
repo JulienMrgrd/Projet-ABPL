@@ -1,170 +1,161 @@
 <!-- ================================
-    ============ CHOICE =========== -->
-<!--
-<div class="row" *ngIf="quiz">
-  <div class="col-12 text-right">
-    Difficulté:
-    <select [(ngModel)]="quizId" (change)="loadQuiz(quizId)">
-      <option *ngFor="let quiz of quizes" [value]="quiz.id" [disabled]="quiz.name !== 'Moyen'"> &lt;!&ndash;TODO: disabled to remove&ndash;&gt;
-        <span>{{quiz.name}}</span>
-      </option>
-
-    </select>
-  </div>
-</div>
--->
-
-<!-- ================================
     ============= QUIZ ============ -->
 <div class="card card-frame quiz-card" *ngIf="quiz && config"> <!-- TODO LOADING : https://www.npmjs.com/package/ngx-loading -->
   <div class="card-block">
-    <div id="quiz">
-      <div *ngIf="mode == quizModeEnum.QUIZ">
-        <h2 class="text-center font-weight-normal">
-          <span *ngIf="!testMode">Quiz: {{quiz.name}}</span>
-          <span *ngIf="testMode">Test blanc</span>
-        </h2>
-        <h4 class="text-center" *ngIf="!testMode && quiz.description">
-          Description :
-          <span class="font-italic">{{quiz.description}}</span>
-        </h4>
-        <hr/>
-        <div class="question" *ngIf="currentQuestion">
-          <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}.</div>
+    <div class="quiz" *ngIf="actualStepMode == quizModeEnum.QUIZ">
+      <h2 class="text-center font-weight-normal">
+        <span *ngIf="!isTestMode">Quiz: {{quiz.name}}</span>
+        <span *ngIf="isTestMode">Test blanc</span>
+      </h2>
+      <h4 class="text-center" *ngIf="!isTestMode && quiz.description">
+        Description :
+        <span class="font-italic">{{quiz.description}}</span>
+      </h4>
+      <hr/>
+      <div class="question" *ngIf="currentQuestion">
+        <div class="badge badge-info">Question {{pager.index + 1}} sur {{pager.count}}</div>
 
-          <div *ngIf="config.showClock"
-               class="badge badge-info float-right {{config.countdown && counter < 10 ? 'countdown-red' : ''}}">
-            Temps : {{counter | formatTime}}
-          </div>
+        <div *ngIf="config.showClock"
+             class="badge badge-info float-right {{config.countdown && counter < 10 ? 'countdown-red' : ''}}">
+          Temps : {{counter | formatTime}}
+        </div>
 
-          <div class="row title-question" *ngIf="currentQuestion.image; else onlyQuestion">
-            <section class="section col-md-6">
-              <h3 class="font-weight-normal">{{pager.index + 1}}.
-                <span [innerHTML]="currentQuestion.name"></span>
-              </h3>
-            </section>
-            <section class="section col-md-6" *ngIf="currentQuestion.image">
-              <span class="badge badge-img">{{currentQuestion.image}}</span>
-            </section>
-          </div>
-          <ng-template #onlyQuestion>
-            <h3 class="title-question font-weight-normal">{{pager.index + 1}}.
+        <div class="row title-question">
+          <section class="section {{(currentQuestion.image || currentQuestion.video) ? 'col-md-6' : 'col-md-10'}}">
+            <h3 class="font-weight-normal">{{pager.index + 1}}.
               <span [innerHTML]="currentQuestion.name"></span>
             </h3>
+          </section>
+          <section class="section col-md-5" *ngIf="currentQuestion.image">
+            <img [src]=getMediaUrl(currentQuestion.image) class="center-section">
+          </section>
+          <section class="section col-md-5" *ngIf="currentQuestion.video">
+            <video controls class="center-section">
+              <source [src]=getMediaUrl(currentQuestion.video) type="video/mp4">
+              Votre navigateur n'a pas l'air de supporter ce format vidéo...
+            </video>
+          </section>
+        </div>
+
+        <div class="row quiz-choices {{isValidated(currentQuestion) ? 'disabled' : ''}}"> <!--disabled choices if already validated-->
+          <section class="section col-md-6" *ngFor="let option of currentQuestion.options; let index = index">
+            <label for="check-{{index}}" *ngIf="!utils.isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
+              <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
+              <div class="label-text">{{formatUtil.getLetter(index)}}.&nbsp;
+                <span *ngIf="option.name">{{option.name}}</span>
+                <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
+              </div>
+            </label>
+
+            <label for="radio-{{index}}" *ngIf="utils.isSimpleChoice(currentQuestion)"> <!-- radio buttons -->
+              <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected"
+                     (change)="onSelect($event, currentQuestion, option)">
+              <div class="label-text">{{formatUtil.getLetter(index)}}.&nbsp;
+                <span *ngIf="option.name">{{option.name}}</span>
+                <img *ngIf="option.image && option.image.length > 0" [src]=getMediaUrl(option.image)>
+              </div>
+            </label>
+          </section>
+        </div>
+      </div>
+      <hr *ngIf="!(isTestMode && isLastPos())" /> <!-- hide if it's the last question in test mode -->
+
+      <!-- Move buttons -->
+      <div class="text-center">
+        <button type="button" class="btn btn-outline-dark" (click)="goTo(0)"
+                *ngIf="config.allowMove && config.allowBack"
+                disabled="{{ isFirstPos() ? 'disabled' : '' }}">Début</button>
+
+        <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1)"
+                *ngIf="config.allowMove && config.allowBack && !isFirstPos()">Préc.</button>
+
+        <ng-container *ngIf="!isTestMode; else testModeButtons">
+          <!--Not yet validated -->
+          <button type="button" class="btn btn-outline-primary" (click)="validate(currentQuestion)"
+                  *ngIf="(utils.isAnswered(currentQuestion) && !isValidated(currentQuestion)); else nextButton">Valider</button>
+
+          <!-- Already answered and validated-->
+          <ng-template #nextButton>
+            <button type="button" class="btn btn-outline-primary" (click)="goToNext()" *ngIf="!isLastPos()">Suiv.</button>
           </ng-template>
+        </ng-container>
 
-          <div class="row quiz-choices {{isValidated(currentQuestion) ? 'disabled' : ''}}"> <!--disabled choices if already validated-->
-            <section class="section col-md-6" *ngFor="let option of currentQuestion.options; let index = index">
-              <label for="check-{{index}}" *ngIf="!utils.isSimpleChoice(currentQuestion)"> <!-- checkboxes -->
-                <input type="checkbox" id="check-{{index}}" [(ngModel)]="option.selected">
-                <span class="label-text">{{option.name}}</span>
-              </label>
+        <ng-template #testModeButtons>
+          <button type="button" class="btn btn-outline-primary" (click)="goToNext()"
+                  *ngIf="!isLastPos()">Valider</button>
+        </ng-template>
 
-              <label for="radio-{{index}}" *ngIf="utils.isSimpleChoice(currentQuestion)"> <!-- radio buttons -->
-                <input type="radio" id="radio-{{index}}" [checked]="option.selected" [value]="option.selected"
-                       (change)="onSelect($event, currentQuestion, option)">
-                <span class="label-text">{{option.name}}</span>
-              </label>
-            </section>
-          </div>
-        </div>
-        <hr />
+        <button type="button" class="btn btn-outline-dark" (click)="goTo(pager.count - 1)"
+                *ngIf="config.allowMove && config.allowBack"
+                disabled="{{ isLastPos() ? 'disabled' : '' }}">Fin</button>
+        <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
+      </div>
+    </div>
 
-        <!-- Move buttons -->
-        <div class="text-center">
-          <button type="button" class="btn btn-outline-dark" (click)="goTo(0)"
-                  *ngIf="config.allowMove && config.allowBack"
-                  disabled="{{ isFirstPos() ? 'disabled' : '' }}">Début</button>
+    <!-- ================================
+    ================REVUE ============ -->
+    <div class="review" *ngIf="actualStepMode == quizModeEnum.REVIEW">
+      <h2 class="text-center font-weight-normal">Revue du quiz : {{quiz.name}}</h2>
+      <hr />
+      <div class="row text-center">
+        <div class="col-md-4" *ngFor="let question of quiz.questions; let index = index">
+          <ngb-alert *ngIf="isValidated(question)" type="{{utils.isCorrect(question) ? 'success' : 'danger'}}"
+                     (click)="this.pager.index = index; goTo(index)" [dismissible]="false">
+            <strong>{{index + 1}}.&nbsp;{{question.name}}</strong>
+          </ngb-alert>
 
-          <button type="button" class="btn btn-outline-primary" (click)="goTo(pager.index - 1)"
-                  *ngIf="config.allowMove && config.allowBack && !isFirstPos()">Préc.</button>
-
-          <ng-container *ngIf="!testMode; else testModeButtons">
-            <!--Not yet validated -->
-            <button type="button" class="btn btn-outline-primary" (click)="validate(currentQuestion)"
-                    *ngIf="(utils.isAnswered(currentQuestion) && !isValidated(currentQuestion)); else nextButton">Valider</button>
-
-            <!-- Already answered and validated-->
-            <ng-template #nextButton>
-              <button type="button" class="btn btn-outline-primary" (click)="goToNext()" *ngIf="!isLastPos()">Suiv.</button>
-            </ng-template>
-          </ng-container>
-
-          <ng-template #testModeButtons>
-            <button type="button" class="btn btn-outline-primary" (click)="goToNext()"
-                    *ngIf="!isLastPos()">Valider</button>
-          </ng-template>
-
-          <button type="button" class="btn btn-outline-dark" (click)="goTo(pager.count - 1)"
-                  *ngIf="config.allowMove && config.allowBack"
-                  disabled="{{ isLastPos() ? 'disabled' : '' }}">Fin</button>
-          <!--<pagination *ngIf="config.showPager" direction-links="false" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage" ng-change="pageChanged()"></pagination>-->
+          <ngb-alert *ngIf="!isValidated(question)"  type="{{utils.isAnswered(question) ? 'info' : 'warning'}}"
+                     (click)="this.pager.index = index; goTo(index)" [dismissible]="false">
+            <strong>{{index + 1}}.&nbsp;{{question.name}}</strong>
+          </ngb-alert>
         </div>
       </div>
+    </div>
 
-      <!-- ================================
-          =============REVUE ============ -->
-      <div class="review" *ngIf="mode == quizModeEnum.REVIEW">
-        <h2 class="text-center font-weight-normal">Revue du quiz : {{quiz.name}}</h2>
-        <hr />
-        <div class="row text-center">
-          <div class="col-md-4" *ngFor="let question of quiz.questions; let index = index">
-            <ngb-alert *ngIf="isValidated(question)" type="{{utils.isCorrect(question) ? 'success' : 'danger'}}"
-                       (click)="this.pager.index = index; goTo(index)" [dismissible]="false">
-              <strong>{{index + 1}}.&nbsp;{{question.name}}</strong>
-            </ngb-alert>
+    <!-- ================================
+    ============== RESULT =========== -->
+    <div class="result" *ngIf="actualStepMode == quizModeEnum.RESULT">
 
-            <ngb-alert *ngIf="!isValidated(question)"  type="{{utils.isAnswered(question) ? 'info' : 'warning'}}"
-                       (click)="this.pager.index = index; goTo(index)" [dismissible]="false">
-              <strong>{{index + 1}}.&nbsp;{{question.name}}</strong>
-            </ngb-alert>
-          </div>
-        </div>
+      <h2 class="text-center font-weight-normal">
+        <fa-icon [icon]="'flag-checkered'"></fa-icon>&nbsp;
+        <span *ngIf="isTestMode">Résultats du test blanc</span>
+        <span *ngIf="!isTestMode">Résultats du quiz : {{quiz.name}}</span>
+      </h2>
+      <hr/>
+
+      <h2 class="text-center font-weight-bold">
+        <span *ngIf="correctAnswers > 1">{{ correctAnswers }} questions réussies sur {{ quiz.questions.length }}</span>
+        <span *ngIf="correctAnswers <= 1">{{ correctAnswers }} question réussie sur {{ quiz.questions.length }}</span>
+        &nbsp;({{goodPercent | number:'1.0-0'}}&nbsp;%)
+
+        <br><br/> <!-- FIXME use margin and component to choose image-->
+        <img *ngIf="goodPercent <= 33" src="../../content/images/you_sucks.png" class="result-img center-section">
+        <img *ngIf="goodPercent > 33 && goodPercent < 66" src="../../content/images/bof.png" class="result-img center-section">
+        <img *ngIf="goodPercent >= 66 && goodPercent <= 99" src="../../content/images/bravo.png" class="result-img center-section">
+        <img *ngIf="goodPercent > 99" src="../../content/images/congrats.png" class="result-img center-section">
+      </h2>
+      <hr/>
+
+      <div *ngFor="let question of quiz.questions; let i = index">
+        <jhi-quiz-reponse [question]="question" [index]="i" [disabled]="true"></jhi-quiz-reponse>
+        <hr *ngIf="i < quiz.questions.length - 1"/>
       </div>
+    </div>
+    <br/>
 
-      <!-- ================================
-          ============ RESULT =========== -->
-      <div class="result" *ngIf="mode == quizModeEnum.RESULT">
-
-        <h2 class="text-center font-weight-normal">
-          <fa-icon [icon]="'flag-checkered'"></fa-icon>&nbsp;
-          <span *ngIf="testMode">Résultats du test blanc</span>
-          <span *ngIf="!testMode">Résultats du quiz : {{quiz.name}}</span>
-        </h2>
-        <hr/>
-
-        <h2 class="text-center font-weight-bold">
-          <span *ngIf="correctAnswers > 1">{{ correctAnswers }} questions réussies sur {{ quiz.questions.length }}</span>
-          <span *ngIf="correctAnswers <= 1">{{ correctAnswers }} question réussie sur {{ quiz.questions.length }}</span>
-          &nbsp;({{goodPercent | number:'1.1-2'}}&nbsp;%)
-
-          <br><br/> <!-- FIXME use margin -->
-          <fa-icon *ngIf="goodPercent >= 50" [icon]="'smile-wink'"></fa-icon>
-          <fa-icon *ngIf="goodPercent < 50" [icon]="'sad-tear'"></fa-icon>
-        </h2>
-        <hr/>
-
-        <div *ngFor="let question of quiz.questions; let index = index">
-          <jhi-quiz-reponse [question]="question" [index]="index" [disabled]="true"></jhi-quiz-reponse>
-          <hr *ngIf="index < quiz.questions.length - 1"/>
-        </div>
-      </div>
-      <br/>
-
-   <!-- ================================
-       ============ BUTTONS =========== -->
-      <div class="float-right" *ngIf="mode != quizModeEnum.RESULT">
-        <button type="button" class="btn btn-default" *ngIf="!testMode && mode != quizModeEnum.QUIZ"
-                (click)="mode = quizModeEnum.QUIZ">Retour au quiz</button>
-        <button type="button" class="btn btn-info" *ngIf="config.allowReview && mode != quizModeEnum.REVIEW"
-                (click)="mode = quizModeEnum.REVIEW">Revue de vos questions</button>
-        <button type="button" class="btn btn-primary"
-                (click)="onSubmit();">Soumettre le {{testMode ? 'test' : 'quiz'}}</button>
-      </div>
-      <div *ngIf="mode == quizModeEnum.RESULT">
-        <button type="button" class="btn btn-primary"
-                (click)="reloadQuiz();">Redémarrer</button>
-      </div>
+    <!-- ================================
+    ============= BUTTONS =========== -->
+    <div class="float-right" *ngIf="actualStepMode != quizModeEnum.RESULT">
+      <button type="button" class="btn btn-default" *ngIf="!isTestMode && actualStepMode != quizModeEnum.QUIZ"
+              (click)="actualStepMode = quizModeEnum.QUIZ">Retour au quiz</button>
+      <button type="button" class="btn btn-info" *ngIf="config.allowReview && actualStepMode != quizModeEnum.REVIEW"
+              (click)="actualStepMode = quizModeEnum.REVIEW">Revue de vos questions</button>
+      <button type="button" class="btn btn-primary"
+              (click)="onSubmit();">Soumettre le {{isTestMode ? 'test' : 'quiz'}}</button>
+    </div>
+    <div *ngIf="actualStepMode == quizModeEnum.RESULT">
+      <button type="button" class="btn btn-primary"
+              (click)="restartQuiz();">Redémarrer</button>
     </div>
   </div>
 </div>

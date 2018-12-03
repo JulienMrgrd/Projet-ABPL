@@ -2,15 +2,15 @@
   <div class="card-block">
 
     <div class="row">
-      <section class="section col-md-12">
-        <div class="card d-flex justify-content-center">
+      <section class="section col-md-10 center-section">
+        <div class="card d-flex border-0">
           <span class="card-img-top img-fluid main_abpl2"></span>
-          <div class="card-body">
+        </div>
+<!--          <div class="card-body">
             <h5 class="card-title">Titre de texte</h5>
             <p class="card-text">Ce long texte peut être une description ... ce long texte peut être une description ... ce long texte bla bla...</p>
-            <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
-          </div>
-        </div>
+            &lt;!&ndash;<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>&ndash;&gt;
+          </div>-->
       </section>
     </div>
 
@@ -23,19 +23,15 @@
     </div>-->
 
     <div class="row">
-      <section class="section col-md-6">
-        <div class="d-flex justify-content-center">
-          <span class="body_abpl img-fluid"></span>
+      <section class="section col-md-12 justify-content-center">
+        <div class="card d-flex border-0">
+          <span class="card-img-top img-fluid body_pr_bio_abpl"></span>
         </div>
       </section>
+    </div>
 
-      <section class="section col-md-6 justify-content-center">
-        <br/> <!-- FIXME use margin --><br/><br/>
-        <span>
-          <h1 class="display-5 text-nowrap">Bienvenue,</h1>
-          <h2 class="display-10 break-word">futur certifié de laboratoire !</h2>
-        </span>
-
+    <div class="row">
+      <section class="section col-md-6 offset-md-1">
         <div [ngSwitch]="isAuthenticated()">
           <div class="alert alert-success" *ngSwitchCase="true">
             <span id="home-logged-message" *ngIf="account">Vous êtes connecté comme l'utilisateur : "{{account.login}}". </span>
@@ -54,7 +50,7 @@
             <a class="alert-link" routerLink="register">Register a new account</a>
           </div>-->
         </div>
-      </section>
+    </section>
     </div>
 
     <!--

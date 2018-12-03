@@ -14,7 +14,7 @@
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                 ngbPopover="Désactivé pour l'instant..."
                 [autoClose]="'outside'" triggers="mouseenter:mouseleave">
-              <a class="nav-link disabled" routerLink="/quiz/revision" (click)="collapseNavbar()">
+              <a class="nav-link disabled" routerLink="/revision" (click)="collapseNavbar()">
                     <span>
                         <fa-icon [icon]="'book-open'"></fa-icon>
                         <span>Révisions</span>
@@ -22,17 +22,16 @@
               </a>
             </li>
 
-            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">
-              <a class="nav-link dropdown-toggle" ngbDropdownToggle #dropDown href="javascript:void(0);">
+            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle routerLinkActive="active"  href="javascript:void(0);" #dropDown>
                   <span>
                       <fa-icon [icon]="'dumbbell'"></fa-icon>
                       <span>Entraînement</span>
                   </span>
               </a>
               <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus">
-                <li class="dropdown-submenu" *ngFor="let category of getSubMenusCat()">
-                  <a class="dropdown-item" (click)="goToQuiz(category); collapseNavbar()">
+                <li class="" *ngFor="let category of getSubMenusCat()">
+                  <a class="dropdown-item" routerLink="/quiz/training/{{category.folder}}" routerLinkActive="active"  (click)="goToQuiz(category); collapseNavbar()">
                     <span>{{category.name}}</span>
                   </a>
                   <!--TODO MULTI-SELECT <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus.has(category)">
@@ -66,7 +65,7 @@
             </li>
 
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/quiz/test" (click)="collapseNavbar()">
+                <a class="nav-link" routerLink="/quiz/test" routerLinkActive="active" (click)="collapseNavbar()">
                     <span>
                         <fa-icon [icon]="'graduation-cap'"></fa-icon>
                         <span>Test blanc</span>
@@ -74,11 +73,11 @@
                 </a>
             </li>
 
-            <!-- TODO: Celui-ci devrait être activé par les profs via un écran -->
+            <!-- TODO: Could be enabled by an admin in settings -->
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                 ngbPopover="Celui-ci devra être activé par les profs via un écran"
                 [autoClose]="'outside'" triggers="mouseenter:mouseleave">
-              <a class="nav-link disabled" routerLink="/quiz/exam" (click)="collapseNavbar()">
+              <a class="nav-link disabled" routerLink="/quiz/exam" routerLinkActive="active" (click)="collapseNavbar()">
                     <span>
                         <fa-icon [icon]="'graduation-cap'"></fa-icon>
                         <span>Examen</span>

@@ -4,39 +4,6 @@
   "description": "questionnaire n°1 de la catégorie \"Pictogrammes\"",
   "questions": [
     {
-      "id": 10,
-      "name": "Que signifie ce pictogramme ?",
-      "image": "====insérer l'image ici====",
-      "options": [
-        {
-          "id": 1055,
-          "questionId": 10,
-          "name": "Corrosif",
-          "isAnswer": false
-        },
-        {
-          "id": 1056,
-          "questionId": 10,
-          "name": "Dangereux pour l'environnement",
-          "isAnswer": false
-        },
-        {
-          "id": 1057,
-          "questionId": 10,
-          "name": "Inflammable",
-          "isAnswer": false
-        },
-        {
-          "id": 1058,
-          "questionId": 10,
-          "name": "Comburant",
-          "isAnswer": true
-        }
-      ],
-      "questionType": 2,
-      "explanation": null
-    },
-    {
       "id": 12,
       "name": "Lesquelles de ces précautions sont associées à la mention suivante :  « Ce sont des gaz ou des liquides sous pression » ?",
       "options": [
@@ -56,12 +23,12 @@
           "id": 1068,
           "questionId": 13,
           "name": "Manipulation sous hôte aspirante",
-          "isAnswer": true
+          "isAnswer": false
         },
         {
           "id": 1069,
           "questionId": 13,
-          "name": "Port d'une blousse",
+          "name": "Port d'une blouse",
           "isAnswer": true
         }
       ],
@@ -75,25 +42,25 @@
         {
           "id": 1055,
           "questionId": 10,
-          "name": "gaz sous pression",
+          "name": "Gaz sous pression",
           "isAnswer": true
         },
         {
           "id": 1056,
           "questionId": 10,
-          "name": "irritant",
+          "name": "Irritant",
           "isAnswer": false
         },
         {
           "id": 1057,
           "questionId": 10,
-          "name": "biorisque",
+          "name": "Biorisque",
           "isAnswer": true
         },
         {
           "id": 1058,
           "questionId": 10,
-          "name": "nocif",
+          "name": "Nocif",
           "isAnswer": false
         }
       ],
@@ -101,41 +68,8 @@
       "explanation": null
     },
     {
-      "id": 14,
-      "name": "Pour éviter toutes contaminations des boites de culture avant de les placer sous le PSM, il faut :",
-      "image": "====insérer l'image ici====",
-      "options": [
-        {
-          "id": 1059,
-          "questionId": 11,
-          "name": "Introduire de l’éthanol dans les puits de culture",
-          "isAnswer": false
-        },
-        {
-          "id": 1060,
-          "questionId": 11,
-          "name": "Wingardium leviosa",
-          "isAnswer": false
-        },
-        {
-          "id": 1061,
-          "questionId": 11,
-          "name": "Laisser les boites fermées et les manipuler avec précaution",
-          "isAnswer": true
-        },
-        {
-          "id": 1062,
-          "questionId": 11,
-          "name": "Ne pas se préoccuper des contaminations, de toutes façons il y a des antibiotiques dans le milieu de culture",
-          "isAnswer": false
-        }
-      ],
-      "questionType": 1,
-      "explanation": "Pour éviter toutes contaminations des boites de culture, il faut les ouvrir seulement en zone stérile. Tout en faisant bien attention à garder les boites fermées lors de la décontamination à l’éthanol avant de les placer sous le PSM.<br/>Pour éviter toutes contaminations dues au marqueur, il faut faire en sorte d’annoter les boites de culture sur les flancs et sur les bords au dessus du couvercle."
-    },
-    {
       "id": 15,
-      "name": "Laquelle de ces mentions est associée à la précaution suivante :  « ils peuvent exploser sous l'effet de la chaleur, certain d'entre eux sont responsables de brûlure liées au froid » ?",
+      "name": "Laquelle de ces mentions est associée à la précaution suivante :  « ils peuvent exploser sous l'effet de la chaleur, certain d'entre eux sont responsables de brûlures liées au froid » ?",
       "options": [
         {
           "id": 1062,
@@ -162,41 +96,8 @@
           "isAnswer": false
         }
       ],
-      "questionType": 2,
+      "questionType": 1,
       "explanation": null
-    },
-    {
-      "id": 16,
-      "name": "Quels paramètres de l’incubateur sont à vérifier régulièrement ?",
-      "image": "====insérer l'image ici====",
-      "options": [
-        {
-          "id": 1066,
-          "questionId": 13,
-          "name": "La température, la pression partielle en O2 et CO2",
-          "isAnswer": false
-        },
-        {
-          "id": 1067,
-          "questionId": 13,
-          "name": "La température et l’humidité",
-          "isAnswer": false
-        },
-        {
-          "id": 1068,
-          "questionId": 13,
-          "name": "L’humidité, la température et la pression partielle en CO2",
-          "isAnswer": true
-        },
-        {
-          "id": 1069,
-          "questionId": 13,
-          "name": "La température et la pression partielle en O2",
-          "isAnswer": false
-        }
-      ],
-      "questionType": 2,
-      "explanation": "En biologie, 3 paramètres sont très importants :<br/>La température d’incubation (généralement 37°C)<br/>L’humidité (environs 80%)<br/>La pression partielle en CO2 (5%)"
     }
   ]
 }

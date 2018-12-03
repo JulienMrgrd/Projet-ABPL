@@ -20,6 +20,7 @@ import { ProjetAbplHomeModule } from 'app/home';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent } from './layouts';
 import './vendor.ts';
+import { LegalMentionsModalComponent } from './layouts/footer/legal-mentions-modal/legal-mentions-modal.component';
 
 @NgModule({
   imports: [
@@ -33,8 +34,10 @@ import './vendor.ts';
     // jhipster-needle-angular-add-module JHipster will add new module here
     ProjetAbplEntityModule,
     ProjetAbplQuizModule
+    // TODO Create a FooterModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent],
+  entryComponents: [LegalMentionsModalComponent],
+  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, FooterComponent, LegalMentionsModalComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

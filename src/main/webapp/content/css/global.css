@@ -224,7 +224,8 @@ ui bootstrap tweaks
 :root {
   --abpl-primary: #316080;
   --abpl-primary-border: darkgrey;
-  --abpl-primary-darker: midnightblue;
+  --abpl-primary-darker: #254962;
+  --abpl-primary-darker-opacity: rgba(25, 25, 112, 0.2);
   --abpl-primary-lighter: dodgerblue;
   --abpl-primary-link: #eee;
 }

@@ -6,7 +6,7 @@
   text-align: center;
   border: 1px solid var(--abpl-primary-border, darkgrey);
   border-bottom: none;
-  background-color: var(--abpl-primary, midnightblue);
+  background-color: var(--abpl-primary, #316080);
   border-radius: 0.25rem 0.25rem 0 0;
 }
 

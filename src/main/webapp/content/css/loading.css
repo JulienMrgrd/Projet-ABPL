@@ -108,7 +108,7 @@
 }
 .app-loading .lds-pacman > div:nth-child(2) div {
   position: absolute;
-  top: 40px;
+  top: 35px;
   left: 40px;
   width: 120px;
   height: 60px;
