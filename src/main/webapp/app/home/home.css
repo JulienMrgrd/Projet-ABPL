@@ -7,7 +7,7 @@ Main page styles
 }
 
 .main_abpl2 {
-  height: 300px;
+  height: 350px;
   background: url('../../content/images/main_abpl.png') no-repeat center;
   background-size: contain;
 }
@@ -15,25 +15,21 @@ Main page styles
 .center-section {
   margin: auto;
 }
-/*
-.main_abpl {
-  display: inline-block;
-  padding: 50px 0;
-  width: 800px;
-  height: 300px;
-  background: url('../../content/images/main_abpl.png') no-repeat center transparent;
-  background-size: contain;
-  border-radius: 10px;
-  border: 2px solid silver;
-}*/
 
 .body_pr_bio_abpl {
   width: auto;
-  /*max-width: ;*/
+  max-width: 1200px;
   max-height: 680px;
   height: 680px;
   background: url('../../content/images/main_pr_bio.png') no-repeat center transparent;
   background-size: contain;
+}
+
+@media screen and (max-width: 794px) {
+  .body_pr_bio_abpl {
+    background: url('../../content/images/main_pr_bio_mobile.png') no-repeat center transparent;
+    background-size: contain;
+  }
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -55,11 +51,11 @@ Custom
   padding: 10px 200px;
 }
 
-.card-block > .row:first-child {
-  margin-top: 10px;
-}
-
 @media (min-width: 768px) {
+  .card-block > .row:first-child {
+    margin-top: 10px;
+  }
+
   .card-block > .row:not(:first-child) {
     margin-top: 40px;
   }
@@ -67,7 +63,7 @@ Custom
 
 @media (max-width: 768px) {
   .card-block > .row:not(:first-child) {
-    margin-top: 20px;
+    margin-top: 0;
   }
 }
 

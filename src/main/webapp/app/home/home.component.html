@@ -23,7 +23,7 @@
     </div>-->
 
     <div class="row">
-      <section class="section col-md-12 justify-content-center">
+      <section class="section col-md-9 center-section">
         <div class="card d-flex border-0">
           <span class="card-img-top img-fluid body_pr_bio_abpl"></span>
         </div>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="row">
-      <section class="section col-md-6 offset-md-1">
+      <section class="section col-md-6 center-section">
         <div [ngSwitch]="isAuthenticated()">
           <div class="alert alert-success" *ngSwitchCase="true">
             <span id="home-logged-message" *ngIf="account">Vous êtes connecté comme l'utilisateur : "{{account.login}}". </span>
