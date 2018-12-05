@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ProjetAbplCoreModule } from 'app/core';
 import { ProjetAbplQuizModule } from 'app/quiz/quiz.module';
+import { ProjetAbplRevisionModule } from 'app/revision/revision.module';
 import { ProjetAbplSharedModule } from 'app/shared';
 import * as moment from 'moment';
 import { Ng2Webstorage } from 'ngx-webstorage';
@@ -33,7 +34,8 @@ import { LegalMentionsModalComponent } from './layouts/footer/legal-mentions-mod
     ProjetAbplAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     ProjetAbplEntityModule,
-    ProjetAbplQuizModule
+    ProjetAbplQuizModule,
+    ProjetAbplRevisionModule
     // TODO Create a FooterModule
   ],
   entryComponents: [LegalMentionsModalComponent],

@@ -11,15 +11,20 @@
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
 
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-                ngbPopover="Désactivé pour l'instant..."
-                [autoClose]="'outside'" triggers="mouseenter:mouseleave">
-              <a class="nav-link disabled" routerLink="/revision" (click)="collapseNavbar()">
+            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle routerLinkActive="active"  href="javascript:void(0);" #dropDownRevisions>
                     <span>
                         <fa-icon [icon]="'book-open'"></fa-icon>
                         <span>Révisions</span>
                     </span>
               </a>
+              <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subRevisionsMenus">
+                <li *ngFor="let revision of subRevisionsMenus">
+                  <a class="dropdown-item" routerLink="/revision/list/{{revision.id}}" routerLinkActive="active">
+                    <span>{{revision.name}}</span>
+                  </a>
+                </li>
+              </ul>
             </li>
 
             <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

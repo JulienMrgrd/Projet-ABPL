@@ -5,6 +5,8 @@ import { LoginModalService, LoginService, Principal } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { Category } from 'app/quiz/shared/categories-info/categories-info.model';
 import { QuizService } from 'app/quiz/shared/services/quiz.service';
+import { RevisionService } from 'app/revision/shared/services/revision.service';
+import { NamedObject } from 'app/shared/models/named-object.model';
 import { noop } from 'rxjs';
 import { FileObject } from 'app/shared/models/file-object.model';
 import { Data } from 'app/shared/models/data.model';
@@ -23,6 +25,7 @@ export class NavbarComponent implements OnInit {
   version: string;
 
   subMenus: Map<Category, FileObject[]>;
+  subRevisionsMenus: Set<NamedObject>;
 
   constructor(
     private loginService: LoginService,
@@ -32,6 +35,7 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private config: NgbPopoverConfig,
     private quizService: QuizService,
+    private revisionService: RevisionService,
     private sharedData: Data
   ) {
     // this.version = VERSION ? 'v' + VERSION : '';
@@ -53,6 +57,7 @@ export class NavbarComponent implements OnInit {
 
     // load quizes categories
     this.subMenus = await this.quizService.getCategoriesNameWithQuizes();
+    this.subRevisionsMenus = await this.revisionService.getRevisionsCategories();
   }
 
   collapseNavbar() {

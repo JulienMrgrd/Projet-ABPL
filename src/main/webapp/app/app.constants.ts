@@ -8,10 +8,12 @@ export const SERVER_API_URL = process.env.SERVER_API_URL;
 export const BUILD_TIMESTAMP = process.env.BUILD_TIMESTAMP;
 export const DISABLED_BACK = process.env.DISABLED_BACK;
 
-export const QUIZES_URL = 'content/json/';
+export const JSON_URL = 'content/json/';
 export const TEST_DIR = 'test/';
 export const TRAINING_DIR = 'training/';
 export const MEDIA_URL = 'content/images/';
 export const MEDIA_QUIZ_URL = MEDIA_URL + 'quiz/';
 export const MEDIA_TRAINING_URL = MEDIA_QUIZ_URL + TRAINING_DIR;
 export const MEDIA_TEST_URL = MEDIA_QUIZ_URL + TEST_DIR;
+
+export const PDF_URL = 'content/pdf/';
