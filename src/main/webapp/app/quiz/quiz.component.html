@@ -137,7 +137,7 @@
       <hr/>
 
       <div *ngFor="let question of quiz.questions; let i = index">
-        <jhi-quiz-reponse [question]="question" [index]="i" [disabled]="true"></jhi-quiz-reponse>
+        <jhi-quiz-reponse [question]="question" [index]="i" [disabled]="true" [quizMode]="quizMode"></jhi-quiz-reponse>
         <hr *ngIf="i < quiz.questions.length - 1"/>
       </div>
     </div>

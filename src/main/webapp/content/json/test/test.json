@@ -71,7 +71,7 @@
     {
       "id": "B_051",
       "name": "Dans cette situation, après avoir réalisé des cultures de cellules, je les mets correctement à incuber à 37°C :",
-      "video": "B_051_question.mp4",
+      "video": "B_051_Question.mp4",
       "options": [
         {
           "id": 1055,
@@ -104,7 +104,7 @@
     {
       "id": "C_058",
       "name": "L'opératrice manipule sous la hotte à flux laminaire.<br/>Combien d'erreurs y-a-t'il sur cette photo ?",
-      "image": "C_058_question.jpg",
+      "image": "C_058_Question.jpg",
       "options": [
         {
           "id": 1055,
@@ -133,7 +133,7 @@
       ],
       "questionType": 2,
       "explanation": "Pour manipuler sous la hotte à flux laminaire, il faut que la vitre de protection soit fermée jusqu'au 3/4 pour avoir une protection contre les projections ou inhalations.",
-      "explanation_image": "C_058_explication.jpg"
+      "explanation_image": "C_058_Explication.jpg"
     }
   ]
 }

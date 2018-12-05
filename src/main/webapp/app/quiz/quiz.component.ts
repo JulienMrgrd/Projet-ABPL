@@ -143,6 +143,7 @@ export class QuizComponent implements OnChanges, OnDestroy {
     const modalRef = this.modalService.open(QuizResponseModalComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.question = question;
     modalRef.componentInstance.index = this.pager.index;
+    modalRef.componentInstance.mode = this.quizMode;
     modalRef.result.then(() => this.goToNext(), () => this.goToNext());
   }
 
@@ -188,6 +189,6 @@ export class QuizComponent implements OnChanges, OnDestroy {
   }
 
   getMediaUrl(imageFilename: string) {
-    return ContentUtil.getMediaUrl(imageFilename);
+    return ContentUtil.getMediaUrl(imageFilename, this.quizMode);
   }
 }

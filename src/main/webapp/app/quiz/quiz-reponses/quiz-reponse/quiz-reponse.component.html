@@ -68,14 +68,14 @@
       </span>
     <ng-template #right><strong>Vrai.</strong></ng-template>
   </div>
-  <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation && question.explanation.length > 0">
+  <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation || question.explanation_image || question.explanation_video">
     <span><b>Explication :&nbsp;</b></span>
-    <span [innerHTML]=question.explanation></span>
-    <section class="section" *ngIf="question.explanation_image">
+    <span *ngIf="question.explanation && question.explanation.length > 0" [innerHTML]=question.explanation></span>
+    <section class="section" *ngIf="question.explanation_image && question.explanation_image.length > 0">
       <img [src]=getMediaUrl(question.explanation_image)>
     </section>
 
-    <section class="section" *ngIf="question.explanation_video">
+    <section class="section" *ngIf="question.explanation_video && question.explanation_video.length > 0">
       <video controls>
         <source [src]=getMediaUrl(question.explanation_video) type="video/mp4">
         Votre navigateur n'a pas l'air de supporter ce format vidéo...
