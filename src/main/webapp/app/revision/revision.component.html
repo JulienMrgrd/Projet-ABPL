@@ -1,5 +1,7 @@
-<div class="pdf-container">
-  <pdf-viewer [src]="src"
+<jhi-alert-error></jhi-alert-error>
+
+<div class="pdf-container" *ngIf="revision && revision.src && revision.src.length > 0">
+  <pdf-viewer [src]="getPdfUrl(revision.src)"
               [original-size]="true">
   </pdf-viewer>
 </div>

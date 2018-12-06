@@ -10,24 +10,47 @@ export class RevisionService {
 
   constructor(private http: HttpClient) {}
 
-  getRevisionsCategories(): Promise<Set<NamedObject>> {
+  getRevisionById(id: string): Promise<Revision> {
     const jsonFile = JSON_URL + this.INFO_FILENAME;
-    return this.http.get(jsonFile).toPromise().then((revisions: Revision[]) => {
-      debugger;
-      if (!revisions) return new Set();
-      const categories = new Set<NamedObject>();
-      const forEachCategs: string[] = [];
-      revisions.forEach(rev => {
-        if (!forEachCategs.includes(rev.category_name)) {
-          categories.add({
-            name: rev.category_name,
-            id: rev.category_id
-          });
-          forEachCategs.push(rev.category_name);
-        }
+    return this.http
+      .get(jsonFile)
+      .toPromise()
+      .then((revisions: Revision[]) => {
+        if (!revisions) return null;
+        return revisions.find(rev => rev.id === id);
       });
-      return categories;
-    });
   }
 
+  getRevisionsByCategory(category: string): Promise<Revision[]> {
+    const jsonFile = JSON_URL + this.INFO_FILENAME;
+    return this.http
+      .get(jsonFile)
+      .toPromise()
+      .then((revisions: Revision[]) => {
+        if (!revisions) return [];
+        return revisions.filter(rev => rev.category_id === category);
+      });
+  }
+
+  getRevisionsCategories(): Promise<Set<NamedObject>> {
+    const jsonFile = JSON_URL + this.INFO_FILENAME;
+    return this.http
+      .get(jsonFile)
+      .toPromise()
+      .then((revisions: Revision[]) => {
+        if (!revisions) return new Set();
+        const categories = new Set<NamedObject>();
+        const forEachCategs: string[] = [];
+        revisions.forEach(rev => {
+          if (!forEachCategs.includes(rev.category_name)) {
+            categories.add({
+              name: rev.category_name,
+              id: rev.category_id
+            });
+            forEachCategs.push(rev.category_name);
+          }
+        });
+        return categories;
+      });
+  }
 }

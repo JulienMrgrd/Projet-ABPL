@@ -7,13 +7,13 @@ export const revisionState: Routes = [
     path: 'revision',
     children: [
       {
-        path: 'list/:category',
-        component: RevisionListComponent,
+        path: 'list/:categoryId',
+        component: RevisionListComponent
       },
       {
         path: ':id',
-        component: RevisionComponent,
-      },
+        component: RevisionComponent
+      }
     ]
   }
 ];

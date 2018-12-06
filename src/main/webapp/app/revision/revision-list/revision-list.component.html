@@ -1,3 +1,9 @@
-<p>
-  revision-list works!
-</p>
+<jhi-alert-error></jhi-alert-error>
+
+<ul *ngIf="revisions">
+  <li *ngFor="let revision of revisions">
+    <a routerLink="/revision/{{revision.id}}" routerLinkActive="active">
+      <span>{{revision.name}}</span>
+    </a>
+  </li>
+</ul>
