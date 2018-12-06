@@ -1,7 +1,7 @@
 {
   "id": 3,
   "name": "Déchets",
-  "description": "questionnaire n°1 de la catégorie \"Déchets\"",
+  "description": "Questionnaire n°1 de la catégorie \"Déchets\"",
   "questions": [
     {
       "id": 10,

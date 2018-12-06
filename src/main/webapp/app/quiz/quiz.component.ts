@@ -6,6 +6,7 @@ import { Question, QuestionUtils } from 'app/quiz/shared/question/question.model
 import { QuizConfig } from 'app/quiz/shared/quiz/quiz-config.model';
 import { QuizMode, QuizStepMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
+import { ContentUtil } from 'app/shared/util/content-util';
 import { FormatUtil } from 'app/shared/util/format-util';
 import Timer = NodeJS.Timer;
 
@@ -187,6 +188,6 @@ export class QuizComponent implements OnChanges, OnDestroy {
   }
 
   getMediaUrl(imageFilename: string) {
-    return QuestionUtils.getMediaUrl(imageFilename);
+    return ContentUtil.getMediaUrl(imageFilename);
   }
 }

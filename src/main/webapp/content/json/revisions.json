@@ -1,0 +1,86 @@
+[
+  {
+    "id": "danger-sante",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Dangereux pour la santé",
+    "src": "danger-sante.pdf"
+  },
+  {
+    "id": "danger-environnement",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Dangereux pour l'environnement",
+    "src": "danger-environnement.pdf"
+  },
+  {
+    "id": "biorisque",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Biorisque",
+    "src": "biorisque.pdf"
+  },
+  {
+    "id": "nocif",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Nocif",
+    "src": "nocif.pdf"
+  },
+  {
+    "id": "toxique",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Toxique",
+    "src": "toxique.pdf"
+  },
+  {
+    "id": "gaz-sous-pression",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Gaz sous pression",
+    "src": "gaz-sous-pression.pdf"
+  },
+  {
+    "id": "corrosif",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Corrosif",
+    "src": "corrosif.pdf"
+  },
+  {
+    "id": "inflammable",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Inflammable",
+    "src": "inflammable.pdf"
+  },
+  {
+    "id": "explosif",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Explosif",
+    "src": "explosif.pdf"
+  },
+  {
+    "id": "comburant",
+    "category_id": "pictogrammes",
+    "category_name": "Pictogrammes",
+    "name": "Comburant",
+    "src": "comburant.pdf"
+  },
+  {
+    "id": "dechets_1",
+    "category_id": "dechets",
+    "category_name": "Gestion des déchets",
+    "name": "Fiche 1 Déchets",
+    "src": "dechets_1.pdf"
+  },
+  {
+    "id": "dechets_2",
+    "category_id": "dechets",
+    "category_name": "Gestion des déchets",
+    "name": "Fiche 2 Déchets",
+    "src": "dechets_2.pdf"
+  }
+]

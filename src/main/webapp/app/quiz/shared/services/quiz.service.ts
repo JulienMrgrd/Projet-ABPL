@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { QUIZES_URL, TEST_DIR } from 'app/app.constants';
+import { JSON_URL, TEST_DIR } from 'app/app.constants';
 import { CategoriesInfo, Category } from 'app/quiz/shared/categories-info/categories-info.model';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
 import { FileObject } from 'app/shared/models/file-object.model';
@@ -21,23 +21,23 @@ export class QuizService {
   }
 
   getCategoriesInfo(): Promise<CategoriesInfo> {
-    const jsonFile = QUIZES_URL + this.INFO_FILENAME;
+    const jsonFile = JSON_URL + this.INFO_FILENAME;
     return this.http.get<CategoriesInfo>(jsonFile).toPromise();
   }
 
   getQuizByNames(categoryName: string, fileName: string): Promise<Quiz> {
-    const url = QUIZES_URL + categoryName + '/' + fileName;
+    const url = JSON_URL + categoryName + '/' + fileName;
     return this.http.get<Quiz>(url).toPromise();
   }
 
   getTest(): Promise<Quiz> {
-    const url = QUIZES_URL + TEST_DIR + this.TEST_FILENAME;
+    const url = JSON_URL + TEST_DIR + this.TEST_FILENAME;
     return this.http.get<Quiz>(url).toPromise();
   }
 
   /** TODO and FIXME: use DB !! */
   getQuizesInfoByCategory(category: Category): Promise<FileObject[]> {
-    const dirUrl = QUIZES_URL + category.folder + '/';
+    const dirUrl = JSON_URL + category.folder + '/';
     return Promise.all(
       category.files.map(json => {
         return this.getQuizByUrl(dirUrl + json).then(quiz => {
@@ -48,7 +48,7 @@ export class QuizService {
   }
 
   getQuizesByCategory(category: Category): Promise<Quiz[]> {
-    const dirUrl = QUIZES_URL + category.folder + '/';
+    const dirUrl = JSON_URL + category.folder + '/';
     return Promise.all(category.files.map(json => this.getQuizByUrl(dirUrl + json))) as Promise<Quiz[]>;
   }
 

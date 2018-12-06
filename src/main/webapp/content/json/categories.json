@@ -14,6 +14,11 @@
       "name": "Pictogrammes",
       "folder": "pictogrammes",
       "files": ["n1_pictogrammes.json"]
+    },
+    {
+      "name": "Mesures de sécurité",
+      "folder": "mesures_securite",
+      "files": ["n1_mesures_securite.json"]
     }
   ]
 }

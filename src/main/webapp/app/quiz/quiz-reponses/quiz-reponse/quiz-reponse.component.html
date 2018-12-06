@@ -81,5 +81,11 @@
         Votre navigateur n'a pas l'air de supporter ce format vidéo...
       </video>
     </section>
+
+    <p>
+      <a *ngIf="question.revision"  href="#" target="_blank" [routerLink]="['/revision/', question.revision]">
+        <strong>Pour aller plus loin</strong>
+      </a>
+    </p>
   </div>
 </div>
