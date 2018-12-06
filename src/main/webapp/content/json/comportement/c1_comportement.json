@@ -4,30 +4,30 @@
   "description": "Questionnaire n°1 de la catégorie \"Comportement\"",
   "questions": [
     {
-      "id": 11,
+      "id": "C_037",
       "name": "Porter la blouse en salle de travaux pratique :",
       "options": [
         {
           "id": 1066,
-          "questionId": 13,
+          "questionId": "C_037",
           "name": "Ca fait scientifique !",
           "isAnswer": false
         },
         {
           "id": 1067,
-          "questionId": 13,
+          "questionId": "C_037",
           "name": "C’est conseillé",
           "isAnswer": false
         },
         {
           "id": 1068,
-          "questionId": 13,
+          "questionId": "C_037",
           "name": "C’est obligatoire",
           "isAnswer": true
         },
         {
           "id": 1069,
-          "questionId": 13,
+          "questionId": "C_037",
           "name": "Ca permet de me protéger des produits dangereux",
           "isAnswer": true
         }
@@ -36,30 +36,30 @@
       "explanation": "Il est obligatoire de porter une blouse dans un laboratoire pour se protéger des produits dangereux et du matériel biologique. La blouse doit être en coton car les matières synthétiques sont plus facilement inflammables et résistent moins aux attaques par des produits chimiques.<br><br>De plus, il est <b>obligatoire de porter une blouse dans l’enceinte d’un laboratoire</b> même si on ne manipule pas."
     },
     {
-      "id": 10,
+      "id": "C_036",
       "name": "Sans faire exprès, j’ai mis le doigt dans une solution de bactéries...",
       "options": [
         {
           "id": 1055,
-          "questionId": 10,
+          "questionId": "C_036",
           "name": "ce n’est pas grave, je m’essuie sur ma blouse, elle est là pour ça",
           "isAnswer": false
         },
         {
           "id": 1056,
-          "questionId": 10,
+          "questionId": "C_036",
           "name": "ce n’est pas grave, je vais me laver les mains",
           "isAnswer": true
         },
         {
           "id": 1057,
-          "questionId": 10,
+          "questionId": "C_036",
           "name": "ce n’est pas grave, c’est même drôle, je dis à mon binôme de faire pareil !",
           "isAnswer": false
         },
         {
           "id": 1058,
-          "questionId": 10,
+          "questionId": "C_036",
           "name": "ce n’est pas grave, je continue de manipuler",
           "isAnswer": false
         }
@@ -68,31 +68,31 @@
       "explanation": "Des erreurs de manipulations peuvent arriver, cependant il est important de réagir de façon adaptée. Dans ce cas précis : la contamination du matériel ou de l’expérimentateur nécessite une désinfection."
     },
     {
-      "id": 14,
+      "id": "C_047",
       "name": "Pour éviter toutes contaminations des plaques de culture avant de les placer sous le PSM, il faut : ====insérer l'image ici====",
       "image": "",
       "options": [
         {
           "id": 1059,
-          "questionId": 11,
+          "questionId": "C_047",
           "name": "Ne pas se préoccuper des contaminations, de toutes façons il y a des antibiotiques dans le milieu de culture.",
           "isAnswer": false
         },
         {
           "id": 1060,
-          "questionId": 11,
-          "name": "Introduire du désinfectant dans les puits de culture. ",
+          "questionId": "C_047",
+          "name": "Introduire du désinfectant dans les puits de culture.",
           "isAnswer": false
         },
         {
           "id": 1061,
-          "questionId": 11,
+          "questionId": "C_047",
           "name": "Laisser les plaques de cultures fermées et les manipuler avec précaution",
           "isAnswer": true
         },
         {
           "id": 1062,
-          "questionId": 11,
+          "questionId": "C_047",
           "name": "Retenir sa respiration pour vérifier si les puits sont contaminés.",
           "isAnswer": false
         }
@@ -101,31 +101,31 @@
       "explanation": "Pour éviter toutes contaminations des boites de culture, il faut les ouvrir seulement en zone stérile.<br>Tout en faisant bien attention à garder les boites fermées lors de la décontamination à l’éthanol avant de les placer sous le PSM.<br/>Pour éviter toutes contaminations dues au marqueur indélébile, il faut faire en sorte d’annoter les boites de culture sur les flancs et sur les bords au dessus du couvercle."
     },
     {
-      "id": 16,
+      "id": "C_049",
       "name": "Quels paramètres de l’incubateur sont à vérifier régulièrement ?====insérer l'image ici====",
       "image": "",
       "options": [
         {
           "id": 1066,
-          "questionId": 13,
+          "questionId": "C_049",
           "name": "La température, la pression partielle en O2 et CO2",
           "isAnswer": false
         },
         {
           "id": 1067,
-          "questionId": 13,
+          "questionId": "C_049",
           "name": "La température et l’humidité",
           "isAnswer": false
         },
         {
           "id": 1068,
-          "questionId": 13,
+          "questionId": "C_049",
           "name": "L’humidité, la température et la pression partielle en CO2",
           "isAnswer": true
         },
         {
           "id": 1069,
-          "questionId": 13,
+          "questionId": "C_049",
           "name": "La température et la pression partielle en O2",
           "isAnswer": false
         }
@@ -134,30 +134,30 @@
       "explanation": "En biologie, 3 paramètres sont très importants :<br/>La température d’incubation (généralement 37°C)<br/>L’humidité (environs 80%)<br/>La pression partielle en CO2 (5%)"
     },
     {
-      "id": 18,
+      "id": "C_001",
       "name": "Dans le protocole, il y a un produit que je ne connais pas :",
       "options": [
         {
           "id": 1055,
-          "questionId": 10,
+          "questionId": "C_001",
           "name": "je demande au professeur comment je dois le manipuler",
           "isAnswer": true
         },
         {
           "id": 1056,
-          "questionId": 10,
+          "questionId": "C_001",
           "name": "je fais des recherches auparavant sur les conditions de manipulation du produit",
           "isAnswer": false
         },
         {
           "id": 1057,
-          "questionId": 10,
+          "questionId": "C_001",
           "name": "s’il est dans le protocole, c’est qu’il n’est pas dangereux !",
           "isAnswer": false
         },
         {
           "id": 1058,
-          "questionId": 10,
+          "questionId": "C_001",
           "name": "je fais des recherches auparavant sur la façon adéquate de jeter ce produit",
           "isAnswer": true
         }
@@ -166,36 +166,36 @@
       "explanation": "Avant d’utiliser un produit, toujours consulter sa fiche technique afin de connaître :<br/>- Les pictogrammes associés à ce produit<br/>- Les mesures de sécurités pour le manipuler<br/>- Les mesures de sécurités pour le stocker, le jeter et le recycler<br/>"
     },
     {
-      "id": 19,
+      "id": "C_020",
       "name": "Bravo le TP est terminé, que me reste-t-il à faire ?",
       "options": [
         {
           "id": 1066,
-          "questionId": 13,
+          "questionId": "C_020",
           "name": "Je range mes affaires, ma blouse, je me prépare et je dis au revoir",
           "isAnswer": false
         },
         {
           "id": 1067,
-          "questionId": 13,
+          "questionId": "C_020",
           "name": "Je vide, rince, nettoie la verrerie pour aider les préparateurs",
           "isAnswer": true
         },
         {
           "id": 1068,
-          "questionId": 13,
+          "questionId": "C_020",
           "name": "Je nettoie correctement mon poste de travail",
           "isAnswer": true
         },
         {
           "id": 1069,
-          "questionId": 13,
+          "questionId": "C_020",
           "name": "Je préviens si je m’aperçois pendant le TP qu’un matériel est défectueux ou abimé",
           "isAnswer": true
         },
         {
           "id": 1070,
-          "questionId": 13,
+          "questionId": "C_020",
           "name": "je garde ma lame montée pour la ramener chez moi, elle est bien faite",
           "isAnswer": false
         }
@@ -204,30 +204,30 @@
       "explanation": "A la fin d’une journée de TP, il est fortement apprécié de ranger son matériel et la salle pour faciliter le travail du personnel de préparation. Un moment ou un autre, vous serez amenés à l’effectuer au laboratoire."
     },
     {
-      "id": 17,
+      "id": "C_002",
       "name": "Je manipule un produit avec une forte odeur :",
       "options": [
         {
           "id": 1059,
-          "questionId": 11,
+          "questionId": "C_002",
           "name": "cela signifie que ce produit est dangereux",
           "isAnswer": false
         },
         {
           "id": 1060,
-          "questionId": 11,
+          "questionId": "C_002",
           "name": "je le fais sentir à mon binôme",
           "isAnswer": false
         },
         {
           "id": 1061,
-          "questionId": 11,
+          "questionId": "C_002",
           "name": "il est interdit et dangereux de sentir, renifler un produit",
           "isAnswer": true
         },
         {
           "id": 1062,
-          "questionId": 11,
+          "questionId": "C_002",
           "name": "c’est qu’il est efficace",
           "isAnswer": false
         }
@@ -236,30 +236,30 @@
       "explanation": "Il est interdit et très dangereux de respirer un produit. En effet, certains produits sont très volatiles et toxiques pour les poumons."
     },
     {
-      "id": 15,
+      "id": "C_004",
       "name": "Avec une pipette :",
       "options": [
         {
           "id": 1062,
-          "questionId": 12,
+          "questionId": "C_004",
           "name": "je suis toujours précis(e), pas besoin de m’appliquer pour pipetter",
           "isAnswer": false
         },
         {
           "id": 1063,
-          "questionId": 12,
+          "questionId": "C_004",
           "name": "je n’ai pas besoin de changer de cône en fonction du produit que je prélève",
           "isAnswer": false
         },
         {
           "id": 1064,
-          "questionId": 12,
+          "questionId": "C_004",
           "name": "avec la pipette je ne touche pas le produit donc je n’ai pas besoin de porter de gants",
           "isAnswer": false
         },
         {
           "id": 1065,
-          "questionId": 12,
+          "questionId": "C_004",
           "name": "je dois toujours effectuer le même geste de prélèvement pour être précis(e)",
           "isAnswer": true
         }
@@ -269,30 +269,30 @@
       "explanation_video": ""
     },
     {
-      "id": 16,
+      "id": "C_005",
       "name": "Vite, je suis en retard sur mes manipulations :",
       "options": [
         {
           "id": 1066,
-          "questionId": 13,
+          "questionId": "C_005",
           "name": "je crie sur mon binôme parce que c’est de sa faute",
           "isAnswer": false
         },
         {
           "id": 1067,
-          "questionId": 13,
+          "questionId": "C_005",
           "name": "j’ai le droit de courir dans le laboratoire tant que je ne fais pas tomber de produit",
           "isAnswer": false
         },
         {
           "id": 1068,
-          "questionId": 13,
+          "questionId": "C_005",
           "name": "j’ai le droit de courir dans le laboratoire tant que je reste en sécurité",
           "isAnswer": false
         },
         {
           "id": 1069,
-          "questionId": 13,
+          "questionId": "C_005",
           "name": "je dois organiser mon travail pour être plus efficace et ne pas faire d’erreurs",
           "isAnswer": true
         }

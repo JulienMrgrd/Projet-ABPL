@@ -1,0 +1,21 @@
+{
+  "id": 3,
+  "name": "Mesures de sécurité",
+  "description": "Questionnaire n°1 de la catégorie \"Mesures de sécurité\"",
+  "questions": [
+    {
+      "id": "D_001",
+      "name": "En attente de Rémy.",
+      "options": [
+        {
+          "id": 1066,
+          "questionId": "D_001",
+          "name": "Nop, pas de réponse encore...",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": "En attente de Rémy."
+    }
+  ]
+}
