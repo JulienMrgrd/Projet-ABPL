@@ -130,7 +130,8 @@
         }
       ],
       "questionType": 2,
-      "explanation": "Un produit corrosif  provoque la destruction « non spécifique des tissus » (peau, muqueuses et yeux) par contact ou projection. <br>Pour cela il est necessaire d'eviter l'inhalation des vapeurs et le contact avec la peau, les yeux et les vêtements."
+      "explanation": "Un produit corrosif  provoque la destruction « non spécifique des tissus » (peau, muqueuses et yeux) par contact ou projection. <br>Pour cela il est necessaire d'eviter l'inhalation des vapeurs et le contact avec la peau, les yeux et les vêtements.",
+      "revision": "corrosif"
     },
     {
       "id": "A_032",
@@ -162,7 +163,8 @@
         }
       ],
       "questionType": 2,
-      "explanation": "La mention <b>\"signale les produits cancérogènes, mutagènes, CMR et tous produits pouvant modifier le fonctionnement de certains organes\"</b> correspond aux produits dangeureux pour la santé."
+      "explanation": "La mention <b>\"signale les produits cancérogènes, mutagènes, CMR et tous produits pouvant modifier le fonctionnement de certains organes\"</b> correspond aux produits dangeureux pour la santé.",
+      "revision": "danger-sante"
     },
     {
       "id": "A_039",
@@ -195,7 +197,8 @@
         }
       ],
       "questionType": 2,
-      "explanation": "Il s'agit du pictogramme indiquant que le produit est un comburant, il peut aggraver un incendie ou une explosion lorsqu'il est à proximité d'une source de chaleur ou d'un produit inflammable."
+      "explanation": "Il s'agit du pictogramme indiquant que le produit est un comburant, il peut aggraver un incendie ou une explosion lorsqu'il est à proximité d'une source de chaleur ou d'un produit inflammable.",
+      "revision": "comburant"
     }
   ]
 }
