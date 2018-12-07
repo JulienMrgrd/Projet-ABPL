@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NoCacheInterceptor } from 'app/blocks/interceptor/no-cache.interceptor';
 import { ProjetAbplCoreModule } from 'app/core';
 import { ProjetAbplQuizModule } from 'app/quiz/quiz.module';
 import { ProjetAbplRevisionModule } from 'app/revision/revision.module';
@@ -59,6 +60,11 @@ import { LegalMentionsModalComponent } from './layouts/footer/legal-mentions-mod
     {
       provide: HTTP_INTERCEPTORS,
       useClass: NotificationInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NoCacheInterceptor,
       multi: true
     }
   ],
