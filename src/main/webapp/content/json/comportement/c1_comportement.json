@@ -69,8 +69,8 @@
     },
     {
       "id": "C_047",
-      "name": "Pour éviter toutes contaminations des plaques de culture avant de les placer sous le PSM, il faut : ====insérer l'image ici====",
-      "image": "",
+      "name": "Pour éviter toutes contaminations des plaques de culture avant de les placer sous le PSM, il faut :",
+      "image": "C_047_Question.png",
       "options": [
         {
           "id": 1059,
@@ -102,8 +102,7 @@
     },
     {
       "id": "C_049",
-      "name": "Quels paramètres de l’incubateur sont à vérifier régulièrement ?====insérer l'image ici====",
-      "image": "",
+      "name": "Quels paramètres de l’incubateur sont à vérifier régulièrement ?",
       "options": [
         {
           "id": 1066,
@@ -264,9 +263,7 @@
           "isAnswer": true
         }
       ],
-      "questionType": 2,
-      "explanation": "==== Insérer vidéo tutoriel ici ====",
-      "explanation_video": ""
+      "questionType": 2
     },
     {
       "id": "C_005",
