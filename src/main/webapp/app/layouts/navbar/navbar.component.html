@@ -13,15 +13,16 @@
 
             <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
               <a class="nav-link dropdown-toggle" ngbDropdownToggle routerLinkActive="active"  href="javascript:void(0);" #dropDownRevisions>
-                    <span>
-                        <fa-icon [icon]="'book-open'"></fa-icon>
-                        <span>Révisions</span>
-                    </span>
+                  <span>
+                      <fa-icon [icon]="'book-open'"></fa-icon>
+                      <span>Révisions</span>
+                  </span>
               </a>
               <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subRevisionsMenus">
-                <li *ngFor="let revision of subRevisionsMenus">
-                  <a class="dropdown-item" routerLink="/revision/list/{{revision.id}}" routerLinkActive="active">
-                    <span>{{revision.name}}</span>
+                <li *ngFor="let menu of subRevisionsMenus">
+                  <a class="dropdown-item" routerLink="/revision/list/{{menu.id}}" routerLinkActive="active"
+                     (click)="goToRevisionList(menu); collapseNavbar()">
+                    <span>{{menu.name}}</span>
                   </a>
                 </li>
               </ul>
@@ -36,7 +37,8 @@
               </a>
               <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus">
                 <li class="" *ngFor="let category of getSubMenusCat()">
-                  <a class="dropdown-item" routerLink="/quiz/training/{{category.folder}}" routerLinkActive="active"  (click)="goToQuiz(category); collapseNavbar()">
+                  <a class="dropdown-item" routerLink="/quiz/training/{{category.folder}}" routerLinkActive="active"
+                     (click)="goToQuiz(category); collapseNavbar()">
                     <span>{{category.name}}</span>
                   </a>
                   <!--TODO MULTI-SELECT <ul class="dropdown-menu" ngbDropdownMenu *ngIf="subMenus.has(category)">

@@ -3,11 +3,12 @@ import { FileObject } from 'app/shared/models/file-object.model';
 
 @Injectable()
 export class Data {
-  public choosenQuiz: FileObject;
+  choosenQuiz: FileObject;
+  revisionMenuName: string;
 
-  public constructor() {}
+  constructor() {}
 
-  public reset() {
+  reset() {
     delete this.choosenQuiz;
   }
 }

@@ -1,8 +1,8 @@
 <div class="response-modal">
   <div class="modal-header" *ngIf="question">
     <h4 class="modal-title w-100 text-center">
-      <span *ngIf="!utils.isCorrect(question)">Perdu...</span>
-      <span *ngIf="utils.isCorrect(question)">Gagné !</span>
+      <span *ngIf="!utils.isCorrect(question)">Raté...</span>
+      <span *ngIf="utils.isCorrect(question)">Bien joué !</span>
     </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('cross')">
       <span aria-hidden="true">&times;</span>

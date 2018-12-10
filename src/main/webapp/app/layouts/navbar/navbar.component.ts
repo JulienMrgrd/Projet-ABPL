@@ -105,4 +105,9 @@ export class NavbarComponent implements OnInit {
     this.sharedData.choosenQuiz = this.getSubMenusQuizes(category)[0]; // TODO: manage sub categories
     this.router.navigate(['quiz/training/', category.folder]);
   }
+
+  goToRevisionList(menu: NamedObject): void {
+    this.sharedData.revisionMenuName = menu.name;
+    this.router.navigate(['revision/list', menu.id]);
+  }
 }

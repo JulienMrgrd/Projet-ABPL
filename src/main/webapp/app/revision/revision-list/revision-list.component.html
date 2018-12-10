@@ -1,9 +1,19 @@
-<jhi-alert-error></jhi-alert-error>
+<div class="card card-frame revision-card">
+  <div class="card-block">
+    <jhi-alert-error></jhi-alert-error>
 
-<ul *ngIf="revisions">
-  <li *ngFor="let revision of revisions">
-    <a routerLink="/revision/{{revision.id}}" routerLinkActive="active">
-      <span>{{revision.name}}</span>
-    </a>
-  </li>
-</ul>
+    <div class="card d-flex border-0">
+      <h2 class="text-center font-weight-normal mb-5">
+        Liste des fiches<span class="font-weight-bold" *ngIf="categoryName">&nbsp;{{categoryName}}</span> :
+      </h2>
+
+      <ul *ngIf="revisions">
+        <li class="mb-2" *ngFor="let revision of revisions">
+          <a routerLink="/revision/{{revision.id}}" routerLinkActive="active">
+            <span>{{revision.name}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

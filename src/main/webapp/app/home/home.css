@@ -19,16 +19,19 @@ Main page styles
 .body_pr_bio_abpl {
   width: auto;
   max-width: 1200px;
-  max-height: 680px;
-  height: 680px;
+  max-height: 470px;
+  height: 500px;
   background: url('../../content/images/main_pr_bio.png') no-repeat center transparent;
   background-size: contain;
 }
 
-@media screen and (max-width: 794px) {
+@media screen and (max-width: 768px) {
   .body_pr_bio_abpl {
     background: url('../../content/images/main_pr_bio_mobile.png') no-repeat center transparent;
     background-size: contain;
+  }
+  .main_abpl2 {
+    height: 250px;
   }
 }
 
@@ -57,7 +60,7 @@ Custom
   }
 
   .card-block > .row:not(:first-child) {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }
 

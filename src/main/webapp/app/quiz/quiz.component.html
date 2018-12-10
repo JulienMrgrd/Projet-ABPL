@@ -26,11 +26,11 @@
               <span [innerHTML]="currentQuestion.name"></span>
             </h3>
           </section>
-          <section class="section col-md-5" *ngIf="currentQuestion.image">
-            <img [src]=getMediaUrl(currentQuestion.image) class="center-section">
+          <section class="section col-md-6 center-section" *ngIf="currentQuestion.image">
+            <img [src]=getMediaUrl(currentQuestion.image)>
           </section>
-          <section class="section col-md-5" *ngIf="currentQuestion.video">
-            <video controls class="center-section">
+          <section class="section col-md-6 center-section" *ngIf="currentQuestion.video">
+            <video controls>
               <source [src]=getMediaUrl(currentQuestion.video) type="video/mp4">
               Votre navigateur n'a pas l'air de supporter ce format vidéo...
             </video>
