@@ -63,4 +63,11 @@ export class QuizService {
       return Promise.all(info.categories.map(cat => Promise.resolve(putQuizesIntoMap(cat)))).then(() => resMap);
     });
   }
+
+  getQuizFilename(categoryName: string): Promise<string> {
+    return this.getCategoriesInfo().then((info: CategoriesInfo) => {
+      const categ = info.categories.find(cat => cat.folder === categoryName);
+      return categ && categ.folder && categ.folder.length > 0 ? categ.files[0] : null;
+    });
+  }
 }
