@@ -73,14 +73,14 @@
     "id": "dechets_1",
     "category_id": "dechets",
     "category_name": "Gestion des déchets",
-    "name": "Fiche 1 Déchets",
+    "name": "Fiche 1 Déchets : Classification de produits couramment utilisés en laboratoire selon leur dangerosité",
     "src": "dechets_1.pdf"
   },
   {
     "id": "dechets_2",
     "category_id": "dechets",
     "category_name": "Gestion des déchets",
-    "name": "Fiche 2 Déchets",
+    "name": "Fiche 2 Déchets : Radioactivité",
     "src": "dechets_2.pdf"
   }
 ]

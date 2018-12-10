@@ -49,41 +49,41 @@
     </section>
   </div>
   <div class="m-2 alert alert-response {{ utils.isCorrect(question) ? 'alert-success': 'alert-danger'}}">
-      <span *ngIf="!utils.isCorrect(question); else right"><strong>Faux.</strong><br>
-        <span [ngPlural]="utils.getAnswers(question).length">
-          <ng-template ngPluralCase="=0">Aucune bonne réponse.</ng-template>
-          <ng-template ngPluralCase="=1">La bonne réponse était :
-            <i *ngIf="utils.getAnswers(question)[0].name">"{{utils.getAnswers(question)[0].name}}"</i>
-            <img *ngIf="utils.getAnswers(question)[0].filename" [src]=getMediaUrl(utils.getAnswers(question)[0].filename)>
-          </ng-template>
-          <ng-template ngPluralCase="other">Les bonnes réponses étaient : <br>
-            <ul class="response-list">
-              <li *ngFor="let ans of utils.getAnswers(question)">
-                 <i *ngIf="ans.name">{{ans.name}}</i>
-                 <img *ngIf="ans.filename" [src]=getMediaUrl(ans.filename)>
-              </li>
-            </ul>
-          </ng-template>
-        </span>
+    <span *ngIf="!utils.isCorrect(question); else right"><strong>Faux.</strong><br>
+      <span [ngPlural]="utils.getAnswers(question).length">
+        <ng-template ngPluralCase="=0">Aucune bonne réponse.</ng-template>
+        <ng-template ngPluralCase="=1">La bonne réponse était :
+          <i *ngIf="utils.getAnswers(question)[0].name">"{{utils.getAnswers(question)[0].name}}"</i>
+          <img *ngIf="utils.getAnswers(question)[0].filename" [src]=getMediaUrl(utils.getAnswers(question)[0].filename)>
+        </ng-template>
+        <ng-template ngPluralCase="other">Les bonnes réponses étaient : <br>
+          <ul class="response-list">
+            <li *ngFor="let ans of utils.getAnswers(question)">
+               <i *ngIf="ans.name">{{ans.name}}</i>
+               <img *ngIf="ans.filename" [src]=getMediaUrl(ans.filename)>
+            </li>
+          </ul>
+        </ng-template>
       </span>
+    </span>
     <ng-template #right><strong>Vrai.</strong></ng-template>
   </div>
-  <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation && question.explanation.length > 0">
+  <div class="m-2 alert alert-dark explanation" *ngIf="question.explanation || question.explanation_image || question.explanation_video">
     <span><b>Explication :&nbsp;</b></span>
-    <span [innerHTML]=question.explanation></span>
-    <section class="section" *ngIf="question.explanation_image">
+    <span *ngIf="question.explanation && question.explanation.length > 0" [innerHTML]=question.explanation></span>
+    <section class="section" *ngIf="question.explanation_image && question.explanation_image.length > 0">
       <img [src]=getMediaUrl(question.explanation_image)>
     </section>
 
-    <section class="section" *ngIf="question.explanation_video">
+    <section class="section" *ngIf="question.explanation_video && question.explanation_video.length > 0">
       <video controls>
         <source [src]=getMediaUrl(question.explanation_video) type="video/mp4">
         Votre navigateur n'a pas l'air de supporter ce format vidéo...
       </video>
     </section>
 
-    <p>
-      <a *ngIf="question.revision"  href="#" target="_blank" [routerLink]="['/revision/', question.revision]">
+    <p class="mt-4 mb-0">
+      <a *ngIf="question.revision" href="#" target="_blank" [routerLink]="['/revision/', question.revision]">
         <strong>Pour aller plus loin</strong>
       </a>
     </p>

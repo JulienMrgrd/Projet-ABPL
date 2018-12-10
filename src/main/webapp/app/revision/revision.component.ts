@@ -23,7 +23,6 @@ export class RevisionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
       this.id = params['id'];
-      console.error(this.id);
 
       this.revisionService
         .getRevisionById(this.id)

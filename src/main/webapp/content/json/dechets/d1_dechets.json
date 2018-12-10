@@ -1,0 +1,172 @@
+{
+  "id": 3,
+  "name": "Déchets",
+  "description": "Questionnaire n°1 de la catégorie \"Déchets\"",
+  "questions": [
+    {
+      "id": "D_049",
+      "name": "Quels sont les risques associés aux déchets piquants et tranchants ?",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "D_049",
+          "name": "Risque de blessures",
+          "isAnswer": true
+        },
+        {
+          "id": 1057,
+          "questionId": "D_049",
+          "name": "Risque pour le système nerveux",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "D_049",
+          "name": "Risque de cancer",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "D_049",
+          "name": "Risque de transmission de maladies",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2
+    },
+    {
+      "id": "D_024",
+      "name": "Les déchets chimiques contenant des acides doivent être étiquetés en:",
+      "options": [
+        {
+          "id": 1066,
+          "questionId": "D_024",
+          "name": "Rouge",
+          "isAnswer": false
+        },
+        {
+          "id": 1067,
+          "questionId": "D_024",
+          "name": "Vert",
+          "isAnswer": false
+        },
+        {
+          "id": 1068,
+          "questionId": "D_024",
+          "name": "Jaune",
+          "isAnswer": true
+        },
+        {
+          "id": 1069,
+          "questionId": "D_024",
+          "name": "Bleu",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Il existe une couleur associée à chaque type de déchets chimiques.",
+      "explanation_image": "D_024_Explication.png",
+      "revision": "dechets_1"
+    },
+    {
+      "id": "D_015",
+      "name": "Associer ce pictogramme à une ou plusieurs catégories de déchets",
+      "image": "D_015_Question.png",
+      "options": [
+        {
+          "id": 1061,
+          "questionId": "D_015",
+          "name": "Catégorie 0: déchets domestiques",
+          "isAnswer": false
+        },
+        {
+          "id": 1059,
+          "questionId": "D_015",
+          "name": "Catégorie 1: déchets piquants et tranchants",
+          "isAnswer": true
+        },
+        {
+          "id": 1060,
+          "questionId": "D_015",
+          "name": "Catégorie 2: déchets biologiques à risque de contamination, anatomique et infectieux",
+          "isAnswer": true
+        },
+        {
+          "id": 1062,
+          "questionId": "D_015",
+          "name": "Catégorie 5: déchets radioactifs",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Ce pictogramme est associé à un risque biologique contrairement à celui-ci qui est associé à un risque radioactif.<b/>Il est généralement utilisé en présence de déchets présentant un risque infectieux et donc de transmission de maladies chez l'Homme (VIH, sang, etc...).",
+      "explanation_image": "D_015_Explication.jpg"
+    },
+    {
+      "id": "D_018",
+      "name": "Les déchets radioactifs, je les mets dans:",
+      "options": [
+        {
+          "id": 1064,
+          "questionId": "D_018",
+          "name": "Une poubelle à déchets domestiques",
+          "isAnswer": false
+        },
+        {
+          "id": 1063,
+          "questionId": "D_018",
+          "name": "Une poubelle spéciale à déchets radioactifs",
+          "isAnswer": true
+        },
+        {
+          "id": 1065,
+          "questionId": "D_018",
+          "name": "Une poubelle DASRI",
+          "isAnswer": false
+        },
+        {
+          "id": 1066,
+          "questionId": "D_018",
+          "name": "On les laisse dans la nature, c'est biodégradable",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Les poubelles DASRI sont utilisées spécifiquement pour les déchets biologiques (catégorie 2).<br/>Tout élément servant en laboratoire ne peut être rejeter dans la nature, ce n'est pas biodégradable !",
+      "explanation_image": "D_018_Explication.png"
+    },
+    {
+      "id": "D_035",
+      "name": "Quelles sont les mesures de protection lors de l'utilisation des produits chimiques ?",
+      "options": [
+        {
+          "id": 1064,
+          "questionId": "D_035",
+          "name": "Port de gants",
+          "isAnswer": true
+        },
+        {
+          "id": 1063,
+          "questionId": "D_035",
+          "name": "Charlotte",
+          "isAnswer": false
+        },
+        {
+          "id": 1065,
+          "questionId": "D_035",
+          "name": "Blouse",
+          "isAnswer": true
+        },
+        {
+          "id": 1066,
+          "questionId": "D_035",
+          "name": "Protection des voies respiratoires",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": "La charlotte est à utiliser dans des conditions particulières (virus, bactéries,...)",
+      "explanation_image": "D_035_Explication.png"
+    }
+  ]
+}

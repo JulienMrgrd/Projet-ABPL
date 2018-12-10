@@ -1,0 +1,204 @@
+{
+  "id": 3,
+  "name": "Pictogrammes",
+  "description": "Questionnaire n°1 de la catégorie \"Pictogrammes\"",
+  "questions": [
+    {
+      "id": "A_010",
+      "name": "Lesquelles de ces précautions sont associées à la mention suivante :  « Ce sont des gaz ou des liquides sous pression » ?",
+      "options": [
+        {
+          "id": 1066,
+          "questionId": "A_010",
+          "name": "Port de lunette de protection",
+          "isAnswer": true
+        },
+        {
+          "id": 1067,
+          "questionId": "A_010",
+          "name": "Port de gants",
+          "isAnswer": true
+        },
+        {
+          "id": 1068,
+          "questionId": "A_010",
+          "name": "Manipulation sous hôte aspirante",
+          "isAnswer": false
+        },
+        {
+          "id": 1069,
+          "questionId": "A_010",
+          "name": "Port d'une blouse",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation_image": "A_010_Explication.png"
+    },
+    {
+      "id": "A_018",
+      "name": "Lesquelles de ces mentions sont associées à la précaution suivante :  « Ne pas ingérer, ni inhaler, et pas de contact avec le corps. » ?",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "A_018",
+          "name": "Gaz sous pression",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "A_018",
+          "name": "Irritant",
+          "isAnswer": true
+        },
+        {
+          "id": 1057,
+          "questionId": "A_018",
+          "name": "Biorisque",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "A_018",
+          "name": "Nocif",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": null
+    },
+    {
+      "id": "A_012",
+      "name": "Laquelle de ces mentions est associée à la précaution suivante :  « ils peuvent exploser sous l'effet de la chaleur, certain d'entre eux sont responsables de brûlures liées au froid » ?",
+      "options": [
+        {
+          "id": 1062,
+          "questionId": "A_012",
+          "name": "Gaz sous pression",
+          "isAnswer": true
+        },
+        {
+          "id": 1063,
+          "questionId": "A_012",
+          "name": "Dangereux pour l'environnement",
+          "isAnswer": false
+        },
+        {
+          "id": 1064,
+          "questionId": "A_012",
+          "name": "Biorisque",
+          "isAnswer": false
+        },
+        {
+          "id": 1065,
+          "questionId": "A_012",
+          "name": "Nocif",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 1,
+      "explanation": null
+    },
+    {
+      "id": "A_026",
+      "name": "Sélectionner la ou les consignes de sécurité de ce pictogramme.",
+      "image": "A_026_Question.png",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "A_026",
+          "name": "Éviter le rejet dans l'environnement",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "A_026",
+          "name": "Éviter les abrasions / les chocs / les frottements",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": "A_026",
+          "name": "Porter des gants isolant contre le froid",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "A_026",
+          "name": "Eviter l'inhalation des vapeurs et le contact avec la peau, les yeux et les vêtements",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Un produit corrosif  provoque la destruction « non spécifique des tissus » (peau, muqueuses et yeux) par contact ou projection. <br>Pour cela il est necessaire d'eviter l'inhalation des vapeurs et le contact avec la peau, les yeux et les vêtements.",
+      "revision": "corrosif"
+    },
+    {
+      "id": "A_032",
+      "name": "Lesquels de ces pictogrammes sont associées à la mention “Signale les produits cancérogènes, mutagènes, CMR et tout produit pouvant modifier le fonctionnement de certains organes”",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "A_032",
+          "image": "A_032_PropositionA.png",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "A_032",
+          "image": "A_032_PropositionB.png",
+          "isAnswer": true
+        },
+        {
+          "id": 1057,
+          "questionId": "A_032",
+          "image": "A_032_PropositionC.png",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "A_032",
+          "image": "A_032_PropositionD.png",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "La mention <b>\"signale les produits cancérogènes, mutagènes, CMR et tous produits pouvant modifier le fonctionnement de certains organes\"</b> correspond aux produits dangeureux pour la santé.",
+      "revision": "danger-sante"
+    },
+    {
+      "id": "A_039",
+      "name": "Un produit sur lequel figure le pictogramme ci-dessus :",
+      "image": "A_039_Question.png",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "A_039",
+          "name": "S’enflamme à proximité d’une flamme ou source de chaleur",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "A_039",
+          "name": "Est dangereux pour l’environnement",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": "A_039",
+          "name": "Explose à proximité d’une flamme ou source de chaleur",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "A_039",
+          "name": "Augmente le risque d’incendie ou d’explosion à proximité d’une flamme ou source de chaleur",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": "Il s'agit du pictogramme indiquant que le produit est un comburant, il peut aggraver un incendie ou une explosion lorsqu'il est à proximité d'une source de chaleur ou d'un produit inflammable.",
+      "revision": "comburant"
+    }
+  ]
+}

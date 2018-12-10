@@ -2,3 +2,14 @@
   border: none;
   margin-top: 10px;
 }
+
+.alert-response img {
+  border: none;
+  width: 60px;
+  height: 60px;
+}
+
+.title-question img,
+.title-question video {
+  max-width: 330px;
+}

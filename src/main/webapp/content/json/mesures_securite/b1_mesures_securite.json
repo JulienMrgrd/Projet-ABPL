@@ -1,0 +1,184 @@
+{
+  "id": 3,
+  "name": "Mesures de sécurité",
+  "description": "Questionnaire n°1 de la catégorie \"Mesures de sécurité\"",
+  "questions": [
+    {
+      "id": "B_009",
+      "name": "Je suis sous une hotte à flux laminaire. Je peux donc utiliser ce réactif",
+      "image": "B_009_Question.png",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "B_009",
+          "name": "Oui",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "B_009",
+          "name": "Non",
+          "isAnswer": true
+        },
+        {
+          "id": 1057,
+          "questionId": "B_009",
+          "name": "Seulement si je mets des gants",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "La date figurant sur le flacon indique qu’il est périmé depuis longtemps. Je n’utilise donc pas ce produit."
+    },
+    {
+      "id": "B_019",
+      "name": "L’expérimentateur manipule correctement sa culture bactérienne ?",
+      "image": "B_019_Question.png",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "B_019",
+          "name": "Oui",
+          "isAnswer": true
+        },
+        {
+          "id": 1056,
+          "questionId": "B_019",
+          "name": "Non",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "En culture bactrienne, il est préconisé de manipuler dans un rayon de 20cm maximum du brûleur, matérialisé ici par le marquage sur la paillasse.<br/>Il est donc correctement placé. De plus, on n’introduit jamais des bactéries dans un laboratoire spécialisé en culture cellulaire eucaryote"
+    },
+    {
+      "id": "B_021",
+      "name": "J’ai fini ma journée :",
+      "image": "B_021_Question.png",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "B_021",
+          "name": "Je ne peux pas partir",
+          "isAnswer": true
+        },
+        {
+          "id": 1056,
+          "questionId": "B_021",
+          "name": "Je peux partir car ma paillasse est rangée",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": "B_021",
+          "name": "Je peux partir car ma paillasse est nettoyée",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "B_021",
+          "name": "Je peux partir car les tabourets sont sous la table",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "En fin de journée, il est important de tout ranger. Il faut également veiller à éteindre et débrancher le brûleur. Je ne peux donc pas partir dans l’immédiat"
+    },
+    {
+      "id": "B_041",
+      "name": "Ce comportement présente-t-il un risque ?",
+      "image": "B_041_Question.mp4",
+      "options": [
+        {
+          "id": 1057,
+          "questionId": "B_041",
+          "name": "Pas si les gants sont propres",
+          "isAnswer": false
+        },
+        {
+          "id": 1058,
+          "questionId": "B_041",
+          "name": "J’ai le droit si c’est une urgence",
+          "isAnswer": false
+        },
+        {
+          "id": 1055,
+          "questionId": "B_041",
+          "name": "Oui",
+          "isAnswer": true
+        },
+        {
+          "id": 1056,
+          "questionId": "B_041",
+          "name": "Non",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2,
+      "explanation": "On ne touche pas de téléphone avec ses gants"
+    },
+    {
+      "id": "B_059",
+      "name": "Quel(s) type(s) de laboratoire(s) est le plus adapté à l’usage d’agents biologiques possédant un risque important de maladie pour l’homme ?",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "B_059",
+          "name": "L1",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "B_059",
+          "name": "L2",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": "B_059",
+          "name": "L3",
+          "isAnswer": true
+        },
+        {
+          "id": 1058,
+          "questionId": "B_059",
+          "name": "L4",
+          "isAnswer": true
+        }
+      ],
+      "questionType": 2,
+      "explanation": ""
+    },
+    {
+      "id": "B_070",
+      "name": "Que signifie FDS ?",
+      "options": [
+        {
+          "id": 1055,
+          "questionId": "B_070",
+          "name": "Fiche de signalisation",
+          "isAnswer": false
+        },
+        {
+          "id": 1056,
+          "questionId": "B_070",
+          "name": "Fiche de directives de sécurité",
+          "isAnswer": false
+        },
+        {
+          "id": 1057,
+          "questionId": "B_070",
+          "name": "Fiche de données de sécurité",
+          "isAnswer": true
+        },
+        {
+          "id": 1058,
+          "questionId": "B_070",
+          "name": "Fiche de secours",
+          "isAnswer": false
+        }
+      ],
+      "questionType": 2
+    }
+  ]
+}

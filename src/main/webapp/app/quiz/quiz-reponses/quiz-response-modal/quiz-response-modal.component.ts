@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Question, QuestionUtils } from '../../shared/question/question.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
+import { Question, QuestionUtils } from '../../shared/question/question.model';
 
 @Component({
   selector: 'jhi-quiz-response-modal',
@@ -10,6 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class QuizResponseModalComponent implements OnInit {
   question: Question;
   index = -1; // question number, -1 by default
+  quizMode: QuizMode = QuizMode.TRAINING;
 
   utils = QuestionUtils;
 
