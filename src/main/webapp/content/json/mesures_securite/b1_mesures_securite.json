@@ -46,12 +46,6 @@
           "questionId": "B_019",
           "name": "Non",
           "isAnswer": false
-        },
-        {
-          "id": 1057,
-          "questionId": "B_019",
-          "name": "Dans une salle de culture cellulaire",
-          "isAnswer": false
         }
       ],
       "questionType": 2,
