@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuizConfig } from 'app/quiz/shared/quiz/quiz-config.model';
 import { QuizMode } from 'app/quiz/shared/quiz/quiz-mode.enum';
 import { Quiz } from 'app/quiz/shared/quiz/quiz.model';
@@ -31,16 +31,26 @@ export class QuizTrainingComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private quizService: QuizService, private sharedData: Data, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private quizService: QuizService,
+    private sharedData: Data, // used to avoid already get data to be reloaded
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
+    this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe(async params => {
       this.categoryName = params['path']; // TODO check empty path, NOW
       if (!this.categoryName) {
-        this.categoryName = 'comportement'; // TODO: default quiz
+        console.error('Empty quiz path');
+        this.router.navigate(['/']); // go to home
       }
       if (!this.sharedData.choosenQuiz) {
-        this.quizFilename = 'n1_' + this.categoryName + '.json'; // TODO: LOAD default quiz by choosen category
+        this.quizFilename = await this.quizService.getQuizFilename(this.categoryName);
+        if (!this.quizFilename) {
+          console.error('Unknown quiz filename');
+          this.router.navigate(['/']); // go to home
+        }
       } else {
         this.quizFilename = this.sharedData.choosenQuiz.filename;
       }
