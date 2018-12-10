@@ -1,7 +1,7 @@
 <div class="result-responses" *ngIf="question">
 
   <div class="row title-question">
-    <section class="section {{(question.image || question.video) ? 'col-md-6' : 'col-md-10'}}">
+    <section class="section ml-3 {{(question.image || question.video) ? 'col-md-6' : 'col-md-10'}}">
       <h3 class="font-weight-normal">{{index != -1 ? index + 1 + '.&nbsp;' : ''}}
         <span [innerHTML]="question.name"></span>
       </h3>
@@ -82,8 +82,8 @@
       </video>
     </section>
 
-    <p class="mt-4 mb-0">
-      <a *ngIf="question.revision" href="#" target="_blank" [routerLink]="['/revision/', question.revision]">
+    <p class="mt-4 mb-0" *ngIf="question.revision">
+      <a href="#" target="_blank" [routerLink]="['/revision/', question.revision]">
         <strong>Pour aller plus loin</strong>
       </a>
     </p>

@@ -9,7 +9,6 @@
   height: 60px;
 }
 
-.title-question img,
-.title-question video {
+.title-question img {
   max-width: 330px;
 }
