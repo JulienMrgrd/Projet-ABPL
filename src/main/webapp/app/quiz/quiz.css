@@ -2,10 +2,20 @@
 =============================================================================
 Custom
 ========================================================================== */
-img,
-video {
-  max-width: 640px;
+b,
+strong {
+  font-weight: 500;
+}
+
+img {
+  max-width: 430px;
   max-height: 400px;
+  height: auto;
+}
+
+video {
+  max-width: 580px;
+  max-height: 380px;
   width: inherit;
   height: auto;
 }
@@ -78,7 +88,9 @@ section video {
 }
 
 .result-img {
-  max-height: none;
+  max-width: 550px;
+  max-height: 650px;
+  width: 100%;
 }
 
 jhi-quiz-reponse + hr {
