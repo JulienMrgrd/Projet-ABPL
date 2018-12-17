@@ -80,23 +80,6 @@ export class QuizComponent implements OnChanges, OnDestroy {
     this.restart.emit();
   }
 
-  private startTimer() {
-    if (this.timer) {
-      this.clearAll();
-    }
-
-    if (this.config.duration) {
-      this.counter = this.config.duration * 60;
-    }
-    this.timer = setInterval(() => {
-      // every second
-      this.config.countdown ? --this.counter : ++this.counter;
-      if (this.counter === 0) {
-        this.onSubmit();
-      }
-    }, 1000);
-  }
-
   /**
    * Unselect all others options (radio buttons) for this question, except the given one.
    */
@@ -113,6 +96,8 @@ export class QuizComponent implements OnChanges, OnDestroy {
   }
 
   onSubmit() {
+    this.stopTimer();
+
     const answers = []; // TODO: type answers
     this.quiz.questions.forEach(x => {
       this.correctAnswers = this.correctAnswers + +QuestionUtils.isCorrect(x); // cast boolean to numbers
@@ -156,9 +141,7 @@ export class QuizComponent implements OnChanges, OnDestroy {
   }
 
   clearAll() {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+    this.stopTimer();
     this.correctAnswers = 0;
     this.goodPercent = 0;
     this.validatedQuestions = [];
@@ -167,6 +150,33 @@ export class QuizComponent implements OnChanges, OnDestroy {
 
   goToNext() {
     this.isLastPos() ? this.onSubmit() : this.goTo(this.pager.index + 1);
+  }
+
+  private startTimer() {
+    if (!this.config.showClock) {
+      return;
+    }
+
+    if (this.timer) {
+      this.clearAll();
+    }
+
+    if (this.config.duration) {
+      this.counter = this.config.duration * 60;
+    }
+    this.timer = setInterval(() => {
+      // every second
+      this.config.countdown ? --this.counter : ++this.counter;
+      if (this.counter === 0) {
+        this.onSubmit();
+      }
+    }, 1000);
+  }
+
+  private stopTimer() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   }
 
   isLastPos() {
