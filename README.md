@@ -1,3 +1,5 @@
+[![sonar-quality-gate][sonar-quality-gate]][sonar-url] [![sonar-coverage][sonar-coverage]][sonar-url] [![sonar-vulnerabilities][sonar-vulnerabilities]][sonar-url]
+
 # ProjetABPL
 
 Plateforme en ligne (*toujours en développement*) permettant la révision et certification de bonnes pratiques en laboratoire.
@@ -38,3 +40,7 @@ To ensure everything worked, run:
 
 Refer to [Using JHipster in production][] for more details.
 
+[sonar-url]: https://sonarcloud.io/dashboard?id=projet-abpl
+[sonar-quality-gate]: https://sonarcloud.io/api/project_badges/measure?project=projet-abpl&metric=alert_status
+[sonar-coverage]: https://sonarcloud.io/api/project_badges/measure?project=projet-abpl&metric=coverage
+[sonar-vulnerabilities]: https://sonarcloud.io/api/project_badges/measure?project=projet-abpl&metric=vulnerabilities
