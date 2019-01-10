@@ -29,7 +29,7 @@ module.exports = (options) => ({
                     minifyJS:false,
                     minifyCSS:false
                 },
-                exclude: ['./src/main/webapp/index.html']
+                exclude: /(src\/main\/webapp\/index.html)/
             },
             {
                 test: /\.(jpe?g|png|gif|svg|woff2?|ttf|eot|json)$/i,
@@ -46,17 +46,6 @@ module.exports = (options) => ({
                 options: {
                     name: 'manifest.webapp'
                 }
-            },
-            {
-              type: 'javascript/auto',
-              test: /\.(json)/,
-              exclude: /(node_modules|bower_components)/,
-              use: [{
-                loader: 'file-loader',
-                options: {
-                  name: '[name].[ext]'
-                },
-              }],
             },
             // Ignore warnings about System.import in Angular
             { test: /[\/\\]@angular[\/\\].+\.js$/, parser: { system: true } },
@@ -87,8 +76,7 @@ module.exports = (options) => ({
             { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
             // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
             { from: './src/main/webapp/robots.txt', to: 'robots.txt' },
-            { from: './src/main/webapp/wakemydyno.txt', to: 'wakemydyno.txt' },
-            { from: './src/main/webapp/content/json/comportement', to: 'content/json/comportement' },
+            { from: './src/main/webapp/wakemydyno.txt', to: 'wakemydyno.txt' }
         ]),
         new HtmlWebpackPlugin({
             template: './src/main/webapp/index.html',
