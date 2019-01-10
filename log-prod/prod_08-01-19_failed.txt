@@ -1,0 +1,455 @@
+-----> Deleting 1 files matching .slugignore patterns.
+-----> Node.js app detected
+
+-----> Creating runtime environment
+
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       NODE_VERBOSE=false
+
+-----> Installing binaries
+       engines.node (package.json):  >=8.9.0
+       engines.npm (package.json):   unspecified (use default)
+
+       Resolving node version >=8.9.0...
+       Downloading and installing node 11.6.0...
+       Using default npm version: 6.5.0-next.0
+
+-----> Restoring cache
+       Loading 1 from cacheDirectories (package.json):
+       - node_modules
+
+-----> Building dependencies
+       Installing node modules (package.json + package-lock)
+
+       > projet-abpl@0.0.1-BETA postinstall /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       > webdriver-manager update --gecko false
+
+       [14:07:06] I/config_source - curl -o/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/standalone-response.xml https://selenium-release.storage.googleapis.com/
+       [14:07:06] I/config_source - curl -o/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/chrome-response.xml https://chromedriver.storage.googleapis.com/
+       [14:07:07] I/update - chromedriver: file exists /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.45.zip
+       [14:07:07] I/update - chromedriver: unzipping chromedriver_2.45.zip
+       [14:07:07] I/update - chromedriver: setting permissions to 0755 for /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.45
+       [14:07:07] I/update - chromedriver: chromedriver_2.45 up to date
+       [14:07:07] I/update - selenium standalone: file exists /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.59.jar
+       [14:07:07] I/update - selenium standalone: selenium-server-standalone-3.141.59.jar up to date
+       added 35 packages from 15 contributors, removed 18 packages, updated 10 packages and audited 65306 packages in 25.655s
+       found 0 vulnerabilities
+
+
+-----> Caching build
+       Saving 1 cacheDirectories (package.json):
+       - node_modules
+
+-----> Pruning devDependencies
+
+       > husky@1.1.0 preuninstall node_modules/husky
+       > node husky uninstall
+
+       husky > uninstalling git hooks
+       Can't find resolved .git directory, skipping Git hooks uninstallation.
+       removed 2145 packages and audited 118 packages in 27.393s
+       found 0 vulnerabilities
+
+
+-----> Build succeeded!
+-----> Java app detected
+-----> Installing JDK 1.8... done
+-----> Executing: ./mvnw -Pprod -DskipTests clean dependency:list install
+       [INFO] Scanning for projects...
+       [INFO]
+       [INFO] ---------------------< fr.projetabpl:projet-abpl >----------------------
+       [INFO] Building Projet ABPL 0.0.1-BETA
+       [INFO] --------------------------------[ war ]---------------------------------
+       [INFO] Downloading from central: https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.pom
+       [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.pom (1.1 kB at 1.8 kB/s)
+       [INFO] Downloading from central: https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar
+       [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar (1.0 MB at 4.2 MB/s)
+       [INFO]
+       [INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ projet-abpl ---
+       [INFO]
+       [INFO] --- maven-dependency-plugin:2.8:list (default-cli) @ projet-abpl ---
+       [INFO]
+       [INFO] --- maven-resources-plugin:3.1.0:copy-resources (default-resources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 4 resources
+       [INFO] Copying 13 resources
+       [INFO]
+       [INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 4 resources
+       [INFO] Copying 13 resources
+       [INFO]
+       [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (enforce-versions) @ projet-abpl ---
+       [INFO]
+       [INFO] --- jacoco-maven-plugin:0.8.2:prepare-agent (pre-unit-tests) @ projet-abpl ---
+       [INFO] argLine set to -javaagent:/app/tmp/cache/.m2/repository/org/jacoco/org.jacoco.agent/0.8.2/org.jacoco.agent-0.8.2-runtime.jar=destfile=/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/test-results/coverage/jacoco/jacoco.exec -Djava.security.egd=file:/dev/./urandom -Xmx256m
+       [INFO]
+       [INFO] --- git-commit-id-plugin:2.2.5:revision (default) @ projet-abpl ---
+       [INFO]
+       [INFO] --- spring-boot-maven-plugin:2.0.6.RELEASE:build-info (default) @ projet-abpl ---
+       [INFO]
+       [INFO] --- frontend-maven-plugin:1.6:install-node-and-npm (install node and npm) @ projet-abpl ---
+       [INFO] Installing node version v10.13.0
+       [INFO] Unpacking /app/tmp/cache/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node/tmp
+       [INFO] Copying node binary from /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node/tmp/node-v10.13.0-linux-x64/bin/node to /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node/node
+       [INFO] Installed node locally.
+       [INFO] Installing npm version 6.4.1
+       [INFO] Unpacking /app/tmp/cache/.m2/repository/com/github/eirslett/npm/6.4.1/npm-6.4.1.tar.gz into /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node/node_modules
+       [INFO] Installed npm locally.
+       [INFO]
+       [INFO] --- frontend-maven-plugin:1.6:npm (npm install) @ projet-abpl ---
+       [INFO] Running 'npm install' in /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO]
+       [INFO] > husky@1.1.0 install /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/husky
+       [INFO] > node husky install
+       [INFO]
+       [INFO] husky > setting up git hooks
+       [INFO] Can't find .git, skipping Git hooks installation.
+       [INFO] Please check that you're in a cloned repository or run 'git init' to create an empty Git repository and reinstall husky.
+       [INFO]
+       [INFO] > spawn-sync@1.0.15 postinstall /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/spawn-sync
+       [INFO] > node postinstall
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA postinstall /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > webdriver-manager update --gecko false
+       [INFO]
+       [INFO] [14:08:56] I/file_manager - creating folder /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium
+       [INFO] [14:08:56] I/config_source - curl -o/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/standalone-response.xml https://selenium-release.storage.googleapis.com/
+       [INFO] [14:08:56] I/config_source - curl -o/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/chrome-response.xml https://chromedriver.storage.googleapis.com/
+       [INFO] [14:08:56] I/downloader - curl -o/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.45.zip https://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip
+       [INFO] [14:08:56] I/downloader - curl -o/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.59.jar https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
+       [INFO] [14:08:57] I/update - chromedriver: unzipping chromedriver_2.45.zip
+       [INFO] [14:08:57] I/update - chromedriver: setting permissions to 0755 for /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_2.45
+       [WARNING] npm WARN bootstrap@4.1.3 requires a peer of jquery@1.9.1 - 3 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN bootstrap@4.1.3 requires a peer of popper.js@^1.14.3 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN ng-jhipster@0.5.4 requires a peer of @angular/core@^6.0.0 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN ng-jhipster@0.5.4 requires a peer of @angular/router@^6.0.0 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN ngx-webstorage@2.0.1 requires a peer of @angular/core@^5.0.0 but none is installed. You must install peer dependencies yourself.
+       [WARNING] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+       [WARNING] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+       [INFO] added 2145 packages from 1563 contributors and audited 65306 packages in 50.817s
+       [ERROR]
+       [INFO] found 0 vulnerabilities
+       [INFO]
+       [INFO]
+       [INFO] --- frontend-maven-plugin:1.6:npm (webpack build dev) @ projet-abpl ---
+       [INFO] npm not inheriting proxy config from Maven
+       [INFO] Running 'npm run webpack:build' in /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA webpack:build /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > npm run cleanup && npm run webpack:build:main
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA cleanup /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > rimraf target/{aot,www}
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA webpack:build:main /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > npm run webpack -- --config webpack/webpack.dev.js --env.stats=minimal
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA webpack /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js "--config" "webpack/webpack.dev.js" "--env.stats=minimal"
+       [INFO]
+       [INFO] Starting type checking service...
+       [INFO] Using 1 worker with 2048MB memory limit
+       [INFO]  DONE  Compiled successfully in 38348ms2:09:41 PM
+       [INFO]
+       [INFO]
+       [INFO] --- frontend-maven-plugin:1.6:npm (webpack build prod) @ projet-abpl ---
+       [INFO] npm not inheriting proxy config from Maven
+       [INFO] Running 'npm run webpack:prod' in /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA webpack:prod /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > npm run cleanup && npm run webpack:prod:main && npm run clean-www
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA cleanup /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > rimraf target/{aot,www}
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA webpack:prod:main /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > npm run webpack -- --config webpack/webpack.prod.js --profile
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA webpack /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js "--config" "webpack/webpack.prod.js" "--profile"
+       [INFO]
+       [ERROR] (node:2347) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
+       [INFO] Hash: 76006a6eba72c647e914
+       [INFO] Version: webpack 4.8.0
+       [INFO] Time: 101732ms
+       [INFO] Built at: 01/10/2019 2:11:27 PM
+       [INFO]                                                  Asset       Size  Chunks                    Chunk Names
+       [INFO]                          content/images/hipster256.png   28.7 KiB          [emitted]
+       [INFO]           content/6aa67a50841243870626f7addcee61b7.png    110 KiB          [emitted]
+       [INFO]           content/8dfe4b8123fb5c716db4e8e4717530c2.png    122 KiB          [emitted]
+       [INFO]           content/a576e2e281cefa1604e2cfd8e0d7910e.png    117 KiB          [emitted]
+       [INFO]           content/9f4819f29e4c613e2a8a54fe1787ecf8.png    107 KiB          [emitted]
+       [INFO]           content/3e00c7fe26ef96838e080a78e2a82a5b.png    160 KiB          [emitted]
+       [INFO]           content/482056b23119412b4df46ade526ffaf9.png    160 KiB          [emitted]
+       [INFO]           content/e3461f7ac06976818d018fd1127347f0.png    533 KiB          [emitted]  [big]
+       [INFO]           content/a79b75ed46545132441fdf5a8eca6bdd.png   43.5 KiB          [emitted]
+       [INFO]                                        manifest.webapp  734 bytes          [emitted]
+       [INFO]                                                  0.css    136 KiB       0  [emitted]         vendors
+       [INFO]                    app/0.76006a6eba72c647e914.chunk.js   2.62 MiB       0  [emitted]  [big]  vendors
+       [INFO]                    app/1.76006a6eba72c647e914.chunk.js    152 KiB       1  [emitted]
+       [INFO]                          main.b105a24a14098571f0e7.css   2.88 KiB       2  [emitted]         main
+       [INFO]                app/main.76006a6eba72c647e914.bundle.js    238 KiB       2  [emitted]         main
+       [INFO]                        global.7f0e0d5e35882e1ad068.css   2.08 KiB       3  [emitted]         global
+       [INFO]              app/global.76006a6eba72c647e914.bundle.js  553 bytes       3  [emitted]         global
+       [INFO]           app/polyfills.76006a6eba72c647e914.bundle.js   1.28 KiB       4  [emitted]         polyfills
+       [INFO]                      swagger-ui/dist/swagger-ui.min.js    442 KiB          [emitted]  [big]
+       [INFO]                                            favicon.ico   5.51 KiB          [emitted]
+       [INFO]                                             robots.txt  239 bytes          [emitted]
+       [INFO]                                         wakemydyno.txt    0 bytes          [emitted]
+       [INFO]                          swagger-ui/dist/css/print.css   40.7 KiB          [emitted]
+       [INFO]                          swagger-ui/dist/css/reset.css  773 bytes          [emitted]
+       [INFO]                         swagger-ui/dist/css/screen.css   42.6 KiB          [emitted]
+       [INFO]                          swagger-ui/dist/css/style.css   3.41 KiB          [emitted]
+       [INFO]                     swagger-ui/dist/css/typography.css    0 bytes          [emitted]
+       [INFO]                    swagger-ui/dist/lib/backbone-min.js   18.9 KiB          [emitted]
+       [INFO]                        swagger-ui/dist/lib/es5-shim.js   22.2 KiB          [emitted]
+       [INFO]                swagger-ui/dist/lib/handlebars-4.0.5.js   69.8 KiB          [emitted]
+       [INFO]   swagger-ui/dist/lib/highlight.9.1.0.pack_extended.js  310 bytes          [emitted]
+       [INFO]            swagger-ui/dist/lib/highlight.9.1.0.pack.js   10.7 KiB          [emitted]
+       [INFO]                swagger-ui/dist/lib/jquery-1.8.0.min.js   89.9 KiB          [emitted]
+       [INFO]               swagger-ui/dist/lib/jquery.ba-bbq.min.js   3.44 KiB          [emitted]
+       [INFO]              swagger-ui/dist/lib/jquery.slideto.min.js  365 bytes          [emitted]
+       [INFO]               swagger-ui/dist/lib/jquery.wiggle.min.js  536 bytes          [emitted]
+       [INFO]                     swagger-ui/dist/lib/js-yaml.min.js   42.5 KiB          [emitted]
+       [INFO]                  swagger-ui/dist/lib/jsoneditor.min.js    127 KiB          [emitted]
+       [INFO]                      swagger-ui/dist/lib/lodash.min.js   50.7 KiB          [emitted]
+       [INFO]                          swagger-ui/dist/lib/marked.js   15.4 KiB          [emitted]
+       [INFO]         swagger-ui/dist/lib/object-assign-pollyfill.js  349 bytes          [emitted]
+       [INFO]               swagger-ui/dist/lib/sanitize-html.min.js    127 KiB          [emitted]
+       [INFO]                   swagger-ui/dist/lib/swagger-oauth.js   6.88 KiB          [emitted]
+       [INFO]                    swagger-ui/dist/images/throbber.gif   9.04 KiB          [emitted]
+       [INFO]                                  swagger-ui/index.html   7.05 KiB          [emitted]
+       [INFO]                               content/css/checkbox.css   3.57 KiB          [emitted]
+       [INFO]                          content/css/documentation.css   73 bytes          [emitted]
+       [INFO]                                 content/css/global.css   4.49 KiB          [emitted]
+       [INFO]                                content/css/loading.css   3.56 KiB          [emitted]
+       [INFO]                                 content/css/vendor.css  133 bytes          [emitted]
+       [INFO]                           content/images/body_abpl.png    107 KiB          [emitted]
+       [INFO]                                 content/images/bof.png    122 KiB          [emitted]
+       [INFO]                               content/images/bravo.png    108 KiB          [emitted]
+       [INFO]                            content/images/congrats.png    110 KiB          [emitted]
+       [INFO]                             content/images/hipster.png   9.28 KiB          [emitted]
+       [INFO]                          content/images/hipster192.png   19.3 KiB          [emitted]
+       [INFO]           content/8c8af5435bd9f37c2a6952552eb3f7d3.png    108 KiB          [emitted]
+       [INFO]                           content/images/hipster2x.png   18.4 KiB          [emitted]
+       [INFO]                          content/images/hipster384.png   39.9 KiB          [emitted]
+       [INFO]                          content/images/hipster512.png   54.9 KiB          [emitted]
+       [INFO]                           content/images/home_abpl.png   89.1 KiB          [emitted]
+       [INFO]                          content/images/home2_abpl.png   50.6 KiB          [emitted]
+       [INFO]                        content/images/loading-abpl.png   43.5 KiB          [emitted]
+       [INFO]                           content/images/logo-abpl.png   43.5 KiB          [emitted]
+       [INFO]                           content/images/main_abpl.png    533 KiB          [emitted]  [big]
+       [INFO]                  content/images/main_pr_bio_mobile.png    160 KiB          [emitted]
+       [INFO]                         content/images/main_pr_bio.png    160 KiB          [emitted]
+       [INFO]            content/images/quiz/test/B_051_Question.mp4    7.4 MiB          [emitted]  [big]
+       [INFO]         content/images/quiz/test/C_058_Explication.jpg    341 KiB          [emitted]  [big]
+       [INFO]            content/images/quiz/test/C_058_Question.jpg    346 KiB          [emitted]  [big]
+       [INFO]         content/images/quiz/test/D_001_Explication.png   22.9 KiB          [emitted]
+       [INFO]        content/images/quiz/test/D_001_PropositionC.png   22.7 KiB          [emitted]
+       [INFO]        content/images/quiz/test/D_001_PropositionD.png   10.2 KiB          [emitted]
+       [INFO]     content/images/quiz/training/A_010_Explication.png    343 KiB          [emitted]  [big]
+       [INFO]        content/images/quiz/training/A_026_Question.png   20.8 KiB          [emitted]
+       [INFO]    content/images/quiz/training/A_032_PropositionA.png   6.67 KiB          [emitted]
+       [INFO]    content/images/quiz/training/A_032_PropositionB.png   68.2 KiB          [emitted]
+       [INFO]    content/images/quiz/training/A_032_PropositionC.png   20.2 KiB          [emitted]
+       [INFO]    content/images/quiz/training/A_032_PropositionD.png   61.2 KiB          [emitted]
+       [INFO]        content/images/quiz/training/A_039_Question.png    123 KiB          [emitted]
+       [INFO]        content/images/quiz/training/B_009_Question.png    781 KiB          [emitted]  [big]
+       [INFO]        content/images/quiz/training/B_019_Question.png    743 KiB          [emitted]  [big]
+       [INFO]        content/images/quiz/training/B_021_Question.png    959 KiB          [emitted]  [big]
+       [INFO]        content/images/quiz/training/B_041_Question.mp4   2.03 MiB          [emitted]  [big]
+       [INFO]        content/images/quiz/training/C_047_Question.png    6.2 MiB          [emitted]  [big]
+       [INFO]     content/images/quiz/training/D_015_Explication.jpg   39.8 KiB          [emitted]
+       [INFO]        content/images/quiz/training/D_015_Question.png   9.58 KiB          [emitted]
+       [INFO]     content/images/quiz/training/D_018_Explication.png    161 KiB          [emitted]
+       [INFO]     content/images/quiz/training/D_024_Explication.png     90 KiB          [emitted]
+       [INFO]     content/images/quiz/training/D_035_Explication.png    143 KiB          [emitted]
+       [INFO]                           content/images/you_sucks.png    117 KiB          [emitted]
+       [INFO]                           content/json/categories.json  500 bytes          [emitted]
+       [INFO]         content/json/comportement/c1_comportement.json   10.7 KiB          [emitted]
+       [INFO]                   content/json/dechets/d1_dechets.json   4.92 KiB          [emitted]
+       [INFO] content/json/mesures_securite/b1_mesures_securite.json   4.95 KiB          [emitted]
+       [INFO]         content/json/pictogrammes/a1_pictogrammes.json   6.13 KiB          [emitted]
+       [INFO]                            content/json/revisions.json   2.02 KiB          [emitted]
+       [INFO]                            content/json/test/test.json   4.69 KiB          [emitted]
+       [INFO]                              content/pdf/biorisque.pdf    154 KiB          [emitted]
+       [INFO]                              content/pdf/comburant.pdf    105 KiB          [emitted]
+       [INFO]                               content/pdf/corrosif.pdf    195 KiB          [emitted]
+       [INFO]                   content/pdf/danger-environnement.pdf    132 KiB          [emitted]
+       [INFO]                           content/pdf/danger-sante.pdf    298 KiB          [emitted]  [big]
+       [INFO]                              content/pdf/dechets_1.pdf    568 KiB          [emitted]  [big]
+       [INFO]                              content/pdf/dechets_2.pdf    243 KiB          [emitted]
+       [INFO]                               content/pdf/explosif.pdf    106 KiB          [emitted]
+       [INFO]                      content/pdf/gaz-sous-pression.pdf    154 KiB          [emitted]
+       [INFO]                            content/pdf/inflammable.pdf    114 KiB          [emitted]
+       [INFO]                                  content/pdf/nocif.pdf    195 KiB          [emitted]
+       [INFO]                                content/pdf/toxique.pdf    220 KiB          [emitted]
+       [INFO]                                             index.html   6.73 KiB          [emitted]
+       [INFO]  precache-manifest.4262770c80c1624c888134417bf5bd6a.js   11.2 KiB          [emitted]
+       [INFO]                                      service-worker.js  955 bytes          [emitted]
+       [INFO] Entrypoint polyfills [big] = 0.css app/0.76006a6eba72c647e914.chunk.js app/polyfills.76006a6eba72c647e914.bundle.js
+       [INFO] Entrypoint global = global.7f0e0d5e35882e1ad068.css app/global.76006a6eba72c647e914.bundle.js
+       [INFO] Entrypoint main [big] = 0.css app/0.76006a6eba72c647e914.chunk.js main.b105a24a14098571f0e7.css app/main.76006a6eba72c647e914.bundle.js
+       [INFO]   [3] ./node_modules/@angular/forms/fesm5/forms.js + 1 modules 224 KiB {0} [built]
+       [INFO]       |    2 modules
+       [INFO]   [5] ./node_modules/@angular/router/fesm5/router.js + 7 modules 223 KiB {0} [built]
+       [INFO]       |    8 modules
+       [INFO]  [46] ./node_modules/ng-jhipster/index.js + 19 modules 25.9 KiB {0} [built]
+       [INFO]       |    20 modules
+       [INFO]  [54] ./src/main/webapp/app/shared/models/data.model.ts 189 bytes {2} [built]
+       [INFO]       [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]  [66] ./src/main/webapp/app/core/login/login.service.ts 1.61 KiB {2} [built]
+       [INFO]       [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]  [74] ./node_modules/ngx-webstorage/dist/app.js + 6 modules 5.04 KiB {0} [built]
+       [INFO]       |    7 modules
+       [INFO]  [97] (webpack)/buildin/global.js 489 bytes {0} [built]
+       [INFO]       [422] 26169ms -> [267] 302ms -> factory:1ms building:1ms = 26473ms
+       [INFO] [113] ./src/main/webapp/app/core/auth/user-route-access-service.ts 2.7 KiB {2} [built]
+       [INFO]       [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO] [114] ./src/main/webapp/app/shared/shared.module.ts 180 bytes {2} [built]
+       [INFO]       [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO] [115] ./src/main/webapp/app/shared/shared-common.module.ts 204 bytes {2} [built]
+       [INFO]       [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO] [116] ./src/main/webapp/app/shared/shared-libs.module.ts 196 bytes {2} [built]
+       [INFO]       [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO] [243] ./src/main/webapp/app/app.main.ts + 83 modules 381 KiB {2} [built]
+       [INFO]       | ./src/main/webapp/app/layouts/navbar/navbar.component.ts 4.21 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/app.main.ts 535 bytes [built]
+       [INFO]       |     factory:7873ms building:18301ms = 26174ms
+       [INFO]       | ./src/main/webapp/app/app.module.ngfactory.js 19.3 KiB [built]
+       [INFO]       |     [] 26174ms -> factory:327ms building:70ms dependencies:7538ms = 34109ms
+       [INFO]       | ./src/main/webapp/app/quiz/quiz.module.ts 172 bytes [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/layouts/main/main.component.ts 1.04 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/quiz/shared/services/quiz.service.ts 2.69 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/revision/shared/services/revision.service.ts 1.88 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/blocks/config/prod.config.ts 265 bytes [built]
+       [INFO]       |     [] 26174ms -> factory:327ms building:70ms dependencies:7538ms = 34109ms
+       [INFO]       | ./src/main/webapp/app/layouts/navbar/navbar.component.ngfactory.js 58.8 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/layouts/error/error.component.ts 649 bytes [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/layouts/error/error.component.ngfactory.js 3.08 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/home/home.component.ts 1.22 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/home/home.component.ngfactory.js 6.73 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/account/activate/activate.component.ts 1.05 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       | ./src/main/webapp/app/account/activate/activate.component.ngfactory.js 3.88 KiB [built]
+       [INFO]       |     [] 26174ms -> [] 397ms -> factory:7667ms building:1ms dependencies:6805ms = 41044ms
+       [INFO]       |     + 69 hidden modules
+       [INFO] [265] ./src/main/webapp/content/css/global.css 39 bytes {3} [built]
+       [INFO]       factory:7857ms building:3000ms = 10857ms
+       [INFO] [266] ./src/main/webapp/manifest.webapp 61 bytes {4} [built]
+       [INFO]       [422] 26169ms -> factory:191ms building:111ms dependencies:7366ms = 33837ms
+       [INFO] [422] ./src/main/webapp/app/polyfills.ts 2.42 KiB {4} [built]
+       [INFO]       factory:7873ms building:18296ms = 26169ms
+       [INFO]     + 524 hidden modules
+       [INFO]
+       [INFO] WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+       [INFO] This can impact web performance.
+       [INFO] Assets:
+       [INFO]   content/e3461f7ac06976818d018fd1127347f0.png (533 KiB)
+       [INFO]   app/0.76006a6eba72c647e914.chunk.js (2.62 MiB)
+       [INFO]   swagger-ui/dist/swagger-ui.min.js (442 KiB)
+       [INFO]   content/images/main_abpl.png (533 KiB)
+       [INFO]   content/images/quiz/test/B_051_Question.mp4 (7.4 MiB)
+       [INFO]   content/images/quiz/test/C_058_Explication.jpg (341 KiB)
+       [INFO]   content/images/quiz/test/C_058_Question.jpg (346 KiB)
+       [INFO]   content/images/quiz/training/A_010_Explication.png (343 KiB)
+       [INFO]   content/images/quiz/training/B_009_Question.png (781 KiB)
+       [INFO]   content/images/quiz/training/B_019_Question.png (743 KiB)
+       [INFO]   content/images/quiz/training/B_021_Question.png (959 KiB)
+       [INFO]   content/images/quiz/training/B_041_Question.mp4 (2.03 MiB)
+       [INFO]   content/images/quiz/training/C_047_Question.png (6.2 MiB)
+       [INFO]   content/pdf/danger-sante.pdf (298 KiB)
+       [INFO]   content/pdf/dechets_1.pdf (568 KiB)
+       [INFO]
+       [INFO] WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+       [INFO] Entrypoints:
+       [INFO]   polyfills (2.76 MiB)
+       [INFO]       0.css
+       [INFO]       app/0.76006a6eba72c647e914.chunk.js
+       [INFO]       app/polyfills.76006a6eba72c647e914.bundle.js
+       [INFO]   main (2.99 MiB)
+       [INFO]       0.css
+       [INFO]       app/0.76006a6eba72c647e914.chunk.js
+       [INFO]       main.b105a24a14098571f0e7.css
+       [INFO]       app/main.76006a6eba72c647e914.bundle.js
+       [INFO]
+       [INFO]
+       [INFO] > projet-abpl@0.0.1-BETA clean-www /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d
+       [INFO] > rimraf target//www/app/{src,target/}
+       [INFO]
+       [INFO]
+       [INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ projet-abpl ---
+       [INFO] Changes detected - recompiling the module!
+       [INFO] Compiling 75 source files to /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/classes
+       [INFO]
+       [INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 4 resources
+       [INFO] Copying 2 resources
+       [INFO]
+       [INFO] --- maven-compiler-plugin:3.8.0:testCompile (default-testCompile) @ projet-abpl ---
+       [INFO] Changes detected - recompiling the module!
+       [INFO] Compiling 25 source files to /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/test-classes
+       [INFO]
+       [INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ projet-abpl ---
+       [INFO] Tests are skipped.
+       [INFO]
+       [INFO] --- maven-surefire-plugin:2.22.1:test (without-cucumber) @ projet-abpl ---
+       [INFO] Tests are skipped.
+       [INFO]
+       [INFO] --- jacoco-maven-plugin:0.8.2:report (post-unit-test) @ projet-abpl ---
+       [INFO] Skipping JaCoCo execution due to missing execution data file.
+       [INFO]
+       [INFO] --- frontend-maven-plugin:1.6:npm (webpack build test) @ projet-abpl ---
+       [INFO] Skipping execution.
+       [INFO]
+       [INFO] --- maven-war-plugin:3.2.2:war (default-war) @ projet-abpl ---
+       [INFO] Packaging webapp
+       [INFO] Assembling webapp [projet-abpl] in [/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/projet-abpl-0.0.1-BETA]
+       [INFO] Processing war project
+       [INFO] Copying webapp webResources [/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/src/main/webapp] to [/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/projet-abpl-0.0.1-BETA]
+       [INFO] Copying webapp resources [/tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/www]
+       [INFO] Webapp assembled in [686 msecs]
+       [INFO] Building war: /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/projet-abpl-0.0.1-BETA.war
+       [INFO]
+       [INFO] --- spring-boot-maven-plugin:2.0.6.RELEASE:repackage (default) @ projet-abpl ---
+       [INFO]
+       [INFO] --- maven-resources-plugin:3.1.0:copy-resources (jib-www-resources) @ projet-abpl ---
+       [INFO] Using 'UTF-8' encoding to copy filtered resources.
+       [INFO] Copying 113 resources
+       [INFO]
+       [INFO] --- maven-install-plugin:2.4:install (default-install) @ projet-abpl ---
+       [INFO] Installing /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/target/projet-abpl-0.0.1-BETA.war to /app/tmp/cache/.m2/repository/fr/projetabpl/projet-abpl/0.0.1-BETA/projet-abpl-0.0.1-BETA.war
+       [INFO] Installing /tmp/build_a9e0466d9d579bb0ce6193230db4ba5d/pom.xml to /app/tmp/cache/.m2/repository/fr/projetabpl/projet-abpl/0.0.1-BETA/projet-abpl-0.0.1-BETA.pom
+       [INFO] ------------------------------------------------------------------------
+       [INFO] BUILD SUCCESS
+       [INFO] ------------------------------------------------------------------------
+       [INFO] Total time:  03:50 min
+       [INFO] Finished at: 2019-01-10T14:11:47Z
+       [INFO] ------------------------------------------------------------------------
+-----> Discovering process types
+       Procfile declares types -> web
+-----> Compressing...
+ !     Compiled slug size: 505M is too large (max is 500M).
+ !     See: http://devcenter.heroku.com/articles/slug-size
+ !     Push failed
