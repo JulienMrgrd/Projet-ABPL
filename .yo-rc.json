@@ -24,7 +24,7 @@
     "jwtSecretKey": "MTgwNGNlY2VmZDZlMDE0MGNlYTI1NDhhODMwMzgxNDJhMmRmNDhkM2VjZjQ2NDA2NjdjNGI2MWI1YWM1OWZjNDY3NmM1OGZhMGNlYjUyZmU5MzZjMzEzZmIyMWE5ODlkMzUxYTUwZWYyNzg3ZTM0NGZhYmJhNmY5ZjI3ZWYwMWU=",
     "clientFramework": "angularX",
     "useSass": false,
-    "clientPackageManager": "npm",
+    "clientPackageManager": "yarn",
     "testFrameworks": [
       "cucumber",
       "protractor"
