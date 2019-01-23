@@ -5,8 +5,30 @@
   text-align: center !important;
 }
 
-.alert-color {
+.try-me {
   color: #c6c6c6;
   border-color: var(--abpl-primary, #316080);
   background-color: var(--abpl-primary-darker, #254962);
+}
+
+.selected-color {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
+  opacity: 1;
+  cursor: pointer;
+  display: inline-flex;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  background-color: var(--abpl-primary-darker, #254962);
+  outline: none !important;
+}
+
+.selected-color-mini {
+  height: 19px;
+  width: 19px;
+  margin: 1px 0 0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
