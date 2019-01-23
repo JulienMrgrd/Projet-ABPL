@@ -1,21 +1,45 @@
-<div class="card card-frame">
-  <div class="card-block">
-    <div class="alert alert-color">
-      <h2 class="display-10"><fa-icon [icon]="'arrow-down'"></fa-icon>&nbsp;Essayez-moi !</h2>
-    </div>
-    <hr/>
-    <div class="container-fluid">
-      <span
-        [(colorPicker)]="defaultColor"
-        [style.background]="defaultColor"
-        [cpDialogDisplay]="'inline'"
-        [cpToggle]="true"
-        [cpDisableInput]="true"
-        [cpCancelButton]="false"
-        [cpAlphaChannel]="'disabled'"
-        [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
-        (colorPickerChange)="changeColor($event)">
-      </span>
-    </div>
-  </div>
+<div *ngIf="!modalMode"
+     class="selected-color {{mini ? 'selected-color-mini' : ''}}"
+     [placement]="placement"
+     [ngbPopover]="colorPicker"
+     [popoverTitle]="colorTitle"
+     triggers="{{ clickable ? 'manual' : 'mouseenter:mouseleave' }}"
+     #p="ngbPopover" (click)="popIfClickable(p)">
 </div>
+
+<div *ngIf="modalMode"
+     (click)="open(modal)"
+     class="selected-color {{mini ? 'selected-color-mini' : ''}}">
+</div>
+<span *ngIf="text && text.length > 0">{{text}}</span>
+
+<ng-template #modal let-modal>
+  <div class="modal-header justify-content-center">
+    <h3 class="modal-title" id="modal-basic-title">
+      <ng-container [ngTemplateOutlet]="colorTitle"></ng-container>
+    </h3>
+  </div>
+  <div class="modal-body justify-content-center d-flex">
+    <ng-container [ngTemplateOutlet]="colorPicker"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #colorPicker>
+  <span
+    [(colorPicker)]="defaultColor"
+    [style.background]="defaultColor"
+    [cpDialogDisplay]="'inline'"
+    [cpToggle]="true"
+    [cpDisableInput]="true"
+    [cpCancelButton]="false"
+    [cpAlphaChannel]="'disabled'"
+    [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
+    (colorPickerChange)="changeColor($event)">
+    </span>
+</ng-template>
+
+<ng-template #colorTitle>
+  <div class="alert try-me">
+    <h3><fa-icon [icon]="'arrow-down'"></fa-icon>&nbsp;Essayez-moi !</h3>
+  </div>
+</ng-template>
