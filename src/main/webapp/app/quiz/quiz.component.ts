@@ -198,6 +198,7 @@ export class QuizComponent implements OnChanges, OnDestroy {
     return this.quizMode === QuizMode.TEST;
   }
 
+  // TODO: load from Backend (S3, cloud, ...)
   getMediaUrl(imageFilename: string) {
     return ContentUtil.getMediaUrl(imageFilename, this.quizMode);
   }
