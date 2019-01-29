@@ -25,6 +25,7 @@ export class QuizReponseComponent {
   utils = QuestionUtils;
   formatUtil = FormatUtil;
 
+  // TODO: load from Backend (S3, cloud, ...)
   getMediaUrl(imageFilename: string) {
     return ContentUtil.getMediaUrl(imageFilename, this.quizMode);
   }
